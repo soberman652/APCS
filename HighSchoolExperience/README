@@ -27,11 +27,12 @@ location on the school campus and begin doing tasks for their after school activ
 the student stress bar. If the stress bar reaches a certain point, the user loses the game and the game stops. If the user can keep 
 their student below the losing point and their grades above a C after 20 days, the game is complete, and a diploma will be given to 
 the user. If the user fails school, then no diploma will be rewarded to the user, and the user simply loses the game. Regardless of 
-the result, the user gets an option to start another school year or quit the game.
+the result, the user gets an option to start another school year or quit the game. Use all of the arrow keys to move the character up and down,
+left and right. Move your character to the door to get to the next location.
 
 
 Must-Have Features List:
-* 2D Graphics - graphics are of the schedule, backgrounds, “tests,” and “assignments”
+* 2D Graphics - graphics are of the schedule, backgrounds, tests and assignments
 * Choose which classes the student can take - can choose from a selection of courses
 * Choose which extracurriculars the student can take - can choose from a variety of extracurriculars
 * Mini games - used for assignments and sometimes tests or quizzes
@@ -44,10 +45,10 @@ Must-Have Features List:
 
 
 Want-to-have Features List:
-* Quarter grades - shows the average of the grades for a quarter of the “year”
+* Quarter grades - shows the average of the grades for a quarter of the year
 * Better graphics - drawn out graphics maybe made into 3D
 * Courses and extracurriculars - more options than what is already given
-* Customize student’s appearance - able to change the color of hair, skin color, and clothing through a different screen that you click to enter
+* Customize student's appearance - able to change the color of hair, skin color, and clothing through a different screen that you click to enter
 * Able to interact with other peers - user may communicate, work, or spend free time with peers
 
 
@@ -62,7 +63,7 @@ Class List:
 * Background: reads in images taken from the Internet and displays them, these images are graphics for various settings like a classroom, gymnasium, and a cafeteria
 * Location: holds information of where the user is currently
 * GamePanel (has Clock, Phase, Day, StressLevel, and Location): holds all information about game progress (day, time, score, stress, location)
-* Obstacle: an object on screen that user can’t walk through
+* Obstacle: an object on screen that user cannot walk through
 * Student: represents the student the user controls 
 * Course (abstract): represents the course the user takes
    * Math (extends Course, has a teacher): represents a mathematics class, includes a broad range of different levels (algebra to calculus maybe)

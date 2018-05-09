@@ -3,6 +3,13 @@ import java.awt.event.KeyEvent;
 
 import processing.core.PApplet;
 
+/**
+ * This class creates a character
+ * 
+ * 
+ * @author emily
+ *
+ */
 public class GameWindow extends PApplet
 {
 	private Sprite student;

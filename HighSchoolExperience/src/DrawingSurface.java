@@ -2,10 +2,18 @@ import java.awt.event.KeyEvent;
 
 import processing.core.PApplet;
 
+
+/**
+ * 
+ * This class 
+ * 
+ * @author soberman652
+ *
+ */
 public class DrawingSurface extends PApplet {
 
 	
-	private Background back;
+	//private Background back;
 	
 	public DrawingSurface() {
 		
@@ -27,7 +35,7 @@ public class DrawingSurface extends PApplet {
 
 	    
 	    public void createBackground() {
-	    		back = new Background();
+	    		//back = new Background();
 	    }
 	    
 	    public void draw() {
@@ -44,7 +52,7 @@ public class DrawingSurface extends PApplet {
 	    
 	    public void keyPressed() {
 	    	  if (key == ENTER) {
-	    		  back.addScreenNum();
+	    		  //back.addScreenNum();
 	    	}
 	
 	
