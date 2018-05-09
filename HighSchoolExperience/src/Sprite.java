@@ -16,7 +16,7 @@ public class Sprite extends Rectangle
 	
 	public void display(PApplet drawer)
 	{
-		act();
+		act(drawer);
 		drawer.pushStyle();
 		drawer.stroke(0);
 		drawer.fill(255);
@@ -24,7 +24,7 @@ public class Sprite extends Rectangle
 		drawer.popStyle();
 	}
 	
-	public void act()
+	public void act(PApplet w)
 	{
 		this.x += dx;
 		this.y += dy;
