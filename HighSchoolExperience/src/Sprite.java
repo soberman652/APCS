@@ -26,8 +26,21 @@ public class Sprite extends Rectangle
 	
 	public void act(PApplet w)
 	{
-		this.x += dx;
-		this.y += dy;
+		if(this.x < 0)
+			this.x = 0;
+		else if(this.x + this.width > w.width)
+			this.x = w.width - this.width;
+		else
+			this.x += dx;
+		
+		if(this.y < 0)
+			this.y = 0;
+		else if(this.y + this.height > w.height)
+			this.y = w.height - this.height;
+		else
+			this.y += dy;
+		
+		
 	}
 	
 	public void moveXBy(int x)
