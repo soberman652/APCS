@@ -5,7 +5,7 @@ import processing.core.PApplet;
 
 /**
  * 
- * This represents a moving character that can only move inside bounds of window,.
+ * This represents a moving character that can only move inside bounds of window.
  * 
  * @author eyao600
  *
