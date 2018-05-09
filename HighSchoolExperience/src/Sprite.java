@@ -18,7 +18,8 @@ public class Sprite extends Rectangle
 	{
 		act();
 		drawer.pushStyle();
-		drawer.fill(0);
+		drawer.stroke(0);
+		drawer.fill(255);
 		drawer.rect(this.x, this.y, this.width, this.height);
 		drawer.popStyle();
 	}

@@ -5,6 +5,7 @@ import processing.core.PApplet;
 public class GameWindow extends PApplet
 {
 	private Sprite student;
+	private boolean[] arrowKeyPressed = new boolean[4]; //[Left,Right,Down,Up]
 	
 	public static void main(String args[])
 	{
@@ -31,24 +32,50 @@ public class GameWindow extends PApplet
 	public void keyPressed()
 	{
 		if(keyCode == KeyEvent.VK_LEFT)
+		{
 			student.moveXBy(-3);
+			arrowKeyPressed[0] = true;
+		}
 		if(keyCode == KeyEvent.VK_RIGHT)
+		{
 			student.moveXBy(3);
-		if(keyCode == KeyEvent.VK_UP)
-			student.moveYBy(-3);
+			arrowKeyPressed[1] = true;
+		}
 		if(keyCode == KeyEvent.VK_DOWN)
+		{
 			student.moveYBy(3);
+			arrowKeyPressed[2] = true;
+		}
+		if(keyCode == KeyEvent.VK_UP)
+		{
+			student.moveYBy(-3);
+			arrowKeyPressed[3] = true;
+		}
 	}
 	
 	public void keyReleased()
 	{
 		if(keyCode == KeyEvent.VK_LEFT)
-			student.moveXBy(0);
+			arrowKeyPressed[0] = false;
 		if(keyCode == KeyEvent.VK_RIGHT)
-			student.moveXBy(0);
-		if(keyCode == KeyEvent.VK_UP)
-			student.moveYBy(0);
+			arrowKeyPressed[1] = false;
 		if(keyCode == KeyEvent.VK_DOWN)
+			arrowKeyPressed[2] = false;
+		if(keyCode == KeyEvent.VK_UP)
+			arrowKeyPressed[3] = false;
+		
+		if(arrowKeyPressed[0] && !arrowKeyPressed[1])
+			student.moveXBy(-3);
+		else if(!arrowKeyPressed[0] && arrowKeyPressed[1])
+			student.moveXBy(3);
+		else if(!arrowKeyPressed[0] && !arrowKeyPressed[1])
+			student.moveXBy(0);
+		
+		if(arrowKeyPressed[2] && !arrowKeyPressed[3])
+			student.moveYBy(3);
+		else if(!arrowKeyPressed[2] && arrowKeyPressed[3])
+			student.moveYBy(-3);
+		else if(!arrowKeyPressed[2] && !arrowKeyPressed[3])
 			student.moveYBy(0);
 	}
 }
