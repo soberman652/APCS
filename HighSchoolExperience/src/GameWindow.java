@@ -7,7 +7,7 @@ public class GameWindow extends PApplet
 {
 	private Sprite student;
 	private boolean[] arrowKeyPressed = new boolean[4]; //[Left,Right,Down,Up]
-	private Room[][] campus;
+	//private Room[][] campus;
 	private int userDir;
 	public static final int NORTH = 1, EAST = 2, SOUTH = 3, WEST = 4; //direction user is facing 
 	
@@ -26,19 +26,19 @@ public class GameWindow extends PApplet
 		background(255);
 		userDir = NORTH;
 		student = new Sprite(width/2, height/2, 25, 35);
-		campus = new Room[1][1];
-		Door nDoor = new Door(NORTH, new Rectangle(100,50,25,35), null);
-		Door sDoor = new Door(SOUTH, new Rectangle(100,50,25,35), null);
-		Classroom c = new Classroom("Test");
-		c.addDoor(nDoor);
-		c.addDoor(sDoor);
-		campus[0][0] = c;
+		//campus = new Room[1][1];
+		//Door nDoor = new Door(NORTH, new Rectangle(100,50,25,35), null);
+		//Door sDoor = new Door(SOUTH, new Rectangle(100,50,25,35), null);
+		//Classroom c = new Classroom("Test");
+		//c.addDoor(nDoor);
+		//c.addDoor(sDoor);
+		//campus[0][0] = c;
 	}
 	
 	public void draw()
 	{
 		background(255);
-		campus[0][0].display(userDir, this);
+		//campus[0][0].display(userDir, this);
 		student.display(this);
 	}
 	
