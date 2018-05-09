@@ -15,8 +15,9 @@ public class GameWindow extends PApplet
 	private Sprite student;
 	private boolean[] arrowKeyPressed = new boolean[4]; //[Left,Right,Down,Up]
 	//private Room[][] campus;
-	private int userDir;
+	private int userDir, state;
 	public static final int NORTH = 1, EAST = 2, SOUTH = 3, WEST = 4; //direction user is facing 
+	public static final int MENU = 0, GAME = 1;
 	
 	public static void main(String args[])
 	{
@@ -32,6 +33,7 @@ public class GameWindow extends PApplet
 	{
 		background(255);
 		userDir = NORTH;
+		state = MENU;
 		student = new Sprite(width/2, height/2, 25, 35);
 		//campus = new Room[1][1];
 		//Door nDoor = new Door(NORTH, new Rectangle(100,50,25,35), null);
@@ -44,73 +46,96 @@ public class GameWindow extends PApplet
 	
 	public void draw()
 	{
-		background(255);
-		//campus[0][0].display(userDir, this);
-		student.display(this);
+		if(state == MENU)
+		{
+			fill(0);
+			textSize(24);
+		    textAlign(CENTER);
+		    text("Press ENTER to start: High School Experience", 450, 320);
+		}
+		else if(state == GAME)
+		{
+			background(255);
+			//campus[0][0].display(userDir, this);
+			student.display(this);
+		}
 	}
 	
 	public void keyPressed()
 	{
-		if(keyCode == KeyEvent.VK_LEFT)
+		if(state == MENU)
 		{
-			student.moveXBy(-3);
-			arrowKeyPressed[0] = true;
+			if (keyCode == KeyEvent.VK_ENTER)
+			{
+				state = GAME;
+			}
 		}
-		if(keyCode == KeyEvent.VK_RIGHT)
+		else if(state == GAME)
 		{
-			student.moveXBy(3);
-			arrowKeyPressed[1] = true;
-		}
-		if(keyCode == KeyEvent.VK_DOWN)
-		{
-			student.moveYBy(3);
-			arrowKeyPressed[2] = true;
-		}
-		if(keyCode == KeyEvent.VK_UP)
-		{
-			student.moveYBy(-3);
-			arrowKeyPressed[3] = true;
-		}
-		
-		if(keyCode == KeyEvent.VK_A)
-		{
-			if(userDir == NORTH)
-				userDir = WEST;
-			else
-				userDir--;
-		}
-		if(keyCode == KeyEvent.VK_D)
-		{
-			if(userDir == WEST)
-				userDir = NORTH;
-			else
-				userDir++;
+			if(keyCode == KeyEvent.VK_LEFT)
+			{
+				student.moveXBy(-3);
+				arrowKeyPressed[0] = true;
+			}
+			if(keyCode == KeyEvent.VK_RIGHT)
+			{
+				student.moveXBy(3);
+				arrowKeyPressed[1] = true;
+			}
+			if(keyCode == KeyEvent.VK_DOWN)
+			{
+				student.moveYBy(3);
+				arrowKeyPressed[2] = true;
+			}
+			if(keyCode == KeyEvent.VK_UP)
+			{
+				student.moveYBy(-3);
+				arrowKeyPressed[3] = true;
+			}
+			
+			if(keyCode == KeyEvent.VK_A)
+			{
+				if(userDir == NORTH)
+					userDir = WEST;
+				else
+					userDir--;
+			}
+			if(keyCode == KeyEvent.VK_D)
+			{
+				if(userDir == WEST)
+					userDir = NORTH;
+				else
+					userDir++;
+			}
 		}
 	}
 	
 	public void keyReleased()
 	{
-		if(keyCode == KeyEvent.VK_LEFT)
-			arrowKeyPressed[0] = false;
-		if(keyCode == KeyEvent.VK_RIGHT)
-			arrowKeyPressed[1] = false;
-		if(keyCode == KeyEvent.VK_DOWN)
-			arrowKeyPressed[2] = false;
-		if(keyCode == KeyEvent.VK_UP)
-			arrowKeyPressed[3] = false;
-		
-		if(arrowKeyPressed[0] && !arrowKeyPressed[1])
-			student.moveXBy(-3);
-		else if(!arrowKeyPressed[0] && arrowKeyPressed[1])
-			student.moveXBy(3);
-		else if(!arrowKeyPressed[0] && !arrowKeyPressed[1])
-			student.moveXBy(0);
-		
-		if(arrowKeyPressed[2] && !arrowKeyPressed[3])
-			student.moveYBy(3);
-		else if(!arrowKeyPressed[2] && arrowKeyPressed[3])
-			student.moveYBy(-3);
-		else if(!arrowKeyPressed[2] && !arrowKeyPressed[3])
-			student.moveYBy(0);
+		if(state == GAME)
+		{
+			if(keyCode == KeyEvent.VK_LEFT)
+				arrowKeyPressed[0] = false;
+			if(keyCode == KeyEvent.VK_RIGHT)
+				arrowKeyPressed[1] = false;
+			if(keyCode == KeyEvent.VK_DOWN)
+				arrowKeyPressed[2] = false;
+			if(keyCode == KeyEvent.VK_UP)
+				arrowKeyPressed[3] = false;
+			
+			if(arrowKeyPressed[0] && !arrowKeyPressed[1])
+				student.moveXBy(-3);
+			else if(!arrowKeyPressed[0] && arrowKeyPressed[1])
+				student.moveXBy(3);
+			else if(!arrowKeyPressed[0] && !arrowKeyPressed[1])
+				student.moveXBy(0);
+			
+			if(arrowKeyPressed[2] && !arrowKeyPressed[3])
+				student.moveYBy(3);
+			else if(!arrowKeyPressed[2] && arrowKeyPressed[3])
+				student.moveYBy(-3);
+			else if(!arrowKeyPressed[2] && !arrowKeyPressed[3])
+				student.moveYBy(0);
+		}
 	}
 }

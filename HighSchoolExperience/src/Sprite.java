@@ -3,6 +3,13 @@ import java.awt.event.KeyEvent;
 
 import processing.core.PApplet;
 
+/**
+ * 
+ * This represents a moving character that can only move inside bounds of window,.
+ * 
+ * @author eyao600
+ *
+ */
 public class Sprite extends Rectangle
 {
 	private int dx, dy;
