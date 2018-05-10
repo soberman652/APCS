@@ -4,8 +4,7 @@ import java.awt.event.KeyEvent;
 import processing.core.PApplet;
 
 /**
- * This class creates a character
- * 
+ * Simulates school campus
  * 
  * @author emily
  *
@@ -35,13 +34,7 @@ public class GameWindow extends PApplet
 		userDir = NORTH;
 		state = MENU;
 		student = new Sprite(width/2, height/2, 25, 35);
-		campus = new Room[1][1];
-		Door nDoor = new Door(NORTH, new Rectangle(100,50,25,35), null);
-		Door sDoor = new Door(SOUTH, new Rectangle(100,50,25,35), null);
-		Classroom c = new Classroom("Test");
-		c.addDoor(nDoor);
-		c.addDoor(sDoor);
-		campus[0][0] = c;
+		initCampus();
 	}
 	
 	public void draw()
@@ -137,5 +130,16 @@ public class GameWindow extends PApplet
 			else if(!arrowKeyPressed[2] && !arrowKeyPressed[3])
 				student.moveYBy(0);
 		}
+	}
+	
+	private void initCampus()
+	{
+		campus = new Room[1][1];
+		Door nDoor = new Door(NORTH, new Rectangle(100,50,25,35), null);
+		Door sDoor = new Door(SOUTH, new Rectangle(100,50,25,35), null);
+		Classroom c = new Classroom("Test");
+		c.addDoor(nDoor);
+		c.addDoor(sDoor);
+		campus[0][0] = c;
 	}
 }
