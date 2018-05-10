@@ -1,5 +1,6 @@
 import java.awt.Rectangle;
 import java.awt.event.KeyEvent;
+import java.util.ArrayList;
 
 import processing.core.PApplet;
 
@@ -14,6 +15,7 @@ public class GameWindow extends PApplet
 	private Sprite student;
 	private boolean[] arrowKeyPressed = new boolean[4]; //[Left,Right,Down,Up]
 	private Room[][] campus;
+	private Room currentLocation;
 	private int userDir, state;
 	public static final int NORTH = 1, EAST = 2, SOUTH = 3, WEST = 4; //direction user is facing 
 	public static final int MENU = 0, GAME = 1;
@@ -49,7 +51,7 @@ public class GameWindow extends PApplet
 		else if(state == GAME)
 		{
 			background(255);
-			campus[0][0].display(userDir, this);
+			currentLocation.display(userDir, this);
 			student.display(this);
 		}
 	}
@@ -100,6 +102,20 @@ public class GameWindow extends PApplet
 				else
 					userDir++;
 			}
+			
+			if(keyCode == KeyEvent.VK_SPACE)
+			{
+				Door enteredDoor = null;
+				for(Door d : currentLocation.getExits())
+				{
+					if(d.hasEntered(student))
+					{
+						enteredDoor = d;
+					}
+				}
+				if(enteredDoor != null)
+					currentLocation = enteredDoor.exitTo(currentLocation);
+			}
 		}
 	}
 	
@@ -134,12 +150,19 @@ public class GameWindow extends PApplet
 	
 	private void initCampus()
 	{
-		campus = new Room[1][1];
-		Door nDoor = new Door(NORTH, new Rectangle(100,50,25,35), null);
-		Door sDoor = new Door(SOUTH, new Rectangle(100,50,25,35), null);
-		Classroom c = new Classroom("Test");
-		c.addDoor(nDoor);
-		c.addDoor(sDoor);
-		campus[0][0] = c;
+		campus = new Room[2][2];
+		Classroom a = new Classroom("A");
+		campus[0][0] = a;
+		Classroom b = new Classroom("B");
+		campus[0][1] = b;
+		Classroom c = new Classroom("C");
+		campus[1][1] = c;
+		Classroom d = new Classroom("D");
+		campus[1][0] = d;
+		Door ab = new Door(EAST, a, WEST, b, new Rectangle(100,50,25,35));
+		Door bc = new Door(SOUTH, b, NORTH, c, new Rectangle(100,50,25,35));
+		Door cd = new Door(WEST, c, EAST, d, new Rectangle(100,50,25,35));
+		Door ad = new Door(NORTH, d, SOUTH, a, new Rectangle(100,50,25,35));
+		currentLocation = campus[0][0];
 	}
 }

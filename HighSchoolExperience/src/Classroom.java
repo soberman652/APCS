@@ -2,11 +2,11 @@ import processing.core.PApplet;
 
 public class Classroom extends Room
 {
-	private String name;
+	//private String name;
 	public Classroom(String name)
 	{
-		super();
-		this.name = name;
+		super(name);
+		//this.name = name;
 	}
 	@Override
 	public void display(int direction, PApplet drawer) 
@@ -14,13 +14,13 @@ public class Classroom extends Room
 		drawer.pushStyle();
 		drawer.fill(0);
 		drawer.textSize(20);
-		drawer.text(name, drawer.width/2, drawer.height/2);
+		drawer.text(this.getMarker(), drawer.width/2, drawer.height/2);
 		if(direction == GameWindow.NORTH)
 		{
 			drawer.text('N', drawer.width/2, 30);
 			for(Door d: this.getExits())
 			{
-				if(d.getDirection() == GameWindow.NORTH)
+				if(d.getDirection(this) == GameWindow.NORTH)
 					d.display(drawer);
 			}
 		}
@@ -29,7 +29,7 @@ public class Classroom extends Room
 			drawer.text('E', drawer.width/2, 30);
 			for(Door d: this.getExits())
 			{
-				if(d.getDirection() == GameWindow.EAST)
+				if(d.getDirection(this) == GameWindow.EAST)
 				{
 					d.display(drawer);
 				}
@@ -41,7 +41,7 @@ public class Classroom extends Room
 			drawer.text('S', drawer.width/2, 30);
 			for(Door d: this.getExits())
 			{
-				if(d.getDirection() == GameWindow.SOUTH)
+				if(d.getDirection(this) == GameWindow.SOUTH)
 					d.display(drawer);
 			}
 		}
@@ -50,7 +50,7 @@ public class Classroom extends Room
 			drawer.text('W', drawer.width/2, 30);
 			for(Door d: this.getExits())
 			{
-				if(d.getDirection() == GameWindow.WEST)
+				if(d.getDirection(this) == GameWindow.WEST)
 					d.display(drawer);
 			}
 		}

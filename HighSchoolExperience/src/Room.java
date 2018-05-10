@@ -6,10 +6,14 @@ public abstract class Room
 {
 	// image
 	private ArrayList<Door> exits;
+	private ArrayList<Obstacle> furniture;
+	private String marker;
 
-	public Room()
+	public Room(String marker)
 	{
+		this.marker = marker;
 		exits = new ArrayList<Door>();
+		furniture = new ArrayList<Obstacle>();
 	}
 
 	public abstract void display(int direction, PApplet drawer);
@@ -22,5 +26,18 @@ public abstract class Room
 	public ArrayList<Door> getExits()
 	{
 		return exits;
+	}
+	
+	public boolean equals(Room other)
+	{
+		if(marker.equals(other.getMarker()))
+			return true;
+		else
+			return false;
+	}
+	
+	public String getMarker()
+	{
+		return marker;
 	}
 }
