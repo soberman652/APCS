@@ -4,18 +4,18 @@ import processing.core.PApplet;
 
 public class Door extends Rectangle
 {
-	private Room room1, room2;
-	private int dir1, dir2;
+	private Room adjacentRoom;
+	private int direction;
+	private String tag;
+	private boolean showTag;
 	
-	public Door(int dir1,  Room room1, int dir2, Room room2, Rectangle bounds)
+	public Door(int direction,  Room adj, Rectangle bounds, String tag)
 	{
 		this.setBounds(bounds);
-		this.dir1 = dir1;
-		this.dir2 = dir2;
-		room1.addDoor(this);
-		room2.addDoor(this);
-		this.room1 = room1;
-		this.room2 = room2;
+		this.direction = direction;
+		adjacentRoom = adj;
+		this.tag = tag;
+		showTag = false;
 	}
 	
 	public void display(PApplet drawer)
@@ -23,36 +23,38 @@ public class Door extends Rectangle
 		drawer.pushStyle();
 		drawer.fill(150);
 		drawer.rect(this.x, this.y, this.width, this.height);
+		
+		if(showTag)
+		{
+			drawer.fill(0);
+			drawer.textSize(10);
+			drawer.textAlign(drawer.CENTER);
+			drawer.text(tag, this.x+this.width/2, this.y);
+		}
 		drawer.popStyle();
 	}
 	
-	public Room exitTo(Room currentRoom)
+	public Room exitTo()
 	{
-		if(currentRoom.equals(room1))
-			return room2;
-		else if(currentRoom.equals(room2))
-			return room1;
-		else
-			return null;
+		return adjacentRoom;	
 	}
 	
 	public boolean hasEntered(Sprite player)
 	{
 		if(this.intersects(player))
 		{
+			showTag = true;
 			return true;
 		}
 		else
+		{
+			showTag = false;
 			return false;
+		}
 	}
 	
-	public int getDirection(Room currentRoom)
+	public int getDirection()
 	{
-		if(currentRoom.equals(room1))
-			return dir1;
-		else if(currentRoom.equals(room2))
-			return dir2;
-		else
-			return -1;
+		return direction;
 	}
 }

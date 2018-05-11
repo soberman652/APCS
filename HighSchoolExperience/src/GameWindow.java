@@ -52,6 +52,10 @@ public class GameWindow extends PApplet
 		{
 			background(255);
 			currentLocation.display(userDir, this);
+			for(Door d:currentLocation.getExits())
+			{
+				d.hasEntered(student);
+			}
 			student.display(this);
 		}
 	}
@@ -113,8 +117,9 @@ public class GameWindow extends PApplet
 						enteredDoor = d;
 					}
 				}
+				
 				if(enteredDoor != null)
-					currentLocation = enteredDoor.exitTo(currentLocation);
+					currentLocation = enteredDoor.exitTo();
 			}
 		}
 	}
@@ -151,18 +156,42 @@ public class GameWindow extends PApplet
 	private void initCampus()
 	{
 		campus = new Room[2][2];
-		Classroom a = new Classroom("A");
+		Classroom a = new Classroom("Room A");
 		campus[0][0] = a;
-		Classroom b = new Classroom("B");
+		Classroom b = new Classroom("Room B");
 		campus[0][1] = b;
-		Classroom c = new Classroom("C");
+		Classroom c = new Classroom("Room C");
 		campus[1][1] = c;
-		Classroom d = new Classroom("D");
+		Classroom d = new Classroom("Room D");
 		campus[1][0] = d;
-		Door ab = new Door(EAST, a, WEST, b, new Rectangle(100,50,25,35));
-		Door bc = new Door(SOUTH, b, NORTH, c, new Rectangle(100,50,25,35));
-		Door cd = new Door(WEST, c, EAST, d, new Rectangle(100,50,25,35));
-		Door ad = new Door(NORTH, d, SOUTH, a, new Rectangle(100,50,25,35));
+		
+		Door ab = new Door(EAST, b, new Rectangle(100,50,25,35), "To Room B");
+		Door ad = new Door(SOUTH, d, new Rectangle(100,50,25,35), "To Room D");
+		a.addDoor(ab);
+		a.addDoor(ad);
+		
+		Door bc = new Door(SOUTH, c, new Rectangle(100,50,25,35), "To Room C");
+		Door ba = new Door(WEST, a, new Rectangle(100,50,25,35), "To Room A");
+		b.addDoor(bc);
+		b.addDoor(ba);
+		
+		Door cd = new Door(WEST, d, new Rectangle(100,50,25,35), "To Room D");
+		Door cb = new Door(NORTH, b, new Rectangle(100,50,25,35), "To Room B");
+		c.addDoor(cd);
+		c.addDoor(cb);
+		
+		Door da = new Door(NORTH, a, new Rectangle(100,50,25,35), "To Room A");
+		Door dc = new Door(EAST, c, new Rectangle(100,50,25,35), "To Room C");
+		d.addDoor(da);
+		d.addDoor(dc);
+		
 		currentLocation = campus[0][0];
+		
+		//redo doors so each face of a door is its own object
+	}
+	
+	private void addConnection(Room r1, Rectangle a, Room r2, Rectangle b)
+	{
+		int dir = 0;
 	}
 }
