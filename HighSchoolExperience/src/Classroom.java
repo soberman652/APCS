@@ -2,11 +2,9 @@ import processing.core.PApplet;
 
 public class Classroom extends Room
 {
-	//private String name;
 	public Classroom(String name)
 	{
 		super(name);
-		//this.name = name;
 	}
 	@Override
 	public void display(int direction, PApplet drawer) 
@@ -33,7 +31,6 @@ public class Classroom extends Room
 				{
 					d.display(drawer);
 				}
-					
 			}
 		}
 		else if(direction == GameWindow.SOUTH)
