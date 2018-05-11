@@ -20,7 +20,7 @@ public class Classroom extends Room
 			drawer.text('N', drawer.width/2, 30);
 			for(Door d: this.getExits())
 			{
-				if(d.getDirection(this) == GameWindow.NORTH)
+				if(d.getDirection() == GameWindow.NORTH)
 					d.display(drawer);
 			}
 		}
@@ -29,7 +29,7 @@ public class Classroom extends Room
 			drawer.text('E', drawer.width/2, 30);
 			for(Door d: this.getExits())
 			{
-				if(d.getDirection(this) == GameWindow.EAST)
+				if(d.getDirection() == GameWindow.EAST)
 				{
 					d.display(drawer);
 				}
@@ -41,7 +41,7 @@ public class Classroom extends Room
 			drawer.text('S', drawer.width/2, 30);
 			for(Door d: this.getExits())
 			{
-				if(d.getDirection(this) == GameWindow.SOUTH)
+				if(d.getDirection() == GameWindow.SOUTH)
 					d.display(drawer);
 			}
 		}
@@ -50,7 +50,7 @@ public class Classroom extends Room
 			drawer.text('W', drawer.width/2, 30);
 			for(Door d: this.getExits())
 			{
-				if(d.getDirection(this) == GameWindow.WEST)
+				if(d.getDirection() == GameWindow.WEST)
 					d.display(drawer);
 			}
 		}
