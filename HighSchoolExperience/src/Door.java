@@ -7,7 +7,7 @@ public class Door extends Rectangle
 	private Room adjacentRoom;
 	private int direction;
 	private String tag;
-	private boolean showTag;
+	private boolean showTag, visible;
 	
 	public Door(int direction,  Room adj, Rectangle bounds, String tag)
 	{
@@ -16,10 +16,12 @@ public class Door extends Rectangle
 		adjacentRoom = adj;
 		this.tag = tag;
 		showTag = false;
+		visible = false;
 	}
 	
 	public void display(PApplet drawer)
 	{
+		visible = true;
 		drawer.pushStyle();
 		drawer.fill(150);
 		drawer.rect(this.x, this.y, this.width, this.height);
@@ -41,7 +43,7 @@ public class Door extends Rectangle
 	
 	public boolean hasEntered(Sprite player)
 	{
-		if(this.intersects(player))
+		if(visible && this.intersects(player))
 		{
 			showTag = true;
 			return true;
@@ -56,5 +58,10 @@ public class Door extends Rectangle
 	public int getDirection()
 	{
 		return direction;
+	}
+	
+	public void invisible()
+	{
+		visible = false;
 	}
 }

@@ -20,6 +20,8 @@ public class Classroom extends Room
 			{
 				if(d.getDirection() == GameWindow.NORTH)
 					d.display(drawer);
+				else
+					d.invisible();
 			}
 		}
 		else if(direction == GameWindow.EAST)
@@ -28,9 +30,9 @@ public class Classroom extends Room
 			for(Door d: this.getExits())
 			{
 				if(d.getDirection() == GameWindow.EAST)
-				{
 					d.display(drawer);
-				}
+				else
+					d.invisible();
 			}
 		}
 		else if(direction == GameWindow.SOUTH)
@@ -40,6 +42,8 @@ public class Classroom extends Room
 			{
 				if(d.getDirection() == GameWindow.SOUTH)
 					d.display(drawer);
+				else
+					d.invisible();
 			}
 		}
 		else if(direction == GameWindow.WEST)
@@ -49,6 +53,8 @@ public class Classroom extends Room
 			{
 				if(d.getDirection() == GameWindow.WEST)
 					d.display(drawer);
+				else
+					d.invisible();
 			}
 		}
 		drawer.popStyle();

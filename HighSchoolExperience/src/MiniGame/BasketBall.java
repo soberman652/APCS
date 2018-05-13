@@ -1,5 +1,8 @@
 package MiniGame;
+
 import java.awt.Rectangle;
+import java.awt.geom.Line2D;
+import java.awt.geom.Point2D;
 
 import processing.core.PApplet;
 
@@ -13,10 +16,10 @@ import processing.core.PApplet;
 public class BasketBall 
 {
 	private double x, y, dx, dy;
-	private int radius;
+	private int radius, wasShotAt;
 	private boolean tossed, isPickedUp;
 	private Player holder;
-	private Net net;
+	private Line2D netBound;
 	
 	public BasketBall(int x, int y, int r, Player player, Net net)
 	{
@@ -28,13 +31,18 @@ public class BasketBall
 		tossed = false;
 		isPickedUp = false;
 		holder = player;
-		this.net = net;
+		netBound = net.getBoundary();
+		wasShotAt = (int)(player.getY() + player.getHeight());
 	}
 	
 	public void display(PApplet drawer)
 	{
+		drawer.pushStyle();
+		drawer.fill(245,124,19);
+		drawer.noStroke();
 		drawer.ellipseMode(drawer.RADIUS);
 		drawer.ellipse((float)x, (float)y, radius, radius);
+		drawer.popStyle();
 		act(drawer);
 	}
 	
@@ -42,9 +50,9 @@ public class BasketBall
 	{		
 		if(tossed)
 		{
-			if(y + radius > window.height)
+			if(y + radius > wasShotAt)
 			{
-				y = window.height - radius;
+				y = wasShotAt - radius;
 				dy = -dy * 0.85;
 				dx *= 0.9;
 				if(Math.abs(dy) < 3)
@@ -67,19 +75,39 @@ public class BasketBall
 				x = 0;
 				dx = -dx;
 			}
-			
-			if(net.contains(x, y))
+			else if(this.y > netBound.getY1() && this.y < netBound.getY2())
 			{
-				if(x > net.x && x < net.x + net.width && dy > 0)
+				if(Math.abs(this.x - netBound.getX1()) < radius)
 				{
-					net.incrementScore();
-					System.out.println(net.getScore());
+					if(this.x - dx < netBound.getX1())
+						x = netBound.getX1()-radius-5;
+					else if(this.x - dx > netBound.getX1())
+						x = netBound.getX1()+radius+5;
+					dx = -dx;
 				}
 			}
+			else if(this.y <= netBound.getY1())
+			{
+				if(Math.sqrt(Math.pow(this.x - netBound.getX1(), 2)+Math.pow(this.y-netBound.getY1(), 2)) < radius)
+				{
+					dx = -dx;
+					dy = -dy;
+				}
+			}
+			else if(this.y >= netBound.getY2())
+			{
+				if(Math.sqrt(Math.pow(this.x - netBound.getX2(), 2)+Math.pow(this.y-netBound.getY2(), 2)) < radius)
+				{
+					dx = -dx;
+					dy = -dy;
+				}
+			}
+			
 			this.x += dx;
 			this.y += dy;
 		}
-		else if(isPickedUp)
+		
+		if(isPickedUp)
 		{
 			moveTo(holder.x + holder.width, holder.y + holder.height/2);
 		}
@@ -99,6 +127,7 @@ public class BasketBall
 			int initialVel = level;
 			dx = initialVel * Math.cos(angle);
 			dy = -initialVel * Math.sin(angle);
+			wasShotAt = (int)(holder.getY() + holder.getHeight());
 		}
 	}
 	
@@ -106,5 +135,20 @@ public class BasketBall
 	{
 		this.x = x;
 		this.y = y;
+	}
+	
+	public int getRadius()
+	{
+		return radius;
+	}
+	
+	public Point2D getCenter()
+	{
+		return new Point2D.Double(x,y);
+	}
+	
+	public Point2D getLastPoint()
+	{
+		return new Point2D.Double(x-dx,y-dy);
 	}
 }
