@@ -1,4 +1,4 @@
-package MiniGame;
+package BallGame;
 
 import java.awt.Rectangle;
 import java.awt.event.KeyEvent;

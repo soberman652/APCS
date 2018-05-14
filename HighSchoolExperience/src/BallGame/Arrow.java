@@ -1,4 +1,4 @@
-package MiniGame;
+package BallGame;
 
 import processing.core.PApplet;
 

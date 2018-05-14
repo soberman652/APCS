@@ -82,7 +82,6 @@ Class List:
 * StressLevel: represents the bar that indicates the stress level of the user
 * Clock: keeps time throughout the day
 * Day: keeps track of the day, day is displayed in the upper-left corner of the screen
-* Phase: represent the phases of the day (class time, break, after school)
 * Teacher: represents teacher who will be instructing a class and giving grades
 * Gradebook (has Grade): saves grades for each class and keeps track of student progress
 * Grade: represents a single letter grade
