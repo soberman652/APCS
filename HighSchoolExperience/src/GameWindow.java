@@ -35,7 +35,7 @@ public class GameWindow extends PApplet
 		background(255);
 		userDir = NORTH;
 		state = MENU;
-		student = new Sprite(width/2, height/2, 25, 35);
+		student = new Sprite(width/2, height/2, loadImage("img\\StudentFrontWalk.gif"));
 		initCampus();
 	}
 	
@@ -74,21 +74,25 @@ public class GameWindow extends PApplet
 			if(keyCode == KeyEvent.VK_LEFT)
 			{
 				student.moveXBy(-3);
+				student.switchImg(2);
 				arrowKeyPressed[0] = true;
 			}
 			if(keyCode == KeyEvent.VK_RIGHT)
 			{
 				student.moveXBy(3);
+				student.switchImg(3);
 				arrowKeyPressed[1] = true;
 			}
 			if(keyCode == KeyEvent.VK_DOWN)
 			{
 				student.moveYBy(3);
+				student.switchImg(1);
 				arrowKeyPressed[2] = true;
 			}
 			if(keyCode == KeyEvent.VK_UP)
 			{
 				student.moveYBy(-3);
+				student.switchImg(1);
 				arrowKeyPressed[3] = true;
 			}
 			

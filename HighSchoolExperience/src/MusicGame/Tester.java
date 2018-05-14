@@ -93,7 +93,7 @@ public class Tester extends PApplet
 			if(keyCode == KeyEvent.VK_1)
 			{
 				numPressed[0] = true;
-				if(notes.get(0).hit(50) == -1 && notes.get(0).getPitch() != 1)
+				if(notes.get(0).hit(50) == -1 || notes.get(0).getPitch() != 1)
 					symbol = new Sign(-1);
 				else
 				{
@@ -105,7 +105,7 @@ public class Tester extends PApplet
 			if(keyCode == KeyEvent.VK_2)
 			{
 				numPressed[1] = true;
-				if(notes.get(0).hit(50) == -1 && notes.get(0).getPitch() != 2)
+				if(notes.get(0).hit(50) == -1 || notes.get(0).getPitch() != 2)
 					symbol = new Sign(-1);
 				else
 				{
@@ -117,7 +117,7 @@ public class Tester extends PApplet
 			if(keyCode == KeyEvent.VK_3)
 			{
 				numPressed[2] = true;
-				if(notes.get(0).hit(50) == -1 && notes.get(0).getPitch() != 3)
+				if(notes.get(0).hit(50) == -1 || notes.get(0).getPitch() != 3)
 					symbol = new Sign(-1);
 				else
 				{
@@ -129,7 +129,7 @@ public class Tester extends PApplet
 			if(keyCode == KeyEvent.VK_4)
 			{
 				numPressed[3] = true;
-				if(notes.get(0).hit(50) == -1 && notes.get(0).getPitch() != 4)
+				if(notes.get(0).hit(50) == -1 || notes.get(0).getPitch() != 4)
 					symbol = new Sign(-1);
 				else
 				{
@@ -141,8 +141,8 @@ public class Tester extends PApplet
 			if(keyCode == KeyEvent.VK_5)
 			{
 				numPressed[4] = true;
-				if(notes.get(0).hit(50) == -1 && notes.get(0).getPitch() != 5)
-					System.out.println("miss");
+				if(notes.get(0).hit(50) == -1 || notes.get(0).getPitch() != 5)
+					symbol = new Sign(-1);
 				else
 				{
 					good++;

@@ -1,7 +1,7 @@
 import processing.core.PApplet;
 
 public class Classroom extends Room
-{
+{	
 	public Classroom(String name)
 	{
 		super(name);
@@ -9,6 +9,7 @@ public class Classroom extends Room
 	@Override
 	public void display(int direction, PApplet drawer) 
 	{
+		drawer.image(drawer.loadImage("img\\Classroom.png"), 0, 0);
 		drawer.pushStyle();
 		drawer.fill(0);
 		drawer.textSize(20);

@@ -2,6 +2,7 @@ import java.awt.Rectangle;
 import java.awt.event.KeyEvent;
 
 import processing.core.PApplet;
+import processing.core.PImage;
 
 /**
  * 
@@ -12,11 +13,14 @@ import processing.core.PApplet;
  */
 public class Sprite extends Rectangle
 {
-	private int dx, dy;
+	private int dx, dy, imgID;
+	private PImage img;
 
-	public Sprite(int x, int y, int w, int h)
+	public Sprite(int x, int y, PImage img)
 	{
-		this.setBounds(x, y, w, h);
+		this.setBounds(x, y, img.width, img.height);
+		this.img = img;
+		imgID = 1;
 		dx = 0;
 		dy = 0;
 	}
@@ -27,7 +31,13 @@ public class Sprite extends Rectangle
 		drawer.pushStyle();
 		drawer.stroke(0);
 		drawer.fill(255);
-		drawer.rect(this.x, this.y, this.width, this.height);
+		if(imgID == 1)
+			img = drawer.loadImage("img\\StudentFrontWalk.gif");
+		else if(imgID == 2)
+			img = drawer.loadImage("img\\StudentLeftWalk.gif");
+		else if(imgID == 3)
+			img = drawer.loadImage("img\\StudentRightWalk.gif");
+		drawer.image(img, x, y);
 		drawer.popStyle();
 	}
 	
@@ -64,5 +74,10 @@ public class Sprite extends Rectangle
 	{
 		this.x = x;
 		this.y = y;
+	}
+	
+	public void switchImg(int id)
+	{
+		imgID = id;
 	}
 }
