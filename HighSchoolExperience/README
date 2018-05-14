@@ -37,7 +37,7 @@ Must-Have Features List:
 * Choose which extracurriculars the student can take - can choose from a variety of extracurriculars
 * Mini games - used for assignments and sometimes tests or quizzes
 * Questions for tests - come up with questions that can be vague or specific about each topic
-* Stress level bar - shows the level of stress the user is at; if they fail to do their assignments, stress level goes up
+* Stress level bar - shows the level of stress the user is at; stress level goes up when gets a grade of below a C
 * Display what day it is - a box displaying the day will be located at the upper-left corner of the screen
 * First-day walkthrough guide - a pop-up that gives instructions to the user about what to do on the first day so they know what to do
 * Display what time it is - a clock will be shown next to the box of the day showing the time so the user knows where to go at what time

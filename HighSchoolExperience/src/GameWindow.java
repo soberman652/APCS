@@ -14,7 +14,7 @@ public class GameWindow extends PApplet
 {
 	private Sprite student;
 	private boolean[] arrowKeyPressed = new boolean[4]; //[Left,Right,Down,Up]
-	private Room[][] campus;
+	private ArrayList<Room> campus;
 	private Room currentLocation;
 	private int userDir, state;
 	public static final int NORTH = 1, EAST = 2, SOUTH = 3, WEST = 4; //direction user is facing 
@@ -159,15 +159,18 @@ public class GameWindow extends PApplet
 	
 	private void initCampus()
 	{
-		campus = new Room[2][2];
+		campus = new ArrayList<Room>();
+		Home bedroom = new Home();
+		//home -> student center
+		campus.add(bedroom);
 		Classroom a = new Classroom("Room A");
-		campus[0][0] = a;
+		campus.add(a);
 		Classroom b = new Classroom("Room B");
-		campus[0][1] = b;
+		campus.add(b);
 		Classroom c = new Classroom("Room C");
-		campus[1][1] = c;
+		campus.add(c);
 		Classroom d = new Classroom("Room D");
-		campus[1][0] = d;
+		campus.add(d);
 		
 		Door ab = new Door(EAST, b, new Rectangle(100,50,25,35), "To Room B");
 		Door ad = new Door(SOUTH, d, new Rectangle(100,50,25,35), "To Room D");
@@ -189,7 +192,7 @@ public class GameWindow extends PApplet
 		d.addDoor(da);
 		d.addDoor(dc);
 		
-		currentLocation = campus[0][0];
+		currentLocation = campus.get(0);
 		
 		//redo doors so each face of a door is its own object
 	}
