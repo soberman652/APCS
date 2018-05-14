@@ -1,12 +1,5 @@
 import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.ThreadLocalRandom;
-
-
-import java.lang.Object;
-import processing.data.*;
-import processing.core.PApplet;
-
 
 
 
@@ -21,27 +14,41 @@ public class History{
 	
 	public void addHQuestions() {
 		
-	/*	
-	{"category":"History","type":"multiple","difficulty":"easy","question":"What was William Frederick Cody better known as?","correct_answer":"Buffalo Bill","incorrect_answers":["Billy the Kid","Wild Bill Hickok","Pawnee Bill"]},
-		                              {"category":"History","type":"multiple","difficulty":"easy","question":"Which famous world leader is famed for the saying, &quot;Let them eat cake&quot;, yet is rumored that he\/she never said it at all?","correct_answer":"Marie Antoinette","incorrect_answers":["Czar Nicholas II","Elizabeth I","Henry VIII"]},
-		                              {"category":"History","type":"multiple","difficulty":"easy","question":"What was Manfred von Richthofen&#039;s nickname?","correct_answer":"The Red Baron","incorrect_answers":["The High Flying Ace","The Blue Serpent ","The Germany Gunner"]},
-		                              {"category":"History","type":"multiple","difficulty":"easy","question":"Which modern day country is the region that was known as Phrygia in ancient times?","correct_answer":"Turkey","incorrect_answers":["Syria","Greece","Egypt"]},
-		                              {"category":"History","type":"multiple","difficulty":"easy","question":"In which year did the Invasion of Kuwait by Iraq occur?","correct_answer":"1990","incorrect_answers":["1992","1988","1986"]},
-		                              {"category":"History","type":"multiple","difficulty":"easy","question":"When did the Battle of the Somme begin?","correct_answer":"July 1st, 1916","incorrect_answers":["August 1st, 1916","July 2nd, 1916","June 30th, 1916"]},
-		                              {"category":"History","type":"multiple","difficulty":"easy","question":"Who was the Prime Minister of Japan when Japan declared war on the US?","correct_answer":"Hideki Tojo","incorrect_answers":["Michinomiya Hirohito","Isoroku Yamamoto","Fumimaro Konoe"]},
-		                              {"category":"History","type":"multiple","difficulty":"easy","question":"What was the first sport to have been played on the moon?","correct_answer":"Golf","incorrect_answers":["Football","Tennis","Soccer"]},
-		                              {"category":"History","type":"multiple","difficulty":"easy","question":"How was Socrates executed?","correct_answer":"Poison","incorrect_answers":["Decapitation","Firing squad","Crucifixion "]},
-		                              {"category":"History","type":"multiple","difficulty":"easy","question":"Who was among those killed in the 2010 Smolensk, Russia plane crash tragedy?","correct_answer":"The Polish President","incorrect_answers":["Pope John Paul II","Bang-Ding Ow","Albert Putin"]}]}
-		*/
-		String[] questions = {"What was William Frederick Cody better known as?",
-							"Which famous world leader is famed for the saying, Let them eat cake?"};
+		
+		String[] rawQuestions = {
+		"Who discovered Penicillin?","Alexander Flemming","Marie Curie","Alfred Nobel","Louis Pasteur",
+		"How many manned moon landings have there been?","6","1","3","7",
+		"The idea of Socialism was articulated and advanced by whom?","Karl Marx","Vladimir Lenin","Joseph Stalin","Vladimir Putin",
+		"Which of the following ancient peoples was NOT classified as Hellenic (Greek)?","Illyrians","Dorians","Achaeans","Ionians",
+		"Which famous world leader is famed for the saying, Let them eat cake, yet is rumored that never said it at all?","Marie Antoinette","Czar Nicholas II","Elizabeth I","Henry VIII",
+		"The original Roman alphabet lacked the following letters EXCEPT:","X","W","U","J",
+		"Which of these countries remained neutral during World War II?","Switzerland","United Kingdom","France","Italy",
+		"The collapse of the Soviet Union took place in which year?","1991","1992","1891","1990",
+		"What was Manfred von Richthofens nickname?","The Red Baron","The High Flying Ace","The Blue Serpent ","The Germany Gunner",
+		"When did the Battle of the Somme begin?","July 1st, 1916","August 1st, 1916","July 2nd, 1916","June 30th, 1916",
+		"In 1720, England was in massive debt, and became in involved in the South Sea Bubble. Who was the main mastermind behind it?","John Blunt","Daniel Defoe","Robert Harley","John Churchill",
+		"Who was the Prime Minister of Japan when Japan declared war on the US?","Hideki Tojo","Michinomiya Hirohito","Isoroku Yamamoto","Fumimaro Konoe",
+		"What was the first sport to have been played on the moon?","Golf","Football","Tennis","Soccer",
+		"Who was the first prime minister of Canada?","John Macdonald","John Abbott","Alexander Mackenzie","Robert Borden",
+		"How was Socrates executed?","Poison","Decapitation","Firing squad","Crucifixion ",
+		"How long did World War II last?","6 years","4 years","5 years","7 years",
+		"Which of the following countries was not an axis power during World War II?"," Soviet Union","Italy","Germany","Japan",
+		"The Trail of Tears was a result of which United States Presidents Indian Removal Policy?","Andrew Jackson","Harry S. Truman","Martin Van Buren","John Quincy Adams",
+		"To what political party did Abraham Lincoln belong when elected POTUS?","Republican","Democrat","Independent","Whig",
+		"How old was Adolf Hitler when he died?","56","43","65","47"};
 
-		String[] correctAnswers = {"Buffalo Bill", "Marie Antoinette"};
-		
-		String[][] incorrectAnswers = {{"Billy the Kid","Wild Bill Hickok","Pawnee Bill"},{"The High Flying Ace","The Blue Serpent ","The Germany Gunner"}};
-		
-		for (int i=0; i<questions.length; i++) {
-			historyQuestions.add(new QuestionAnswers(questions[i], correctAnswers[i], incorrectAnswers[i]));
+		for (int i=0; i < 20; i++) {
+			String question = rawQuestions[5*i+0];
+			String correctAnswer = rawQuestions[5*i+1];
+			ArrayList<String> incorrectAnswers = new ArrayList<String>();
+			for (int j=0; j<2; j++) {
+				incorrectAnswers.add(rawQuestions[5*i+2+j]);
+			}
+			historyQuestions.add(new QuestionAnswers(question, correctAnswer, incorrectAnswers));
+			
 		}
+		
+		
+		
 	}
 }
