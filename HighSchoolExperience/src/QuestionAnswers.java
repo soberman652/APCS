@@ -1,16 +1,17 @@
+import java.util.ArrayList;
 
 public class QuestionAnswers {
 	
 	private  String question;
     private  String correctAnswer;
-    private  String[] incorrectAnswers;
+    private  ArrayList<String> incorrectAnswers;
 
 
 
-   public QuestionAnswers(String question, String correctAnswer, String[] incorrectAnswers) {
+   public QuestionAnswers(String question, String correctAnswer, ArrayList<String> incorrectAnswers) {
 	   this.question = question;
 	   this.correctAnswer = correctAnswer;
-	   this.incorrectAnswers = new String[3];
+	   this.incorrectAnswers = new ArrayList<String>();
 	   this.incorrectAnswers = incorrectAnswers;
 	   
     }
@@ -23,7 +24,7 @@ public class QuestionAnswers {
 	   return correctAnswer;
    }
    
-   public String[] getIncorrectAnswers() {
+   public ArrayList<String> getIncorrectAnswers() {
 	   return incorrectAnswers;
    }
 
