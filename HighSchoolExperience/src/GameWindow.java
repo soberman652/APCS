@@ -16,13 +16,15 @@ public class GameWindow extends PApplet
 	private Main m;
 	private Sprite student;
 	private boolean[] arrowKeyPressed = new boolean[4];
+	
+	private ArrayList<Integer> keys;
+	
 	private boolean showMap; //[Left,Right,Down,Up]
 	private ArrayList<Room> campus;
 	private Room currentLocation;
-	private int userDir, state;
 	private PImage map;
+	private int userDir;
 	public static final int NORTH = 1, EAST = 2, SOUTH = 3, WEST = 4; //direction user is facing 
-	public static final int MENU = 0, GAME = 1;
 	public static final int WALL_HEIGHT= 90;
 	
 	/*
@@ -35,14 +37,14 @@ public class GameWindow extends PApplet
 	{
 		this.m = m;
 	}
-	/*
+	
 	public void runMe() {
 		super.initSurface();
 		super.surface.startThread();
 		
 		pause(true);
 	}
-	*/
+	
 	public void settings()
 	{
 		size(500, 500);
@@ -52,7 +54,6 @@ public class GameWindow extends PApplet
 	{
 		background(255);
 		userDir = NORTH;
-		state = MENU;
 		student = new Sprite(width/2, height/2, loadImage("img\\StudentFrontWalk.gif"));
 		initCampus();
 		map = loadImage("img\\CampusMap.png");
@@ -61,129 +62,132 @@ public class GameWindow extends PApplet
 	
 	public void draw()
 	{
-		if(state == MENU)
+		background(255);
+		currentLocation.display(userDir, this);
+		for(Door d:currentLocation.getExits())
 		{
-			fill(0);
-			textSize(24);
-		    textAlign(CENTER);
-		    text("Press ENTER to start: High School Experience", 450, 320);
+			d.hasEntered(student);
 		}
-		else if(state == GAME)
+		student.display(this);
+		
+		if (isPressed(KeyEvent.VK_LEFT))
 		{
-			background(255);
-			currentLocation.display(userDir, this);
-			for(Door d:currentLocation.getExits())
-			{
-				d.hasEntered(student);
-			}
-			student.display(this);
-			
-			if(showMap)
-				displayMap(this);
+			student.moveXBy(-5);
+			student.switchImg(2);
 		}
+		if (isPressed(KeyEvent.VK_RIGHT))
+			x += 5;
+		if (isPressed(KeyEvent.VK_UP))
+			y -= 5;
+		if (isPressed(KeyEvent.VK_DOWN))
+			y += 5;
+		
+		if(showMap)
+			displayMap(this);
 	}
 	
 	public void keyPressed()
 	{
-		if(state == MENU)
+		if(keyCode == KeyEvent.VK_LEFT)
 		{
-			if (keyCode == KeyEvent.VK_ENTER)
-			{
-				state = GAME;
-			}
+			student.moveXBy(-5);
+			student.switchImg(2);
+			arrowKeyPressed[0] = true;
 		}
-		else if(state == GAME)
+		if(keyCode == KeyEvent.VK_RIGHT)
 		{
-			if(keyCode == KeyEvent.VK_LEFT)
+			student.moveXBy(5);
+			student.switchImg(3);
+			arrowKeyPressed[1] = true;
+		}
+		if(keyCode == KeyEvent.VK_DOWN)
+		{
+			student.moveYBy(5);
+			student.switchImg(1);
+			arrowKeyPressed[2] = true;
+		}
+		if(keyCode == KeyEvent.VK_UP)
+		{
+			student.moveYBy(-5);
+			student.switchImg(1);
+			arrowKeyPressed[3] = true;
+		}
+		
+		if(keyCode == KeyEvent.VK_A)
+		{
+			if(userDir == NORTH)
+				userDir = WEST;
+			else
+				userDir--;
+		}
+		if(keyCode == KeyEvent.VK_D)
+		{
+			if(userDir == WEST)
+				userDir = NORTH;
+			else
+				userDir++;
+		}
+		
+		if(keyCode == KeyEvent.VK_SPACE)
+		{
+			Door enteredDoor = null;
+			for(Door d : currentLocation.getExits())
 			{
-				student.moveXBy(-5);
-				student.switchImg(2);
-				arrowKeyPressed[0] = true;
-			}
-			if(keyCode == KeyEvent.VK_RIGHT)
-			{
-				student.moveXBy(5);
-				student.switchImg(3);
-				arrowKeyPressed[1] = true;
-			}
-			if(keyCode == KeyEvent.VK_DOWN)
-			{
-				student.moveYBy(5);
-				student.switchImg(1);
-				arrowKeyPressed[2] = true;
-			}
-			if(keyCode == KeyEvent.VK_UP)
-			{
-				student.moveYBy(-5);
-				student.switchImg(1);
-				arrowKeyPressed[3] = true;
-			}
-			
-			if(keyCode == KeyEvent.VK_A)
-			{
-				if(userDir == NORTH)
-					userDir = WEST;
-				else
-					userDir--;
-			}
-			if(keyCode == KeyEvent.VK_D)
-			{
-				if(userDir == WEST)
-					userDir = NORTH;
-				else
-					userDir++;
-			}
-			
-			if(keyCode == KeyEvent.VK_SPACE)
-			{
-				Door enteredDoor = null;
-				for(Door d : currentLocation.getExits())
+				if(d.hasEntered(student))
 				{
-					if(d.hasEntered(student))
-					{
-						enteredDoor = d;
-					}
+					enteredDoor = d;
 				}
-				
-				if(enteredDoor != null)
-					currentLocation = enteredDoor.exitTo();
 			}
 			
-			if(keyCode == KeyEvent.VK_SHIFT)
-				showMap = true;
+			if(enteredDoor != null)
+				currentLocation = enteredDoor.exitTo();
 		}
+		
+		if(keyCode == KeyEvent.VK_SHIFT)
+			showMap = true;
 	}
 	
 	public void keyReleased()
 	{
-		if(state == GAME)
-		{
-			if(keyCode == KeyEvent.VK_LEFT)
-				arrowKeyPressed[0] = false;
-			if(keyCode == KeyEvent.VK_RIGHT)
-				arrowKeyPressed[1] = false;
-			if(keyCode == KeyEvent.VK_DOWN)
-				arrowKeyPressed[2] = false;
-			if(keyCode == KeyEvent.VK_UP)
-				arrowKeyPressed[3] = false;
-			
-			if(arrowKeyPressed[0] && !arrowKeyPressed[1])
-				student.moveXBy(-5);
-			else if(!arrowKeyPressed[0] && arrowKeyPressed[1])
-				student.moveXBy(5);
-			else if(!arrowKeyPressed[0] && !arrowKeyPressed[1])
-				student.moveXBy(0);
-			
-			if(arrowKeyPressed[2] && !arrowKeyPressed[3])
-				student.moveYBy(5);
-			else if(!arrowKeyPressed[2] && arrowKeyPressed[3])
-				student.moveYBy(-5);
-			else if(!arrowKeyPressed[2] && !arrowKeyPressed[3])
-				student.moveYBy(0);
-			
-			if(keyCode == KeyEvent.VK_SHIFT)
-				showMap = false;
-		}
+		if(keyCode == KeyEvent.VK_LEFT)
+			arrowKeyPressed[0] = false;
+		if(keyCode == KeyEvent.VK_RIGHT)
+			arrowKeyPressed[1] = false;
+		if(keyCode == KeyEvent.VK_DOWN)
+			arrowKeyPressed[2] = false;
+		if(keyCode == KeyEvent.VK_UP)
+			arrowKeyPressed[3] = false;
+		
+		if(arrowKeyPressed[0] && !arrowKeyPressed[1])
+			student.moveXBy(-5);
+		else if(!arrowKeyPressed[0] && arrowKeyPressed[1])
+			student.moveXBy(5);
+		else if(!arrowKeyPressed[0] && !arrowKeyPressed[1])
+			student.moveXBy(0);
+		
+		if(arrowKeyPressed[2] && !arrowKeyPressed[3])
+			student.moveYBy(5);
+		else if(!arrowKeyPressed[2] && arrowKeyPressed[3])
+			student.moveYBy(-5);
+		else if(!arrowKeyPressed[2] && !arrowKeyPressed[3])
+			student.moveYBy(0);
+		
+		if(keyCode == KeyEvent.VK_SHIFT)
+			showMap = false;
+	}
+	
+	public void keyPressed() {
+		if (!keys.contains(keyCode))
+			keys.add(keyCode);
+	}
+
+	public void keyReleased() {
+		while(keys.contains(keyCode))
+			keys.remove(new Integer(keyCode));
+	}
+	
+	public boolean isPressed(Integer code) {
+		return keys.contains(code);
 	}
 	
 	private void initCampus()
@@ -255,5 +259,13 @@ public class GameWindow extends PApplet
 		drawer.rect(0, 0, drawer.width, drawer.height);
 		drawer.image(map, 0, 0);
 		drawer.popStyle();
+	}
+	
+	public void pause(boolean paused) {
+		keys.clear();
+		if (paused)
+			noLoop();
+		else
+			loop();
 	}
 }
