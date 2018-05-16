@@ -1,5 +1,9 @@
 import java.util.ArrayList;
-
+/**
+ * 
+ * @author sashaoberman
+ *
+ */
 public class Gradebook {
 
 	private ArrayList<Grade> grades;

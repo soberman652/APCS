@@ -3,7 +3,11 @@ import java.util.ArrayList;
 import javax.swing.JRadioButton;
 
 import processing.core.PApplet;
-
+/**
+ * 
+ * @author sashaoberman
+ *
+ */
 public class TestTester extends PApplet {
 
 	private History his;

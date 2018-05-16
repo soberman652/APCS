@@ -3,7 +3,6 @@ import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 
 import processing.core.PApplet;
-import processing.core.PImage;
 
 /**
  * Simulates school campus
@@ -13,36 +12,17 @@ import processing.core.PImage;
  */
 public class GameWindow extends PApplet
 {
-	private Main m;
 	private Sprite student;
-	private boolean[] arrowKeyPressed = new boolean[4];
-	
-	private ArrayList<Integer> keys;
-	
-	private boolean showMap; //[Left,Right,Down,Up]
-	private ArrayList<Room> campus;
+	private boolean[] arrowKeyPressed = new boolean[4]; //[Left,Right,Down,Up]
+	private Room[][] campus;
 	private Room currentLocation;
-	private PImage map;
-	private int userDir;
+	private int userDir, state;
 	public static final int NORTH = 1, EAST = 2, SOUTH = 3, WEST = 4; //direction user is facing 
-	public static final int WALL_HEIGHT= 90;
+	public static final int MENU = 0, GAME = 1;
 	
-	/*
 	public static void main(String args[])
 	{
 		PApplet.main("GameWindow");
-	}
-	*/
-	public GameWindow(Main m)
-	{
-		this.m = m;
-	}
-	
-	public void runMe() {
-		super.initSurface();
-		super.surface.startThread();
-		
-		pause(true);
 	}
 	
 	public void settings()
@@ -54,218 +34,168 @@ public class GameWindow extends PApplet
 	{
 		background(255);
 		userDir = NORTH;
+		state = MENU;
 		student = new Sprite(width/2, height/2, loadImage("img\\StudentFrontWalk.gif"));
 		initCampus();
-		map = loadImage("img\\CampusMap.png");
-		showMap = false;
 	}
 	
 	public void draw()
 	{
-		background(255);
-		currentLocation.display(userDir, this);
-		for(Door d:currentLocation.getExits())
+		if(state == MENU)
 		{
-			d.hasEntered(student);
+			fill(0);
+			textSize(24);
+		    textAlign(CENTER);
+		    text("Press ENTER to start: High School Experience", 450, 320);
 		}
-		student.display(this);
-		
-		if (isPressed(KeyEvent.VK_LEFT))
+		else if(state == GAME)
 		{
-			student.moveXBy(-5);
-			student.switchImg(2);
+			background(255);
+			currentLocation.display(userDir, this);
+			for(Door d:currentLocation.getExits())
+			{
+				d.hasEntered(student);
+			}
+			student.display(this);
 		}
-		if (isPressed(KeyEvent.VK_RIGHT))
-			x += 5;
-		if (isPressed(KeyEvent.VK_UP))
-			y -= 5;
-		if (isPressed(KeyEvent.VK_DOWN))
-			y += 5;
-		
-		if(showMap)
-			displayMap(this);
 	}
 	
 	public void keyPressed()
 	{
-		if(keyCode == KeyEvent.VK_LEFT)
+		if(state == MENU)
 		{
-			student.moveXBy(-5);
-			student.switchImg(2);
-			arrowKeyPressed[0] = true;
-		}
-		if(keyCode == KeyEvent.VK_RIGHT)
-		{
-			student.moveXBy(5);
-			student.switchImg(3);
-			arrowKeyPressed[1] = true;
-		}
-		if(keyCode == KeyEvent.VK_DOWN)
-		{
-			student.moveYBy(5);
-			student.switchImg(1);
-			arrowKeyPressed[2] = true;
-		}
-		if(keyCode == KeyEvent.VK_UP)
-		{
-			student.moveYBy(-5);
-			student.switchImg(1);
-			arrowKeyPressed[3] = true;
-		}
-		
-		if(keyCode == KeyEvent.VK_A)
-		{
-			if(userDir == NORTH)
-				userDir = WEST;
-			else
-				userDir--;
-		}
-		if(keyCode == KeyEvent.VK_D)
-		{
-			if(userDir == WEST)
-				userDir = NORTH;
-			else
-				userDir++;
-		}
-		
-		if(keyCode == KeyEvent.VK_SPACE)
-		{
-			Door enteredDoor = null;
-			for(Door d : currentLocation.getExits())
+			if (keyCode == KeyEvent.VK_ENTER)
 			{
-				if(d.hasEntered(student))
-				{
-					enteredDoor = d;
-				}
+				state = GAME;
+			}
+		}
+		else if(state == GAME)
+		{
+			if(keyCode == KeyEvent.VK_LEFT)
+			{
+				student.moveXBy(-3);
+				student.switchImg(2);
+				arrowKeyPressed[0] = true;
+			}
+			if(keyCode == KeyEvent.VK_RIGHT)
+			{
+				student.moveXBy(3);
+				student.switchImg(3);
+				arrowKeyPressed[1] = true;
+			}
+			if(keyCode == KeyEvent.VK_DOWN)
+			{
+				student.moveYBy(3);
+				student.switchImg(1);
+				arrowKeyPressed[2] = true;
+			}
+			if(keyCode == KeyEvent.VK_UP)
+			{
+				student.moveYBy(-3);
+				student.switchImg(1);
+				arrowKeyPressed[3] = true;
 			}
 			
-			if(enteredDoor != null)
-				currentLocation = enteredDoor.exitTo();
+			if(keyCode == KeyEvent.VK_A)
+			{
+				if(userDir == NORTH)
+					userDir = WEST;
+				else
+					userDir--;
+			}
+			if(keyCode == KeyEvent.VK_D)
+			{
+				if(userDir == WEST)
+					userDir = NORTH;
+				else
+					userDir++;
+			}
+			
+			if(keyCode == KeyEvent.VK_SPACE)
+			{
+				Door enteredDoor = null;
+				for(Door d : currentLocation.getExits())
+				{
+					if(d.hasEntered(student))
+					{
+						enteredDoor = d;
+					}
+				}
+				
+				if(enteredDoor != null)
+					currentLocation = enteredDoor.exitTo();
+			}
 		}
-		
-		if(keyCode == KeyEvent.VK_SHIFT)
-			showMap = true;
 	}
 	
 	public void keyReleased()
 	{
-		if(keyCode == KeyEvent.VK_LEFT)
-			arrowKeyPressed[0] = false;
-		if(keyCode == KeyEvent.VK_RIGHT)
-			arrowKeyPressed[1] = false;
-		if(keyCode == KeyEvent.VK_DOWN)
-			arrowKeyPressed[2] = false;
-		if(keyCode == KeyEvent.VK_UP)
-			arrowKeyPressed[3] = false;
-		
-		if(arrowKeyPressed[0] && !arrowKeyPressed[1])
-			student.moveXBy(-5);
-		else if(!arrowKeyPressed[0] && arrowKeyPressed[1])
-			student.moveXBy(5);
-		else if(!arrowKeyPressed[0] && !arrowKeyPressed[1])
-			student.moveXBy(0);
-		
-		if(arrowKeyPressed[2] && !arrowKeyPressed[3])
-			student.moveYBy(5);
-		else if(!arrowKeyPressed[2] && arrowKeyPressed[3])
-			student.moveYBy(-5);
-		else if(!arrowKeyPressed[2] && !arrowKeyPressed[3])
-			student.moveYBy(0);
-		
-		if(keyCode == KeyEvent.VK_SHIFT)
-			showMap = false;
-	}
-	
-	public void keyPressed() {
-		if (!keys.contains(keyCode))
-			keys.add(keyCode);
-	}
-
-	public void keyReleased() {
-		while(keys.contains(keyCode))
-			keys.remove(new Integer(keyCode));
-	}
-	
-	public boolean isPressed(Integer code) {
-		return keys.contains(code);
+		if(state == GAME)
+		{
+			if(keyCode == KeyEvent.VK_LEFT)
+				arrowKeyPressed[0] = false;
+			if(keyCode == KeyEvent.VK_RIGHT)
+				arrowKeyPressed[1] = false;
+			if(keyCode == KeyEvent.VK_DOWN)
+				arrowKeyPressed[2] = false;
+			if(keyCode == KeyEvent.VK_UP)
+				arrowKeyPressed[3] = false;
+			
+			if(arrowKeyPressed[0] && !arrowKeyPressed[1])
+				student.moveXBy(-3);
+			else if(!arrowKeyPressed[0] && arrowKeyPressed[1])
+				student.moveXBy(3);
+			else if(!arrowKeyPressed[0] && !arrowKeyPressed[1])
+				student.moveXBy(0);
+			
+			if(arrowKeyPressed[2] && !arrowKeyPressed[3])
+				student.moveYBy(3);
+			else if(!arrowKeyPressed[2] && arrowKeyPressed[3])
+				student.moveYBy(-3);
+			else if(!arrowKeyPressed[2] && !arrowKeyPressed[3])
+				student.moveYBy(0);
+		}
 	}
 	
 	private void initCampus()
 	{
-		campus = new ArrayList<Room>();
-		Home bedroom = new Home(loadImage("img\\BedroomFloor.png"), loadImage("img\\bed.png"));
-		campus.add(bedroom);
-
-		Classroom center = new Classroom("Student Center",240,310);
-		Classroom stage = new Classroom("Stage",140,330);
-		Classroom gym =  new Classroom("Gym",340,330);
-		Classroom wing = new Classroom("Hall",240,210);
-		Classroom roomA = new Classroom("Room A",150,250);
-		Classroom roomB = new Classroom("Room B",150,175);
-		Classroom roomC = new Classroom("Room C",240,125);
-		Classroom roomD = new Classroom("Room D",330,175);
-		Classroom roomE = new Classroom("Room E",330,250);
+		campus = new Room[2][2];
+		Classroom a = new Classroom("Room A");
+		campus[0][0] = a;
+		Classroom b = new Classroom("Room B");
+		campus[0][1] = b;
+		Classroom c = new Classroom("Room C");
+		campus[1][1] = c;
+		Classroom d = new Classroom("Room D");
+		campus[1][0] = d;
 		
+		Door ab = new Door(EAST, b, new Rectangle(100,50,25,35), "To Room B");
+		Door ad = new Door(SOUTH, d, new Rectangle(100,50,25,35), "To Room D");
+		a.addDoor(ab);
+		a.addDoor(ad);
 		
-		Door homeDoor = new Door(NORTH, center, new Rectangle(50, WALL_HEIGHT-student.height-5, student.width+10, student.height+5), "Go to school");
-		bedroom.addDoor(homeDoor);
+		Door bc = new Door(SOUTH, c, new Rectangle(100,50,25,35), "To Room C");
+		Door ba = new Door(WEST, a, new Rectangle(100,50,25,35), "To Room A");
+		b.addDoor(bc);
+		b.addDoor(ba);
 		
-		Door centerS = new Door(SOUTH, bedroom, new Rectangle(width/2-(student.width+10)/2, WALL_HEIGHT-student.height-5, student.width+10, student.height+5), "Go home");
-		Door centerW = new Door(WEST, stage, new Rectangle(width/2-(student.width+10)/2, WALL_HEIGHT-student.height-5, student.width+10, student.height+5), "Stage");
-		Door centerE = new Door(EAST, gym, new Rectangle(width/2-(student.width+10)/2, WALL_HEIGHT-student.height-5, student.width+10, student.height+5), "Gym");
-		Door centerN = new Door(NORTH, wing, new Rectangle(width/2-(student.width+10)/2, WALL_HEIGHT-student.height-5, student.width+10, student.height+5), "Classrooms");
-		center.addDoor(centerS);
-		center.addDoor(centerW);
-		center.addDoor(centerE);
-		center.addDoor(centerN);
+		Door cd = new Door(WEST, d, new Rectangle(100,50,25,35), "To Room D");
+		Door cb = new Door(NORTH, b, new Rectangle(100,50,25,35), "To Room B");
+		c.addDoor(cd);
+		c.addDoor(cb);
 		
-		Door stageDoor = new Door(EAST, center, new Rectangle(125-(student.width+10)/2, WALL_HEIGHT-student.height-5, student.width+10, student.height+5), "Student Center");
-		stage.addDoor(stageDoor);
+		Door da = new Door(NORTH, a, new Rectangle(100,50,25,35), "To Room A");
+		Door dc = new Door(EAST, c, new Rectangle(100,50,25,35), "To Room C");
+		d.addDoor(da);
+		d.addDoor(dc);
 		
-		Door gymDoor = new Door(WEST, center, new Rectangle((width-125)-(student.width+10)/2, WALL_HEIGHT-student.height-5, student.width+10, student.height+5), "Student Center");
-		gym.addDoor(gymDoor);
+		currentLocation = campus[0][0];
 		
-		Door hallExit = new Door(SOUTH, center, new Rectangle(width/2-(student.width+10)/2, WALL_HEIGHT-student.height-5, student.width+10, student.height+5), "Student Center");
-		Door a1 = new Door(WEST, roomA, new Rectangle(160-(student.width+10)/2, WALL_HEIGHT-student.height-5, student.width+10, student.height+5), "Room A");
-		Door b1 = new Door(WEST, roomB, new Rectangle((width-160)-(student.width+10)/2, WALL_HEIGHT-student.height-5, student.width+10, student.height+5), "Room B");
-		Door c1 = new Door(NORTH, roomC, new Rectangle(width/2-(student.width+10)/2, WALL_HEIGHT-student.height-5, student.width+10, student.height+5), "Room C");
-		Door d1 = new Door(EAST, roomD, new Rectangle(160-(student.width+10)/2, WALL_HEIGHT-student.height-5, student.width+10, student.height+5), "Room D");
-		Door e1 = new Door(EAST, roomE, new Rectangle((width-160)-(student.width+10)/2, WALL_HEIGHT-student.height-5, student.width+10, student.height+5), "Room E");
-		wing.addDoor(hallExit);
-		wing.addDoor(a1);
-		wing.addDoor(b1);
-		wing.addDoor(c1);
-		wing.addDoor(d1);
-		wing.addDoor(e1);
-		
-		Door a2 = new Door(EAST, wing, new Rectangle(125-(student.width+10)/2, WALL_HEIGHT-student.height-5, student.width+10, student.height+5), "Exit class");
-		roomA.addDoor(a2);
-		Door b2 = new Door(EAST, wing, new Rectangle((width-125)-(student.width+10)/2, WALL_HEIGHT-student.height-5, student.width+10, student.height+5), "Exit class");
-		roomB.addDoor(b2);
-		Door c2 = new Door(SOUTH, wing, new Rectangle(width/2-(student.width+10)/2, WALL_HEIGHT-student.height-5, student.width+10, student.height+5), "Exit class");
-		roomC.addDoor(c2);
-		Door d2 = new Door(WEST, wing, new Rectangle(125-(student.width+10)/2, WALL_HEIGHT-student.height-5, student.width+10, student.height+5), "Exit class");
-		roomD.addDoor(d2);
-		Door e2 = new Door(WEST, wing, new Rectangle((width-125)-(student.width+10)/2, WALL_HEIGHT-student.height-5, student.width+10, student.height+5), "Exit class");
-		roomE.addDoor(e2);
-
-		this.currentLocation = bedroom;
+		//redo doors so each face of a door is its own object
 	}
 	
-	private void displayMap(PApplet drawer)
+	private void addConnection(Room r1, Rectangle a, Room r2, Rectangle b)
 	{
-		drawer.pushStyle();
-		drawer.fill(100, 200);
-		drawer.rect(0, 0, drawer.width, drawer.height);
-		drawer.image(map, 0, 0);
-		drawer.popStyle();
-	}
-	
-	public void pause(boolean paused) {
-		keys.clear();
-		if (paused)
-			noLoop();
-		else
-			loop();
+		int dir = 0;
 	}
 }

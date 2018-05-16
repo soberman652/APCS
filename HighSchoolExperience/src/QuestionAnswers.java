@@ -1,5 +1,10 @@
 import java.util.ArrayList;
 
+/**
+ * 
+ * @author sashaoberman
+ *
+ */
 public class QuestionAnswers {
 	
 	private  String question;

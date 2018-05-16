@@ -1,7 +1,11 @@
 import java.util.ArrayList;
 import java.util.List;
 
-
+/**
+ * 
+ * @author sashaoberman
+ *
+ */
 public class Literature{
 
 	private ArrayList<QuestionAnswers> LiteratureQuestions;

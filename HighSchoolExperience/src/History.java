@@ -2,12 +2,22 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-
-public class History{
+/**
+ * 
+ * @author sashaoberman
+ *
+ */
+public class History extends Course{
 
 	private ArrayList<QuestionAnswers> historyQuestions;
 	
+	public History(Grade grade) {
+		super(grade);
+		historyQuestions = new ArrayList<QuestionAnswers>();
+	}
+	
 	public History() {
+		super(new Grade('C'));
 		historyQuestions = new ArrayList<QuestionAnswers>();
 	}
 	

@@ -1,4 +1,8 @@
-
+/**
+ * 
+ * @author sashaoberman
+ *
+ */
 public class Grade {
 
 	private char letterGrade;
