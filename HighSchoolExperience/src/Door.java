@@ -23,7 +23,8 @@ public class Door extends Rectangle
 	{
 		visible = true;
 		drawer.pushStyle();
-		drawer.fill(150);
+		drawer.noStroke();
+		drawer.fill(0);
 		drawer.rect(this.x, this.y, this.width, this.height);
 		
 		if(showTag)

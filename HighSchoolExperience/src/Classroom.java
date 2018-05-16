@@ -1,11 +1,17 @@
+import java.awt.Point;
+
 import processing.core.PApplet;
 
 public class Classroom extends Room
 {	
-	public Classroom(String name)
+	private Point mapCoor;
+	
+	public Classroom(String name, int x, int y)
 	{
 		super(name);
+		mapCoor = new Point(x,y);
 	}
+	
 	@Override
 	public void display(int direction, PApplet drawer) 
 	{
@@ -16,7 +22,7 @@ public class Classroom extends Room
 		drawer.text(this.getMarker(), drawer.width/2, drawer.height/2);
 		if(direction == GameWindow.NORTH)
 		{
-			drawer.text('N', drawer.width/2, 30);
+			drawer.text('N', drawer.width/2, drawer.height-30);
 			for(Door d: this.getExits())
 			{
 				if(d.getDirection() == GameWindow.NORTH)
@@ -27,7 +33,7 @@ public class Classroom extends Room
 		}
 		else if(direction == GameWindow.EAST)
 		{
-			drawer.text('E', drawer.width/2, 30);
+			drawer.text('E', drawer.width/2, drawer.height-30);
 			for(Door d: this.getExits())
 			{
 				if(d.getDirection() == GameWindow.EAST)
@@ -38,7 +44,7 @@ public class Classroom extends Room
 		}
 		else if(direction == GameWindow.SOUTH)
 		{
-			drawer.text('S', drawer.width/2, 30);
+			drawer.text('S', drawer.width/2, drawer.height-30);
 			for(Door d: this.getExits())
 			{
 				if(d.getDirection() == GameWindow.SOUTH)
@@ -49,7 +55,7 @@ public class Classroom extends Room
 		}
 		else if(direction == GameWindow.WEST)
 		{
-			drawer.text('W', drawer.width/2, 30);
+			drawer.text('W', drawer.width/2, drawer.height-30);
 			for(Door d: this.getExits())
 			{
 				if(d.getDirection() == GameWindow.WEST)
@@ -59,5 +65,10 @@ public class Classroom extends Room
 			}
 		}
 		drawer.popStyle();
+	}
+	
+	public Point getMapCoor()
+	{
+		return mapCoor;
 	}
 }

@@ -1,4 +1,4 @@
-package BallGame;
+package Minigame;
 
 import java.awt.Rectangle;
 

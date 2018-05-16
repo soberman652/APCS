@@ -1,4 +1,4 @@
-package MusicGame;
+package Minigame;
 import processing.core.PApplet;
 
 public class Sign 

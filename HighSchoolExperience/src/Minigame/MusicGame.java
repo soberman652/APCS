@@ -1,10 +1,10 @@
-package MusicGame;
+package Minigame;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 
 import processing.core.PApplet;
 
-public class Tester extends PApplet
+public class MusicGame extends PApplet
 {
 	private ArrayList<Note> notes;
 	private int count, good, totalNotes;
@@ -16,12 +16,12 @@ public class Tester extends PApplet
 	
 	public static void main(String[] args) 
 	{
-		PApplet.main("MusicGame.Tester");
+		PApplet.main("Minigame.MusicGame");
 	}
 	
 	public void settings()
 	{
-		size(300, 300);
+		size(500, 500);
 	}
 	
 	public void setup()

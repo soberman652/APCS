@@ -1,4 +1,4 @@
-package BallGame;
+package Minigame;
 
 import java.awt.Rectangle;
 import java.awt.geom.Line2D;
@@ -24,10 +24,12 @@ public class Net
 	public void display(PApplet drawer)
 	{
 		drawer.pushStyle();
+		/*
 		drawer.stroke(0);
 		drawer.line((float)boundary.getX1(), (float)boundary.getY1(), (float)boundary.getX2(), (float)boundary.getY2());
 		drawer.stroke(255, 0, 0);
 		drawer.line((float)threshold.getX1(), (float)threshold.getY1(), (float)threshold.getX2(), (float)threshold.getY2());
+		*/
 		drawer.textSize(10);
 		drawer.fill(0);
 		drawer.text(score + "", (float)threshold.getX1(), (float)threshold.getY1() - 10);

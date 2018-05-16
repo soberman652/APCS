@@ -1,4 +1,4 @@
-package MusicGame;
+package Minigame;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.util.ArrayList;

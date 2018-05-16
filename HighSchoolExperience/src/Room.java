@@ -6,14 +6,13 @@ public abstract class Room
 {
 	// image
 	private ArrayList<Door> exits;
-	private ArrayList<Obstacle> furniture;
+	//private ArrayList<Obstacle> furniture;
 	private String marker;
 
 	public Room(String marker)
 	{
 		this.marker = marker;
 		exits = new ArrayList<Door>();
-		furniture = new ArrayList<Obstacle>();
 	}
 
 	public abstract void display(int direction, PApplet drawer);

@@ -1,4 +1,4 @@
-package BallGame;
+package Minigame;
 
 import java.awt.Rectangle;
 import java.awt.event.KeyEvent;
@@ -6,7 +6,7 @@ import java.awt.event.KeyEvent;
 import processing.core.PApplet;
 import processing.core.PImage;
 
-public class Tester extends PApplet
+public class BallGame extends PApplet
 {
 	private BasketBall basketball;
 	private Player player;
@@ -17,12 +17,12 @@ public class Tester extends PApplet
 	
 	public static void main(String[] args) 
 	{
-		PApplet.main("MiniGame.Tester");
+		PApplet.main("Minigame.BallGame");
 	}
 	
 	public void settings()
 	{
-		size(300, 300);
+		size(500, 500);
 	}
 	
 	public void setup()
@@ -30,11 +30,13 @@ public class Tester extends PApplet
 		int r = 5;
 		player = new Player(new Rectangle(0, height-20, 15, 20));
 		indicator = new Arrow(player);
-		net = new Net(width, 100, loadImage("img\\net.gif"));
+		net = new Net(width, 200, loadImage("img\\net.gif"));
 		basketball = new BasketBall(r, height - r, r, player, net);
 		keyPressed = new boolean[4];
 		floor = loadImage("img\\floor.jpg");
+		floor.resize(500, floor.height);
 		seats = loadImage("img\\bleachers.jpg");
+		seats.resize(500, seats.height);
 	}
 	
 	public void draw()
@@ -53,7 +55,7 @@ public class Tester extends PApplet
 	public void keyPressed()
 	{
 		if(keyCode == KeyEvent.VK_SPACE)
-			basketball.toss(indicator.getAngle(), 16);
+			basketball.toss(indicator.getAngle(), 20);
 		if(keyCode == KeyEvent.VK_A)
 		{
 			keyPressed[0] = true;

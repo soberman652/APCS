@@ -1,4 +1,4 @@
-package MusicGame;
+package Minigame;
 import processing.core.PApplet;
 
 public class Note 
@@ -18,7 +18,7 @@ public class Note
 		drawer.pushStyle();
 		drawer.fill(0);
 		drawer.ellipseMode(drawer.CENTER);
-		drawer.ellipse((pitch-3)*Tester.SPACE + drawer.width/2, x, 20, 20);
+		drawer.ellipse((pitch-3)*MusicGame.SPACE + drawer.width/2, x, 20, 20);
 		drawer.popStyle();
 		act();
 	}
