@@ -51,4 +51,11 @@ public class History{
 		
 		
 	}
+	
+	public ArrayList<QuestionAnswers> getHisQuestions(){
+		return historyQuestions;
+	}
+	
+	
+	
 }

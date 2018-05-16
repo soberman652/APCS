@@ -50,4 +50,9 @@ public class Literature{
 		
 		
 	}
+	
+	public ArrayList<QuestionAnswers> getLitQuestions(){
+		return LiteratureQuestions;
+	}
+	
 }

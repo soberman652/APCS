@@ -51,4 +51,7 @@ public class Math{
 		
 		
 	}
+	public ArrayList<QuestionAnswers> getMathQuestions(){
+		return mathQuestions;
+	}
 }

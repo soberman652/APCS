@@ -50,4 +50,9 @@ public class Science{
 		
 		
 	}
+	
+	public ArrayList<QuestionAnswers> getSciQuestions(){
+		return ScienceQuestions;
+	}
+	
 }
