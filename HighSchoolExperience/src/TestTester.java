@@ -7,6 +7,16 @@ import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JRadioButton;
 
+import javax.swing.BoxLayout;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JComboBox;
+import javax.swing.JComponent;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
+
 
 import processing.core.PApplet;
 /**
@@ -79,6 +89,11 @@ public class TestTester extends PApplet {
 			for (int i = 12; i < 16; i++) {
 				answers4[i] = groupedAnswers.get(i);
 			}
+			
+			question1 = new JComboBox<String>(answers1);
+			question1.setSelectedIndex(0);
+			question1.addActionListener((ActionListener) this);
+			question1.setPreferredSize(new Dimension(150, 100));
 		}
 			
 		
@@ -107,6 +122,10 @@ public class TestTester extends PApplet {
 					answers4[i] = groupedAnswers.get(i);
 				}
 			}
+			question2 = new JComboBox<String>(answers2);
+			question2.setSelectedIndex(0);
+			question2.addActionListener((ActionListener) this);
+			question2.setPreferredSize(new Dimension(150, 100));
 		}
 		
 		
@@ -134,6 +153,11 @@ public class TestTester extends PApplet {
 					answers4[i] = groupedAnswers.get(i);
 				}
 			}
+			question3 = new JComboBox<String>(answers3);
+			question3.setSelectedIndex(0);
+			//question3.addActionListener(this);
+			question3.addActionListener((ActionListener) this);
+			question3.setPreferredSize(new Dimension(150, 100));
 		}
 		
 		
@@ -161,32 +185,12 @@ public class TestTester extends PApplet {
 					answers4[i] = groupedAnswers.get(i);
 				}
 			}
+			question4 = new JComboBox<String>(answers4);
+			question4.setSelectedIndex(0);
+			question4.addActionListener((ActionListener) this);
+			question4.setPreferredSize(new Dimension(150, 100));
 		}
-		
-		
-		question1 = new JComboBox<String>(answers1);
-		question1.setSelectedIndex(0);
-		question1.addActionListener((ActionListener) this);
-		question1.setPreferredSize(new Dimension(150, 100));
-		
-		question2 = new JComboBox<String>(answers2);
-		question2.setSelectedIndex(0);
-		question2.addActionListener((ActionListener) this);
-		question2.setPreferredSize(new Dimension(150, 100));
-		
-		question3 = new JComboBox<String>(answers3);
-		question3.setSelectedIndex(0);
-		//question3.addActionListener(this);
-		question3.addActionListener((ActionListener) this);
-		question3.setPreferredSize(new Dimension(150, 100));
-		
-		question4 = new JComboBox<String>(answers4);
-		question4.setSelectedIndex(0);
-		question4.addActionListener((ActionListener) this);
-		question4.setPreferredSize(new Dimension(150, 100));
-		
-		
-		
+
 	}
 	
 	public void settings()
