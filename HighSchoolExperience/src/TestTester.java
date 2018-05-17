@@ -46,7 +46,7 @@ public class TestTester extends PApplet {
 	
 	public TestTester() {
 		
-		day = new Day();
+		day = new Day(3);
 		questions = new ArrayList<String>();
 		
 		his = new History();
@@ -61,7 +61,7 @@ public class TestTester extends PApplet {
 		math = new Math();
 		math.addMQuestions();
 		
-		//sci.setInUse();
+		sci.setInUse();
 		
 		ArrayList<String> groupedAnswers = new ArrayList<String>();
 		
