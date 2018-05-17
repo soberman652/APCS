@@ -6,14 +6,29 @@ import java.util.List;
  * @author sashaoberman
  *
  */
-public class Science{
+public class Science extends Course{
 
 	private ArrayList<QuestionAnswers> ScienceQuestions;
+	private boolean beingUsed;
 	
-	public Science() {
+	public Science(Grade grade) {
+		super(grade);
 		ScienceQuestions = new ArrayList<QuestionAnswers>();
+		beingUsed = false;
+	}
+	public Science() {
+		super(new Grade('C'));
+		ScienceQuestions = new ArrayList<QuestionAnswers>();
+		beingUsed = false;
 	}
 	
+	public void setInUse() {
+		beingUsed = !beingUsed;
+	}
+	
+	public boolean isInUse() {
+		return beingUsed;
+	}
 	
 	public void addSQuestions() {
 		

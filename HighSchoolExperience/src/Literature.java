@@ -6,12 +6,28 @@ import java.util.List;
  * @author sashaoberman
  *
  */
-public class Literature{
+public class Literature extends Course{
 
 	private ArrayList<QuestionAnswers> LiteratureQuestions;
+	private boolean beingUsed;
 	
-	public Literature() {
+	public Literature(Grade grade) {
+		super(grade);
 		LiteratureQuestions = new ArrayList<QuestionAnswers>();
+		beingUsed = false;
+	}
+	public Literature() {
+		super(new Grade('C'));
+		LiteratureQuestions = new ArrayList<QuestionAnswers>();
+		beingUsed = false;
+	}
+	
+	public void setInUse() {
+		beingUsed = !beingUsed;
+	}
+	
+	public boolean isInUse() {
+		return beingUsed;
 	}
 	
 	

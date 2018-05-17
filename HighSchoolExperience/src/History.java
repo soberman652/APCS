@@ -10,17 +10,27 @@ import java.util.List;
 public class History extends Course{
 
 	private ArrayList<QuestionAnswers> historyQuestions;
+	private boolean beingUsed;
 	
 	public History(Grade grade) {
 		super(grade);
+		beingUsed = false;
 		historyQuestions = new ArrayList<QuestionAnswers>();
 	}
 	
 	public History() {
 		super(new Grade('C'));
 		historyQuestions = new ArrayList<QuestionAnswers>();
+		beingUsed = false;
 	}
 	
+	public void setInUse() {
+		beingUsed = !beingUsed;
+	}
+	
+	public boolean isInUse() {
+		return beingUsed;
+	}
 	
 	public void addHQuestions() {
 		

@@ -4,7 +4,7 @@ public class Day {
 	int day;
 
 	public Day() {
-		day = 0;
+		day = 1;
 	}
 	
 	public Day(int day) {
@@ -15,5 +15,8 @@ public class Day {
 		day++;
 	}
 
+	public int getDay() {
+		return day;
+	}
 	
 }

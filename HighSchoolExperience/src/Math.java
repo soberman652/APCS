@@ -6,14 +6,28 @@ import java.util.List;
  * @author sashaoberman
  *
  */
-public class Math{
+public class Math extends Course{
 
 	private ArrayList<QuestionAnswers> mathQuestions;
+	private boolean beingUsed;
 	
-	public Math() {
+	public Math(Grade grade) {
+		super(grade);
 		mathQuestions = new ArrayList<QuestionAnswers>();
+		beingUsed = false;
+	}
+	public Math() {
+		super(new Grade('C'));
+		mathQuestions = new ArrayList<QuestionAnswers>();
+		beingUsed = false;
+	}
+	public void setInUse() {
+		beingUsed = !beingUsed;
 	}
 	
+	public boolean isInUse() {
+		return beingUsed;
+	}
 	
 	
 	public void addMQuestions() {
