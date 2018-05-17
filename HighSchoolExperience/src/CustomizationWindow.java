@@ -30,19 +30,20 @@ public class CustomizationWindow extends JPanel implements ActionListener {
 	private JComboBox<String> genderOptionList, classOptionList, activityOptionList;
 	private JComboBox<Integer> ageOptionList;
 	private Image customization, background;
-	private final int CUSTOMIZATION_X = 2*WindowTester.WIDTH/7;
-	private final int CUSTOMIZATION_Y = WindowTester.HEIGHT/12; 
+	private final int CUSTOMIZATION_X = 2*Main.WIDTH/7;
+	private final int CUSTOMIZATION_Y = Main.HEIGHT/12; 
 	private final String[] genderList = {"Boy", "Girl"};
 	private final String[] classList = {"Mathematics", "History", "Literature", "Science"};
 	private final String[] activityList = {"Basketball", "Flute"};
 	private final Integer[] ageList = {13, 14, 15, 16, 17, 18, 19, 20};
+	private Main m;
 
 	//gender
 	//age
 	//name
 	//class
 	//activity
-	public CustomizationWindow() { 
+	public CustomizationWindow(Main m) { 
 		background = (new ImageIcon("background.png")).getImage();
 		customization = (new ImageIcon("customization.png")).getImage();
 		
@@ -85,42 +86,44 @@ public class CustomizationWindow extends JPanel implements ActionListener {
 		add(genderLabel);
 		Dimension size = genderLabel.getPreferredSize();
 		System.out.println(size);
-		genderLabel.setBounds(WindowTester.WIDTH/5, WindowTester.HEIGHT/5, size.width, size.height);
+		genderLabel.setBounds(Main.WIDTH/5, Main.HEIGHT/5, size.width, size.height);
 		add(genderOptionList);
 		size = genderOptionList.getPreferredSize();
-		genderOptionList.setBounds(4*WindowTester.WIDTH/7, WindowTester.HEIGHT/7, size.width, size.height);
+		genderOptionList.setBounds(4*Main.WIDTH/7, Main.HEIGHT/7, size.width, size.height);
 		//age
 		add(ageLabel);
 		size = ageLabel.getPreferredSize();
-		ageLabel.setBounds(WindowTester.WIDTH/4, WindowTester.HEIGHT/3, size.width, size.height);
+		ageLabel.setBounds(Main.WIDTH/4, Main.HEIGHT/3, size.width, size.height);
 		add(ageOptionList);
 		size = ageOptionList.getPreferredSize();
-		ageOptionList.setBounds(4*WindowTester.WIDTH/7, 8*WindowTester.HEIGHT/25, size.width, size.height);
+		ageOptionList.setBounds(4*Main.WIDTH/7, 8*Main.HEIGHT/25, size.width, size.height);
 		//name
 		add(nameLabel);
 		size = nameLabel.getPreferredSize();
-		nameLabel.setBounds(WindowTester.WIDTH/4, 7*WindowTester.HEIGHT/15, size.width, size.height);
+		nameLabel.setBounds(Main.WIDTH/4, 7*Main.HEIGHT/15, size.width, size.height);
 		add(name);
 		size = name.getPreferredSize();
-		name.setBounds(4*WindowTester.WIDTH/7, 82*WindowTester.HEIGHT/175, size.width, size.height);
+		name.setBounds(4*Main.WIDTH/7, 82*Main.HEIGHT/175, size.width, size.height);
 		//class
 		add(classLabel);
 		size = classLabel.getPreferredSize();
-		classLabel.setBounds(WindowTester.WIDTH/4, 9*WindowTester.HEIGHT/15, size.width, size.height);
+		classLabel.setBounds(Main.WIDTH/4, 9*Main.HEIGHT/15, size.width, size.height);
 		add(classOptionList);
 		size = classOptionList.getPreferredSize();
-		classOptionList.setBounds(4*WindowTester.WIDTH/7, 87*WindowTester.HEIGHT/175, size.width, size.height);
+		classOptionList.setBounds(4*Main.WIDTH/7, 87*Main.HEIGHT/175, size.width, size.height);
 		//activity
 		add(activityLabel);
 		size = activityLabel.getPreferredSize();
-		activityLabel.setBounds(WindowTester.WIDTH/17, 11* WindowTester.HEIGHT/15, size.width, size.height);
+		activityLabel.setBounds(Main.WIDTH/17, 11* Main.HEIGHT/15, size.width, size.height);
 		add(activityOptionList);
 		size = activityOptionList.getPreferredSize();
-		activityOptionList.setBounds(4*WindowTester.WIDTH/7, 111*WindowTester.HEIGHT/175, size.width, size.height);
+		activityOptionList.setBounds(4*Main.WIDTH/7, 111*Main.HEIGHT/175, size.width, size.height);
 		//done button
 		add(doneButton);
 		size = doneButton.getPreferredSize();
-		doneButton.setBounds(7*WindowTester.WIDTH/8, 7*WindowTester.HEIGHT/8, size.width, size.height);
+		doneButton.setBounds(7*Main.WIDTH/8, 7*Main.HEIGHT/8, size.width, size.height);
+		
+		this.m = m;
 	}
 
 	public void paintComponent(Graphics g) {
@@ -132,8 +135,9 @@ public class CustomizationWindow extends JPanel implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
-		if(e.getSource()==doneButton) {
-			
+		if(e.getSource()==doneButton) 
+		{
+			m.changePanel("3");
 	/*		JFrame newJFrame = new JFrame("High School Experience");
 			GamePanel panel = new GamePanel();
 			newJFrame.setBounds(100, 100, Main.WIDTH, Main.HEIGHT);

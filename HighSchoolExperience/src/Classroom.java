@@ -19,10 +19,11 @@ public class Classroom extends Room
 		drawer.pushStyle();
 		drawer.fill(0);
 		drawer.textSize(20);
+		drawer.textAlign(drawer.CENTER);
 		drawer.text(this.getMarker(), drawer.width/2, drawer.height/2);
 		if(direction == GameWindow.NORTH)
 		{
-			drawer.text('N', drawer.width/2, drawer.height-30);
+			//drawer.text('N', drawer.width/2, drawer.height-30);
 			for(Door d: this.getExits())
 			{
 				if(d.getDirection() == GameWindow.NORTH)
@@ -33,7 +34,7 @@ public class Classroom extends Room
 		}
 		else if(direction == GameWindow.EAST)
 		{
-			drawer.text('E', drawer.width/2, drawer.height-30);
+			//drawer.text('E', drawer.width/2, drawer.height-30);
 			for(Door d: this.getExits())
 			{
 				if(d.getDirection() == GameWindow.EAST)
@@ -44,7 +45,7 @@ public class Classroom extends Room
 		}
 		else if(direction == GameWindow.SOUTH)
 		{
-			drawer.text('S', drawer.width/2, drawer.height-30);
+			//drawer.text('S', drawer.width/2, drawer.height-30);
 			for(Door d: this.getExits())
 			{
 				if(d.getDirection() == GameWindow.SOUTH)
@@ -55,7 +56,7 @@ public class Classroom extends Room
 		}
 		else if(direction == GameWindow.WEST)
 		{
-			drawer.text('W', drawer.width/2, drawer.height-30);
+			//drawer.text('W', drawer.width/2, drawer.height-30);
 			for(Door d: this.getExits())
 			{
 				if(d.getDirection() == GameWindow.WEST)

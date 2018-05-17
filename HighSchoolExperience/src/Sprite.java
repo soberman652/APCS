@@ -1,5 +1,6 @@
 import java.awt.Rectangle;
 import java.awt.event.KeyEvent;
+import java.util.ArrayList;
 
 import processing.core.PApplet;
 import processing.core.PImage;
@@ -14,11 +15,11 @@ import processing.core.PImage;
 public class Sprite extends Rectangle
 {
 	private int dx, dy, imgID;
-	private PImage img;
+	private ArrayList<PImage> img;
 
-	public Sprite(int x, int y, PImage img)
+	public Sprite(int x, int y, ArrayList<PImage> img)
 	{
-		this.setBounds(x, y, img.width, img.height);
+		this.setBounds(x, y, img.get(0).width, img.get(0).height);
 		this.img = img;
 		imgID = 1;
 		dx = 0;
@@ -32,12 +33,11 @@ public class Sprite extends Rectangle
 		drawer.stroke(0);
 		drawer.fill(255);
 		if(imgID == 1)
-			img = drawer.loadImage("img\\StudentFrontWalk.gif");
+			drawer.image(img.get(0), x, y);
 		else if(imgID == 2)
-			img = drawer.loadImage("img\\StudentLeftWalk.gif");
+			drawer.image(img.get(1), x, y);
 		else if(imgID == 3)
-			img = drawer.loadImage("img\\StudentRightWalk.gif");
-		drawer.image(img, x, y);
+			drawer.image(img.get(2), x, y);
 		drawer.popStyle();
 	}
 	
@@ -50,8 +50,8 @@ public class Sprite extends Rectangle
 		else
 			this.x += dx;
 		
-		if(this.y < 0)
-			this.y = 0;
+		if(this.y+this.height < GameWindow.WALL_HEIGHT)
+			this.y = GameWindow.WALL_HEIGHT-this.height;
 		else if(this.y + this.height > w.height)
 			this.y = w.height - this.height;
 		else

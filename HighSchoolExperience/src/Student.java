@@ -1,4 +1,4 @@
-import Minigame;
+
 
 /**
  * 
@@ -9,12 +9,12 @@ public class Student {
 	
 	private int gender;
 	private Course course;
-	private MiniGame game;
+	//private  game;
 
-	public Student(int gender, String name, Course course, MiniGame game) {
+	public Student(int gender, String name, Course course/*, MiniGame game*/) {
 		this.gender = gender;
 		this.course = course;
-		this.activity = activity;
+		//this.activity = activity;
 	}
 	
 	
