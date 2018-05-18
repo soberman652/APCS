@@ -2,6 +2,7 @@ package Minigame;
 
 import java.awt.Rectangle;
 
+import Controller.GameWindow;
 import processing.core.PApplet;
 import processing.core.PImage;
 

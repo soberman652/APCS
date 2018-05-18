@@ -1,26 +1,26 @@
 package Minigame;
+import java.awt.Rectangle;
+
+import Controller.GameWindow;
 import processing.core.PApplet;
 import processing.core.PImage;
 
-public class MiniGamePortal 
+public class MiniGamePortal extends Rectangle
 {
-	private Playable mini;
 	private PImage icon;
 	
-	public MiniGamePortal(Playable mini, PImage icon)
+	public MiniGamePortal(PImage icon)
 	{
-		this.mini = mini;
+		this.setBounds(0, 0, 50, 50);
 		this.icon = icon;
 		icon.resize(50, 50);
 	}
 	
 	public void display(PApplet drawer)
 	{
-		drawer.image(icon, drawer.width/2-icon.width/2, drawer.height/2-icon.height/2);
-	}
-	
-	public void select()
-	{
-		mini.play();
+		this.setLocation(GameWindow.DRAWING_WIDTH/2-icon.width/2, GameWindow.DRAWING_HEIGHT/2-icon.height/2);
+		drawer.image(icon, GameWindow.DRAWING_WIDTH/2-icon.width/2, GameWindow.DRAWING_HEIGHT/2-icon.height/2);
+		int x = GameWindow.DRAWING_WIDTH/2-icon.width/2;
+		int y = GameWindow.DRAWING_HEIGHT/2-icon.height/2;
 	}
 }

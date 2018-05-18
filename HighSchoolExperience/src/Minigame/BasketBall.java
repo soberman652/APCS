@@ -4,6 +4,7 @@ import java.awt.Rectangle;
 import java.awt.geom.Line2D;
 import java.awt.geom.Point2D;
 
+import Controller.GameWindow;
 import processing.core.PApplet;
 
 /**
@@ -65,9 +66,9 @@ public class BasketBall
 			else
 				dy += 0.5;
 			
-			if(x + radius > window.width)
+			if(x + radius > GameWindow.DRAWING_WIDTH)
 			{
-				x = window.width - radius;
+				x = GameWindow.DRAWING_WIDTH - radius;
 				dx = -dx;
 			}
 			else if(x < 0)

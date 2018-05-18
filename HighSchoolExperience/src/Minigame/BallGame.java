@@ -3,6 +3,8 @@ package Minigame;
 import java.awt.Rectangle;
 import java.awt.event.KeyEvent;
 
+import Controller.GameWindow;
+import Controller.Main;
 import processing.core.PApplet;
 import processing.core.PImage;
 
@@ -14,25 +16,41 @@ public class BallGame extends PApplet
 	private Net net;
 	private boolean[] keyPressed; //[left,right,up,down]
 	private PImage floor, seats;
+	private Main m;
 	
-	public static void main(String[] args) 
+	public BallGame(Main m)
 	{
-		PApplet.main("Minigame.BallGame");
+		this.m = m;
+		
+		player = new Player(new Rectangle(0, this.height-20, 15, 20));
+		indicator = new Arrow(player);
+		keyPressed = new boolean[4];
 	}
 	
-	public void settings()
+	public void runMe()
 	{
-		size(500, 500);
+		super.setSize(500,545);
+		super.sketchPath();
+		super.initSurface();
+		super.surface.startThread();
+		
+		pause(true);
+	}
+	
+	public void pause(boolean paused) 
+	{
+		keyPressed = new boolean[4];
+		if (paused)
+			noLoop();
+		else
+			loop();
 	}
 	
 	public void setup()
 	{
+		net = new Net(this.width, 200, loadImage("img\\net.gif"));
 		int r = 5;
-		player = new Player(new Rectangle(0, height-20, 15, 20));
-		indicator = new Arrow(player);
-		net = new Net(width, 200, loadImage("img\\net.gif"));
-		basketball = new BasketBall(r, height - r, r, player, net);
-		keyPressed = new boolean[4];
+		basketball = new BasketBall(r, GameWindow.DRAWING_HEIGHT - r, r, player, net);
 		floor = loadImage("img\\floor.jpg");
 		floor.resize(500, floor.height);
 		seats = loadImage("img\\bleachers.jpg");
@@ -42,8 +60,8 @@ public class BallGame extends PApplet
 	public void draw()
 	{
 		background(255);
-		image(floor, 0, height-floor.height);
-		image(seats, 0, height-floor.height-seats.height);
+		image(floor, 0, this.height-floor.height);
+		image(seats, 0, this.height-floor.height-seats.height);
 		indicator.display(this);
 		indicator.adjustAngle(mouseX, mouseY);
 		player.display(this, floor);
@@ -103,5 +121,15 @@ public class BallGame extends PApplet
 			player.moveYBy(5);
 		else if(!keyPressed[2] && !keyPressed[3])
 			player.moveYBy(0);
+	}
+
+	public void reset() 
+	{
+		int r = 5;
+		player = new Player(new Rectangle(0, GameWindow.DRAWING_HEIGHT-20, 15, 20));
+		indicator = new Arrow(player);
+		net = new Net(GameWindow.DRAWING_WIDTH, 200, loadImage("img\\net.gif"));
+		basketball = new BasketBall(r, GameWindow.DRAWING_HEIGHT - r, r, player, net);
+		keyPressed = new boolean[4];
 	}
 }

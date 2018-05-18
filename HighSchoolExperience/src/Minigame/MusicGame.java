@@ -2,6 +2,8 @@ package Minigame;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 
+import Controller.GameWindow;
+import Controller.Main;
 import processing.core.PApplet;
 
 public class MusicGame extends PApplet
@@ -12,20 +14,12 @@ public class MusicGame extends PApplet
 	private boolean[] numPressed;
 	private boolean playing;
 	private Sign symbol;
+	private Main m;
 	public static final int SPACE = 30, FPB = 15;
 	
-	public static void main(String[] args) 
+	public MusicGame(Main m)
 	{
-		PApplet.main("Minigame.MusicGame");
-	}
-	
-	public void settings()
-	{
-		size(500, 500);
-	}
-	
-	public void setup()
-	{
+		this.m = m;
 		notes = new ArrayList<Note>();
 		count = 0;
 		good = 0;
@@ -40,6 +34,25 @@ public class MusicGame extends PApplet
 		numPressed = new boolean[5];
 		symbol = null;
 	}
+
+	public void runMe()
+	{
+		super.setSize(500,500);
+		super.sketchPath();
+		super.initSurface();
+		super.surface.startThread();
+		
+		pause(true);
+	}
+	
+	public void pause(boolean paused) 
+	{
+		numPressed = new boolean[5];
+		if (paused)
+			noLoop();
+		else
+			loop();
+	}
 	
 	public void draw()
 	{
@@ -48,7 +61,7 @@ public class MusicGame extends PApplet
 			background(100);
 			int result = (int)(100*((double)good/totalNotes));
 			textAlign(CENTER, CENTER);
-			text(result+"%", width/2, height/2);
+			text(result+"% correct\nPress SPACE to end activity", GameWindow.DRAWING_WIDTH/2, GameWindow.DRAWING_HEIGHT/2);
 		}
 		else
 		{
@@ -151,6 +164,11 @@ public class MusicGame extends PApplet
 				notes.remove(0);
 			}
 		}
+		else
+		{
+			if(keyCode == KeyEvent.VK_SPACE)
+				m.changePanel("3");
+		}
 	}
 	
 	public void keyReleased()
@@ -207,6 +225,22 @@ public class MusicGame extends PApplet
 			drawer.fill(0,0,255);
 		drawer.text("5", drawer.width/2+2*SPACE, 40);
 		drawer.popStyle();
+	}
+
+	public void reset() 
+	{	
+		notes = new ArrayList<Note>();
+		count = 0;
+		good = 0;
+		totalNotes = 0;
+		for(Integer i : sheet)
+		{
+			if(i != 0)
+				totalNotes++;
+		}
+		playing = true;
+		numPressed = new boolean[5];
+		symbol = null;
 	}
 
 }

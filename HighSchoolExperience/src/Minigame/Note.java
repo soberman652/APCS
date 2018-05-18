@@ -10,7 +10,6 @@ public class Note
 		this.pitch = pitch;
 		this.tempo = tempo;
 		x = start;
-		
 	}
 	
 	public void display(PApplet drawer)
@@ -23,11 +22,9 @@ public class Note
 		act();
 	}
 	
-	//-1: miss
-	//1: success 
 	public int hit(int target)
 	{
-		if(Math.abs(target - this.x) < 5)
+		if(Math.abs(target - this.x) < 10)
 		{
 			return 1;
 		}
