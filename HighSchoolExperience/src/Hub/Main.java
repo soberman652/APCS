@@ -1,4 +1,4 @@
-package Controller;
+package Hub;
 import java.awt.BorderLayout;
 import java.awt.CardLayout;
 import java.awt.Component;

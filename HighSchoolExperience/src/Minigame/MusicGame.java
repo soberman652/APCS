@@ -2,8 +2,8 @@ package Minigame;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 
-import Controller.GameWindow;
-import Controller.Main;
+import Hub.GameWindow;
+import Hub.Main;
 import processing.core.PApplet;
 
 public class MusicGame extends PApplet
@@ -62,6 +62,17 @@ public class MusicGame extends PApplet
 			int result = (int)(100*((double)good/totalNotes));
 			textAlign(CENTER, CENTER);
 			text(result+"% correct\nPress SPACE to end activity", GameWindow.DRAWING_WIDTH/2, GameWindow.DRAWING_HEIGHT/2);
+			String grade = "";
+			if(result >= 90)
+				grade = "A";
+			else if(result >= 80)
+				grade = "B";
+			else if(result >= 70)
+				grade = "C";
+			else if(result >= 60)
+				grade = "D";
+			else
+				grade = "F";
 		}
 		else
 		{
@@ -202,6 +213,7 @@ public class MusicGame extends PApplet
 		drawer.line(drawer.width/2+SPACE, 50, drawer.width/2+SPACE, drawer.height);
 		drawer.line(drawer.width/2+2*SPACE, 50, drawer.width/2+2*SPACE, drawer.height);
 		drawer.strokeWeight(5);
+		drawer.stroke(255,0,0);
 		drawer.line(drawer.width/2-2*SPACE, 50, drawer.width/2+2*SPACE, 50);
 		
 		drawer.fill(0);

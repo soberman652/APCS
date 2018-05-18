@@ -1,4 +1,4 @@
-package Controller;
+package Hub;
 import java.awt.Point;
 
 import processing.core.PApplet;

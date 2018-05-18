@@ -1,4 +1,4 @@
-package Controller;
+package Hub;
 import java.awt.Rectangle;
 import java.util.ArrayList;
 

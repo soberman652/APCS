@@ -1,4 +1,4 @@
-package Controller;
+package Hub;
 import processing.core.PApplet;
 import processing.core.PImage;
 

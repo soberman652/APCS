@@ -1,4 +1,4 @@
-package Controller;
+package Hub;
 
 public class Classwork {
 

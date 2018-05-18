@@ -3,8 +3,8 @@ package Minigame;
 import java.awt.Rectangle;
 import java.awt.event.KeyEvent;
 
-import Controller.GameWindow;
-import Controller.Main;
+import Hub.GameWindow;
+import Hub.Main;
 import processing.core.PApplet;
 import processing.core.PImage;
 

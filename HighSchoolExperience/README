@@ -60,10 +60,7 @@ Stretch Features:
 
 
 Class List:
-* Background: reads in images taken from the Internet and displays them, these images are graphics for various settings like a classroom, gymnasium, and a cafeteria
-* Location: holds information of where the user is currently
 * GamePanel (has Clock, Phase, Day, StressLevel, and Location): holds all information about game progress (day, time, score, stress, location)
-* Obstacle: an object on screen that user cannot walk through
 * Student: represents the student the user controls 
 * Course (abstract): represents the course the user takes
    * Math (extends Course, has a teacher): represents a mathematics class, includes a broad range of different levels (algebra to calculus maybe)
@@ -75,9 +72,15 @@ Class List:
    * Assignment (extends Classwork): represents classwork that the user must do for a specific class
    * Test (extends Classwork): generates test questions depending on the subject (all subclasses of Course have the Test class, has-a-relationship)
    * Quiz (extends Classwork): produces a quiz that contains a few questions, a quiz is not weighted as much as the tests (has-a-relationship, subclasses of Course have the Quiz class)
-* MiniGame (abstract): represents after-school activity
-   * MusicalPerformance (extends MiniGame): the musical performance that the user will give if he or she does music as an extracurricular
-   * AthleticPerformance (extends MiniGame): a game or a competition if the user is an athlete
+* BallGame
+   * BasketBall
+   * Player
+   * Arrow
+   * Net
+* MusicGame
+   * Note: scrolling circles that user must match once note meets target line
+   * MusicReader
+   * Sign: indicates if user correctly matches the note
 * Menu: for when the game needs to be paused
 * StressLevel: represents the bar that indicates the stress level of the user
 * Clock: keeps time throughout the day

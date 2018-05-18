@@ -1,4 +1,4 @@
-package Controller;
+package Hub;
 
 import Minigame.MiniGamePortal;
 import processing.core.PApplet;

@@ -1,4 +1,4 @@
-package Controller;
+package Hub;
 
 
 import javax.swing.JComponent;
