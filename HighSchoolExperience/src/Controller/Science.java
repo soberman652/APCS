@@ -7,29 +7,18 @@ import java.util.List;
  * @author sashaoberman
  *
  */
-public class Science extends Course{
+public class Science {
 
 	private ArrayList<QuestionAnswers> ScienceQuestions;
-	private boolean beingUsed;
+
 	
-	public Science(Grade grade) {
-		super(grade);
-		ScienceQuestions = new ArrayList<QuestionAnswers>();
-		beingUsed = false;
-	}
 	public Science() {
-		super(new Grade('C'));
+
 		ScienceQuestions = new ArrayList<QuestionAnswers>();
-		beingUsed = false;
+
 	}
-	
-	public void setInUse() {
-		beingUsed = !beingUsed;
-	}
-	
-	public boolean isInUse() {
-		return beingUsed;
-	}
+
+
 	
 	public void addSQuestions() {
 		
@@ -60,7 +49,7 @@ public class Science extends Course{
 			String question = rawQuestions[5*i+0];
 			String correctAnswer = rawQuestions[5*i+1];
 			ArrayList<String> incorrectAnswers = new ArrayList<String>();
-			for (int j=0; j<2; j++) {
+			for (int j=0; j<3; j++) {
 				incorrectAnswers.add(rawQuestions[5*i+2+j]);
 			}
 			ScienceQuestions.add(new QuestionAnswers(question, correctAnswer, incorrectAnswers));
@@ -71,7 +60,7 @@ public class Science extends Course{
 		
 	}
 	
-	public ArrayList<QuestionAnswers> getSciQuestions(){
+	public ArrayList<QuestionAnswers> getQuestions(){
 		return ScienceQuestions;
 	}
 	

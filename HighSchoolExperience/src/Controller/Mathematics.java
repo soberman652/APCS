@@ -7,29 +7,16 @@ import java.util.List;
  * @author sashaoberman
  *
  */
-public class Math extends Course{
+public class Mathematics{
 
 	private ArrayList<QuestionAnswers> mathQuestions;
-	private boolean beingUsed;
+
 	
-	public Math(Grade grade) {
-		super(grade);
+	public Mathematics() {
+
 		mathQuestions = new ArrayList<QuestionAnswers>();
-		beingUsed = false;
+
 	}
-	public Math() {
-		super(new Grade('C'));
-		mathQuestions = new ArrayList<QuestionAnswers>();
-		beingUsed = false;
-	}
-	public void setInUse() {
-		beingUsed = !beingUsed;
-	}
-	
-	public boolean isInUse() {
-		return beingUsed;
-	}
-	
 	
 	public void addMQuestions() {
 		
@@ -60,7 +47,7 @@ public class Math extends Course{
 			String question = rawQuestions[5*i+0];
 			String correctAnswer = rawQuestions[5*i+1];
 			ArrayList<String> incorrectAnswers = new ArrayList<String>();
-			for (int j=0; j<2; j++) {
+			for (int j=0; j<3; j++) {
 				incorrectAnswers.add(rawQuestions[5*i+2+j]);
 			}
 			mathQuestions.add(new QuestionAnswers(question, correctAnswer, incorrectAnswers));
@@ -70,7 +57,7 @@ public class Math extends Course{
 		
 		
 	}
-	public ArrayList<QuestionAnswers> getMathQuestions(){
+	public ArrayList<QuestionAnswers> getQuestions(){
 		return mathQuestions;
 	}
 }

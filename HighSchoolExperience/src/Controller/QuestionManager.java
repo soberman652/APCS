@@ -1,3 +1,4 @@
+package Controller;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -20,17 +21,18 @@ import javax.swing.JTextField;
 
 
 import processing.core.PApplet;
+import processing.data.StringDict;
 /**
  * 
  * @author sashaoberman
  *
  */
-public class TestTester extends JPanel implements ActionListener {
+public class QuestionManager extends JFrame {
 
 	private History his;
 	private Science sci;
 	private Literature lit;
-	private Mathematics math;
+	private Mathematics mathematics;
 	private JComboBox<String> question1, question2, question3, question4;
 	private JButton doneButton;
 	private Day day;
@@ -39,17 +41,16 @@ public class TestTester extends JPanel implements ActionListener {
 	private JPanel panHis, panSci, panLit, panMath;
 
 	
-	
+	/*
 	public static void main(String[] args) {
-		TestTester b = new TestTester();
+		QuestionManager b = new QuestionManager();
 		PApplet.main("TestTester");
 	}
+	*/
 	
 	
-	public TestTester() {
+	public QuestionManager() {
 		
-		
-		day = new Day(3);
 		questions = new ArrayList<String>();
 		
 		his = new History();
@@ -61,17 +62,57 @@ public class TestTester extends JPanel implements ActionListener {
 		lit = new Literature();
 		lit.addLQuestions();
 		
-		math = new Mathematics();
-		math.addMQuestions();
+		mathematics = new Mathematics();
+		mathematics.addMQuestions();
+	}
+	
+	public boolean askQuestion(Course questionType, int questionNum) {
+
+		QuestionAnswers q = null;
 		
-		sci.setInUse();
+		if (questionType.isHistory())
+			q = his.getQuestions().get(questionNum);
+		else if (questionType.isMath())
+			q = mathematics.getQuestions().get(questionNum);
+		else if (questionType.isScience())
+			q = sci.getQuestions().get(questionNum);	
+		else if (questionType.isLiterature())
+			q = lit.getQuestions().get(questionNum);
 		
+		String question = q.getQuestion();
+		String correctAnswer = q.getCorrectAnswer();
+		ArrayList<String> incorrectAnswers = q.getIncorrectAnswers();
+		
+		int correctAnsPos = (int) Math.random()*4;
+		String[] answers = new String[4];
+		answers[correctAnsPos] = correctAnswer;
+	
+		int j = 0;
+		for (int i = 0; i < 4; i++) {
+			if (i != correctAnsPos) {
+				answers[i] = incorrectAnswers.get(j);
+				j++;
+			}
+		}
+		// call method to display and ask question with
+		// String question, String[] answers[4], int correctAnsPos;
+		// it should check that user chose correctAnsPos;
+		// it should return boolean choseCorrect;
+		boolean choseCorrect = false;
+		
+		
+		return choseCorrect;
+		
+	
+	}
+	
+			/*
 		ArrayList<String> groupedAnswers = new ArrayList<String>();
 		
-		if (his.isInUse()) {
-			
-			if (day.getDay() > 0 && day.getDay() <= 5) {
-				for (int i = day.getDay(); i < day.getDay() + 4; i ++) {
+		if (questionType.isHistory())
+		{		
+			if (day > 0 && day <= 5) {
+				for (int i = day; i < day + 4; i ++) {
 					questions.add(his.getHisQuestions().get(i).getQuestion());
 					//groupedAnswers = his.getHisQuestions().get(i).getAnswers();
 					for (int j = 0; j < 4; j++) {
@@ -214,5 +255,5 @@ public class TestTester extends JPanel implements ActionListener {
 		
 	}
 	
-
+*/
 }

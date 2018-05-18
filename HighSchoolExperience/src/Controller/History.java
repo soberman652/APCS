@@ -8,30 +8,17 @@ import java.util.List;
  * @author sashaoberman
  *
  */
-public class History extends Course{
+public class History {
 
 	private ArrayList<QuestionAnswers> historyQuestions;
-	private boolean beingUsed;
-	
-	public History(Grade grade) {
-		super(grade);
-		beingUsed = false;
-		historyQuestions = new ArrayList<QuestionAnswers>();
-	}
+
 	
 	public History() {
-		super(new Grade('C'));
+
+
 		historyQuestions = new ArrayList<QuestionAnswers>();
-		beingUsed = false;
 	}
 	
-	public void setInUse() {
-		beingUsed = !beingUsed;
-	}
-	
-	public boolean isInUse() {
-		return beingUsed;
-	}
 	
 	public void addHQuestions() {
 		
@@ -62,7 +49,7 @@ public class History extends Course{
 			String question = rawQuestions[5*i+0];
 			String correctAnswer = rawQuestions[5*i+1];
 			ArrayList<String> incorrectAnswers = new ArrayList<String>();
-			for (int j=0; j<2; j++) {
+			for (int j=0; j<3; j++) {
 				incorrectAnswers.add(rawQuestions[5*i+2+j]);
 			}
 			historyQuestions.add(new QuestionAnswers(question, correctAnswer, incorrectAnswers));
@@ -73,7 +60,7 @@ public class History extends Course{
 		
 	}
 	
-	public ArrayList<QuestionAnswers> getHisQuestions(){
+	public ArrayList<QuestionAnswers> getQuestions(){
 		return historyQuestions;
 	}
 	

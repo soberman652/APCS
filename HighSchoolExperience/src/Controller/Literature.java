@@ -7,30 +7,18 @@ import java.util.List;
  * @author sashaoberman
  *
  */
-public class Literature extends Course{
+public class Literature{
 
 	private ArrayList<QuestionAnswers> LiteratureQuestions;
-	private boolean beingUsed;
+
 	
-	public Literature(Grade grade) {
-		super(grade);
-		LiteratureQuestions = new ArrayList<QuestionAnswers>();
-		beingUsed = false;
-	}
 	public Literature() {
-		super(new Grade('C'));
+
 		LiteratureQuestions = new ArrayList<QuestionAnswers>();
-		beingUsed = false;
+
 	}
-	
-	public void setInUse() {
-		beingUsed = !beingUsed;
-	}
-	
-	public boolean isInUse() {
-		return beingUsed;
-	}
-	
+
+
 	
 	public void addLQuestions() {
 		
@@ -61,7 +49,7 @@ public class Literature extends Course{
 			String question = rawQuestions[5*i+0];
 			String correctAnswer = rawQuestions[5*i+1];
 			ArrayList<String> incorrectAnswers = new ArrayList<String>();
-			for (int j=0; j<2; j++) {
+			for (int j=0; j<3; j++) {
 				incorrectAnswers.add(rawQuestions[5*i+2+j]);
 			}
 			LiteratureQuestions.add(new QuestionAnswers(question, correctAnswer, incorrectAnswers));
@@ -72,7 +60,7 @@ public class Literature extends Course{
 		
 	}
 	
-	public ArrayList<QuestionAnswers> getLitQuestions(){
+	public ArrayList<QuestionAnswers> getQuestions(){
 		return LiteratureQuestions;
 	}
 	
