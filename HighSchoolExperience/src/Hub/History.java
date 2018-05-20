@@ -8,7 +8,7 @@ import java.util.List;
  * @author sashaoberman
  *
  */
-public class History {
+public class History extends Course{
 
 	private ArrayList<QuestionAnswers> historyQuestions;
 
@@ -40,11 +40,12 @@ public class History {
 		"Who was the first prime minister of Canada?","John Macdonald","John Abbott","Alexander Mackenzie","Robert Borden",
 		"How was Socrates executed?","Poison","Decapitation","Firing squad","Crucifixion ",
 		"How long did World War II last?","6 years","4 years","5 years","7 years",
-		"Which of the following countries was not an axis power during World War II?"," Soviet Union","Italy","Germany","Japan",
+		"Which of the following countries was not an axis power during World War II?","Soviet Union","Italy","Germany","Japan",
 		"The Trail of Tears was a result of which United States Presidents Indian Removal Policy?","Andrew Jackson","Harry S. Truman","Martin Van Buren","John Quincy Adams",
 		"To what political party did Abraham Lincoln belong when elected POTUS?","Republican","Democrat","Independent","Whig",
 		"How old was Adolf Hitler when he died?","56","43","65","47"};
 
+		
 		for (int i=0; i < 20; i++) {
 			String question = rawQuestions[5*i+0];
 			String correctAnswer = rawQuestions[5*i+1];
@@ -55,10 +56,10 @@ public class History {
 			historyQuestions.add(new QuestionAnswers(question, correctAnswer, incorrectAnswers));
 			
 		}
-		
-		
-		
+
 	}
+	
+	
 	
 	public ArrayList<QuestionAnswers> getQuestions(){
 		return historyQuestions;
