@@ -24,11 +24,9 @@ will receive their course schedule and attend classes without being tardy. While
 quizzes, or tasks by playing a mini-game and get the highest grade possible. During the middle of the day, a break period will 
 be given the student to recuperate and cut down on their stress. At the end of each day, the student will report to the appropriate 
 location on the school campus and begin doing tasks for their after school activity. Failure in to do well in any tasks will affect 
-the student stress bar. If the stress bar reaches a certain point, the user loses the game and the game stops. If the user can keep 
-their student below the losing point and their grades above a C after 20 days, the game is complete, and a diploma will be given to 
-the user. If the user fails school, then no diploma will be rewarded to the user, and the user simply loses the game. Regardless of 
+the student stress bar. If the stress bar reaches a certain point, the user loses the game and the game stops. Regardless of 
 the result, the user gets an option to start another school year or quit the game. Use all of the arrow keys to move the character up and down,
-left and right. Move your character to the door to get to the next location.
+left and right. Travel between rooms on campus through doors.
 
 
 Must-Have Features List:
@@ -95,3 +93,5 @@ Responsibility List:
 Amy: Will create questions for tests and quizzes, create different classwork, write code for the Grade and Gradebook classes, and implement the Phase class.
 Sasha: Will work on Menu, StressLevel, Clock, Day, Teacher, come up with questions for tests and quizzes, create classwork
 Emily: mini-game, graphics
+Main class based on ProcessingWithMultipleSketches Demo by Mr. Shelby
+graphics of Quiz class based on https://processing.org/examples/button.html

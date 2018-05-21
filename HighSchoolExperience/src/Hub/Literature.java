@@ -7,7 +7,7 @@ import java.util.List;
  * @author sashaoberman
  *
  */
-public class Literature{
+public class Literature extends Course{
 
 	private ArrayList<QuestionAnswers> LiteratureQuestions;
 
@@ -15,12 +15,6 @@ public class Literature{
 	public Literature() {
 
 		LiteratureQuestions = new ArrayList<QuestionAnswers>();
-
-	}
-
-
-	
-	public void addLQuestions() {
 		
 		String[] rawQuestions = {
 				"In the Beatrix Potter books, what type of animal is Tommy Brock?","Badger","Fox","Frog","Rabbit",
@@ -55,9 +49,6 @@ public class Literature{
 			LiteratureQuestions.add(new QuestionAnswers(question, correctAnswer, incorrectAnswers));
 			
 		}
-		
-		
-		
 	}
 	
 	public ArrayList<QuestionAnswers> getQuestions(){

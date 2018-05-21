@@ -10,7 +10,7 @@ public class ActivityRoom extends Classroom
 	
 	public ActivityRoom(String name, int x, int y,PImage icon)
 	{
-		super(name, x, y);
+		super(name, x, y, false);
 		portal = new MiniGamePortal(icon);
 	}
 	

@@ -1,12 +1,14 @@
 package Hub;
+
+import java.util.ArrayList;
+
 /**
  * 
  * @author sashaoberman
  *
  */
-public class Course {
-
-
+public abstract class Course 
+{
 	private int subject;
 
 	// default course to History
@@ -14,8 +16,9 @@ public class Course {
 		subject = 0;
 	}
 	
-
+	public abstract ArrayList<QuestionAnswers> getQuestions();
 	
+	/*
 	public void setHistory() {
 		subject = 0;
 	}
@@ -41,5 +44,5 @@ public class Course {
 	public boolean isMath() {
 		return subject == 3;
 	}
-	
+	*/
 }

@@ -7,7 +7,7 @@ import java.util.List;
  * @author sashaoberman
  *
  */
-public class Mathematics{
+public class Mathematics extends Course{
 
 	private ArrayList<QuestionAnswers> mathQuestions;
 
@@ -15,10 +15,6 @@ public class Mathematics{
 	public Mathematics() {
 
 		mathQuestions = new ArrayList<QuestionAnswers>();
-
-	}
-	
-	public void addMQuestions() {
 		
 		String[] rawQuestions = {
 				"In a complete graph G, which has 12 vertices, how many edges are there?","66","67","34","11",
@@ -53,10 +49,9 @@ public class Mathematics{
 			mathQuestions.add(new QuestionAnswers(question, correctAnswer, incorrectAnswers));
 			
 		}
-		
-		
-		
+
 	}
+	
 	public ArrayList<QuestionAnswers> getQuestions(){
 		return mathQuestions;
 	}

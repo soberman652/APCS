@@ -18,7 +18,7 @@ public class GameWindow extends PApplet
 	private Sprite student;
 	private boolean[] arrowKeyPressed;//[Left,Right,Down,Up]
 	
-	private boolean showMap;
+	private boolean showMap, takeQuiz;
 	private ArrayList<Classroom> campus;
 	private Room currentLocation;
 	private PImage mapLayout;
@@ -31,12 +31,6 @@ public class GameWindow extends PApplet
 	public static final int DRAWING_WIDTH = 500;
 	public static final int DRAWING_HEIGHT = 500;
 	
-	/*
-	public static void main(String args[])
-	{
-		PApplet.main("GameWindow");
-	}
-	*/
 	public GameWindow(Main m)
 	{
 		super();
@@ -108,7 +102,7 @@ public class GameWindow extends PApplet
 				map.display(this);
 			}
 		}
-		
+		textSize(20);
 		if(currentLocation.getMarker().equals("Stage"))
 		{
 			ActivityRoom r = (ActivityRoom)currentLocation;
@@ -137,6 +131,21 @@ public class GameWindow extends PApplet
 			}
 			else
 				playGame = -1;
+		}
+		
+		if(currentLocation.getMarker().equals("Room A") || currentLocation.getMarker().equals("Room B") || currentLocation.getMarker().equals("Room D") || currentLocation.getMarker().equals("Room E"))
+		{
+			Classroom c = (Classroom)currentLocation;
+			if(c.canTakeQuiz(student))
+			{
+				System.out.println(":) "); 
+				takeQuiz = true;
+				textAlign(CENTER);
+				fill(0);
+				text("Press ENTER to take quiz", this.DRAWING_WIDTH, this.DRAWING_HEIGHT);
+			}
+			else
+				takeQuiz = false;
 		}
 	}
 	
@@ -212,6 +221,8 @@ public class GameWindow extends PApplet
 				m.changePanel("4");
 			else if(playGame == 2)
 				m.changePanel("5");
+			else if(takeQuiz)
+				m.changePanel("6");
 		}
 	}
 	
@@ -249,15 +260,15 @@ public class GameWindow extends PApplet
 		campus = new ArrayList<Classroom>();
 		Home bedroom = new Home(loadImage("img\\BedroomFloor.png"), loadImage("img\\bed.png"));
 
-		Classroom center = new Classroom("Student Center",240,310);
+		Classroom center = new Classroom("Student Center",240,310, false);
 		ActivityRoom stage = new ActivityRoom("Stage",140,330, loadImage("img\\BasketballIcon.png"));
 		ActivityRoom gym =  new ActivityRoom("Gym",340,330,loadImage("img\\BasketballIcon.png"));
-		Classroom wing = new Classroom("Hall",240,210);
-		Classroom roomA = new Classroom("Room A",150,250);
-		Classroom roomB = new Classroom("Room B",150,175);
-		Classroom roomC = new Classroom("Room C",240,125);
-		Classroom roomD = new Classroom("Room D",330,175);
-		Classroom roomE = new Classroom("Room E",330,250);
+		Classroom wing = new Classroom("Hall",240,210, false);
+		Classroom roomA = new Classroom("Room A",150,250, true);
+		Classroom roomB = new Classroom("Room B",150,175, true);
+		Classroom roomC = new Classroom("Room C",240,125,false);
+		Classroom roomD = new Classroom("Room D",330,175,true);
+		Classroom roomE = new Classroom("Room E",330,250,true);
 		
 		campus.add(center);//0
 		campus.add(stage);//1

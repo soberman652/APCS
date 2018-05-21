@@ -31,6 +31,10 @@ public class Main extends JFrame
 	private PSurfaceAWT miniPanelSurfB;
 	private PSurfaceAWT.SmoothCanvas miniPanelProcessingCanvasB;
 	
+	private Quiz quizPanel;
+	private PSurfaceAWT quizSurf;
+	private PSurfaceAWT.SmoothCanvas quizProcessingCanvas;
+	
 	public static int WIDTH = 800;
 	public static int HEIGHT = 600;
 	
@@ -55,6 +59,11 @@ public class Main extends JFrame
 		miniPanelSurfB = (PSurfaceAWT)miniPanelB.getSurface();
 		miniPanelProcessingCanvasB = (PSurfaceAWT.SmoothCanvas)miniPanelSurfB.getNative();
 		
+		quizPanel =  new Quiz(this);
+		quizPanel.runMe();
+		quizSurf = (PSurfaceAWT)quizPanel.getSurface();
+		quizProcessingCanvas = (PSurfaceAWT.SmoothCanvas)quizSurf.getNative();
+		
 		cardPanel = new JPanel();
 		CardLayout layout = new CardLayout();
 		cardPanel.setLayout(layout);
@@ -75,6 +84,7 @@ public class Main extends JFrame
 		cardPanel.add(gameProcessingCanvas, "3");
 		cardPanel.add(miniPanelProcessingCanvasA, "4");
 		cardPanel.add(miniPanelProcessingCanvasB, "5");
+		cardPanel.add(quizProcessingCanvas, "6");
 
 		setLayout(new BorderLayout());
 		setTitle("High School Experience");
@@ -92,7 +102,6 @@ public class Main extends JFrame
 	public static void main(String[] args) 
 	{
 		Main m = new Main();
-		
 	}
 	
 	public void changePanel(String name)
@@ -112,6 +121,12 @@ public class Main extends JFrame
 		else if (name.equals("5")) {
 			miniPanelProcessingCanvasB.requestFocus();
 			miniPanelB.pause(false);
+			miniPanelB.reset();
+			this.setSize(500, 500);
+		}
+		else if (name.equals("6")) {
+			quizProcessingCanvas.requestFocus();
+			quizPanel.pause(false);
 			miniPanelB.reset();
 			this.setSize(500, 500);
 		}

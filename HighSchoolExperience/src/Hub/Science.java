@@ -7,20 +7,14 @@ import java.util.List;
  * @author sashaoberman
  *
  */
-public class Science {
+public class Science extends Course{
 
 	private ArrayList<QuestionAnswers> ScienceQuestions;
 
 	
-	public Science() {
-
+	public Science() 
+	{
 		ScienceQuestions = new ArrayList<QuestionAnswers>();
-
-	}
-
-
-	
-	public void addSQuestions() {
 		
 		String[] rawQuestions = {
 				"Which of the following bones is not in the leg?","Radius","Patella","Tibia","Fibula ",
@@ -55,12 +49,11 @@ public class Science {
 			ScienceQuestions.add(new QuestionAnswers(question, correctAnswer, incorrectAnswers));
 			
 		}
-		
-		
-		
+
 	}
-	
-	public ArrayList<QuestionAnswers> getQuestions(){
+
+	public ArrayList<QuestionAnswers> getQuestions()
+	{
 		return ScienceQuestions;
 	}
 	
