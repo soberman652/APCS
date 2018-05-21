@@ -1,4 +1,4 @@
-package Hub;
+package Academic;
 import java.util.ArrayList;
 
 /**

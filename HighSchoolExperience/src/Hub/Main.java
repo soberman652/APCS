@@ -9,6 +9,7 @@ import java.awt.event.ComponentEvent;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
+import Academic.Quiz;
 import Minigame.BallGame;
 import Minigame.MusicGame;
 import processing.awt.PSurfaceAWT;
@@ -110,25 +111,25 @@ public class Main extends JFrame
 		if (name.equals("3")) {
 			gameProcessingCanvas.requestFocus();
 			gamePanel.pause(false);
-			this.setSize(500, 500);
+			this.setSize(515, 538);
 		}
 		else if (name.equals("4")) {
 			miniPanelProcessingCanvasA.requestFocus();
 			miniPanelA.pause(false);
 			miniPanelA.reset();
-			this.setSize(521, 600);
+			this.setSize(515, 538);
 		}
 		else if (name.equals("5")) {
 			miniPanelProcessingCanvasB.requestFocus();
 			miniPanelB.pause(false);
 			miniPanelB.reset();
-			this.setSize(500, 500);
+			this.setSize(515, 538);
 		}
 		else if (name.equals("6")) {
 			quizProcessingCanvas.requestFocus();
 			quizPanel.pause(false);
 			miniPanelB.reset();
-			this.setSize(500, 500);
+			this.setSize(515, 538);
 		}
 	}
 

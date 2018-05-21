@@ -1,5 +1,6 @@
 package Hub;
 
+import Academic.Course;
 
 /**
  * 

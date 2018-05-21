@@ -17,7 +17,7 @@ public class Home extends Room
 	public void display(int direction, PApplet drawer) 
 	{
 		drawer.pushStyle();
-		floor.resize(drawer.width, drawer.height);
+		//floor.resize(drawer.width, drawer.height);
 		drawer.image(floor, 0, 0);
 		bed.resize(200, 120);
 		drawer.image(bed, 10, drawer.height-bed.height-10);

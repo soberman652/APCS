@@ -102,7 +102,7 @@ public class GameWindow extends PApplet
 				map.display(this);
 			}
 		}
-		textSize(20);
+		textSize(15);
 		if(currentLocation.getMarker().equals("Stage"))
 		{
 			ActivityRoom r = (ActivityRoom)currentLocation;
@@ -138,11 +138,10 @@ public class GameWindow extends PApplet
 			Classroom c = (Classroom)currentLocation;
 			if(c.canTakeQuiz(student))
 			{
-				System.out.println(":) "); 
 				takeQuiz = true;
 				textAlign(CENTER);
 				fill(0);
-				text("Press ENTER to take quiz", this.DRAWING_WIDTH, this.DRAWING_HEIGHT);
+				text("Press ENTER to take quiz", this.DRAWING_WIDTH/2, this.DRAWING_HEIGHT/2);
 			}
 			else
 				takeQuiz = false;

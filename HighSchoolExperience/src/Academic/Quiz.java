@@ -1,4 +1,4 @@
-package Hub;
+package Academic;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
@@ -21,7 +21,8 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-
+import Hub.GameWindow;
+import Hub.Main;
 import processing.core.PApplet;
 /**
  * 
