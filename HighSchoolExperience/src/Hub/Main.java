@@ -135,5 +135,24 @@ public class Main extends JFrame
 			this.setSize(500, 538);
 		}
 	}
+	
+	public void setPlayerState(String name, int classType)
+	{
+			player.setClassType(classType);
+			player.setName(name);
+	}
+	
+	public String getPlayerName()
+	{
+			return player.getName();
+
+	}
+	
+	public int getPlayerClassType()
+	{
+			return player.getClassType();
+
+	}
+
 
 }

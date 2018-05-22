@@ -146,6 +146,20 @@ public class CustomizationWindow extends JPanel implements ActionListener {
 			newJFrame.setResizable(false);
 			newJFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 			newJFrame.setVisible(true);*/
+			
+			 // 1=history, 2=science, 3=literature, 4=mathematics
+			String className = (String) classOptionList.getSelectedItem();
+			int classType = 1;
+			if (className == "History")
+				classType = 1;
+			if (className == "Science")
+				classType = 2;
+			if (className == "Literature")
+				classType = 3;
+			if (className == "Mathematics")
+				classType = 4;
+			m.setPlayerState(name.getText(), classType);
 		}
+
 	}
 }

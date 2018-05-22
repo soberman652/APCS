@@ -84,6 +84,7 @@ public class Quiz extends PApplet
 	
 	public void reset()
 	{
+		classType = m.getPlayerClassType();
 		manager = new QuestionManager(classType);
 		aOver = false;
 		bOver = false;

@@ -18,7 +18,7 @@ public class Student {
 		this.name = name;
 	}
 	public Student() {
-		this.classType = 0;
+		this.classType = 1;
 		this.name = "John";
 		//this.activity = activity;
 	}
@@ -27,9 +27,18 @@ public class Student {
 		this.classType = classType;
 	}
 	
+	public void setName (String name) {
+		this.name = name;
+	}
+	
 	public int getClassType () {
 		return classType;
 	}
+	
+	public String getName() {
+		return name;
+	}
+	
 	
 	
 }
