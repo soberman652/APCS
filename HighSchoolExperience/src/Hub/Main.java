@@ -36,12 +36,15 @@ public class Main extends JFrame
 	private PSurfaceAWT quizSurf;
 	private PSurfaceAWT.SmoothCanvas quizProcessingCanvas;
 	
+	private Student player;
+	
 	public static int WIDTH = 800;
 	public static int HEIGHT = 600;
 	
 	
 	public Main()
 	{
+		player = new Student();
 		start1 = new StartWindow(this);
 		start2 = new CustomizationWindow(this);
 		

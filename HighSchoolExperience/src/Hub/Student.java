@@ -8,18 +8,28 @@ import Academic.Course;
  *
  */
 public class Student {
-	
-	private int gender;
-	private Course course;
+
+	private int classType; // 1=history, 2=science, 3=literature, 4=mathematics
+	private String name;
 	//private  game;
 
-	public Student(int gender, String name, Course course/*, MiniGame game*/) {
-		this.gender = gender;
-		this.course = course;
+	public Student(String name, int classType) {
+		this.classType = classType;
+		this.name = name;
+	}
+	public Student() {
+		this.classType = 0;
+		this.name = "John";
 		//this.activity = activity;
 	}
 	
+	public void setClassType (int classType) {
+		this.classType = classType;
+	}
 	
+	public int getClassType () {
+		return classType;
+	}
 	
 	
 }
