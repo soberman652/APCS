@@ -6,6 +6,11 @@ import Hub.GameWindow;
 import Hub.Main;
 import processing.core.PApplet;
 
+/**
+ * creates small game of pressing correct keys in rhythm with a tune
+ * @author Emily
+ *
+ */
 public class MusicGame extends PApplet
 {
 	private ArrayList<Note> notes;
@@ -17,6 +22,10 @@ public class MusicGame extends PApplet
 	private Main m;
 	public static final int SPACE = 30, FPB = 15;
 	
+	/**
+	 * creates minigame
+	 * @param m contain main method that will display this
+	 */
 	public MusicGame(Main m)
 	{
 		this.m = m;
@@ -34,7 +43,9 @@ public class MusicGame extends PApplet
 		numPressed = new boolean[5];
 		symbol = null;
 	}
-
+	/**
+	 * initiates the surface to begin displaying
+	 */
 	public void runMe()
 	{
 		super.setSize(500,500);
@@ -44,7 +55,10 @@ public class MusicGame extends PApplet
 		
 		pause(true);
 	}
-	
+	/**
+	 * 
+	 * @param paused true if want to pause program from running; false otherwise
+	 */
 	public void pause(boolean paused) 
 	{
 		numPressed = new boolean[5];
@@ -53,7 +67,9 @@ public class MusicGame extends PApplet
 		else
 			loop();
 	}
-	
+	/**
+	 * displays graphics of this game
+	 */
 	public void draw()
 	{
 		if(!playing && notes.size() == 0)
@@ -110,6 +126,9 @@ public class MusicGame extends PApplet
 		}
 	}
 
+	/**
+	 * detects keys that will perform functions to play the game
+	 */
 	public void keyPressed()
 	{
 		if(notes.size() != 0)
@@ -182,6 +201,9 @@ public class MusicGame extends PApplet
 		}
 	}
 	
+	/**
+	 * deactivates functions that were activated by a pressed key
+	 */
 	public void keyReleased()
 	{
 		if(notes.size() != 0)
@@ -199,6 +221,10 @@ public class MusicGame extends PApplet
 		}
 	}
 	
+	/**
+	 * draws line that trace paths of notes
+	 * @param drawer interface that will draw lines
+	 */
 	public void initStaff(PApplet drawer)
 	{
 		drawer.pushStyle();
@@ -238,7 +264,10 @@ public class MusicGame extends PApplet
 		drawer.text("5", drawer.width/2+2*SPACE, 40);
 		drawer.popStyle();
 	}
-
+	
+	/**
+	 * resets progress of game to the beginning
+	 */
 	public void reset() 
 	{	
 		notes = new ArrayList<Note>();

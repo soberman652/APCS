@@ -5,9 +5,7 @@ import processing.core.PApplet;
 
 public abstract class Room 
 {
-	// image
 	private ArrayList<Door> exits;
-	//private ArrayList<Obstacle> furniture;
 	private String marker;
 
 	public Room(String marker)

@@ -6,9 +6,18 @@ import Hub.GameWindow;
 import processing.core.PApplet;
 import processing.core.PImage;
 
+/**
+ * represent object that user controls and can move around
+ * @author Emily
+ *
+ */
 public class Player extends Rectangle
 {
 	private int dx, dy;
+	/**
+	 * creates a player within a rectangle bound
+	 * @param r boundary of player
+	 */
 	public Player(Rectangle r)
 	{
 		this.setBounds(r);
@@ -16,6 +25,11 @@ public class Player extends Rectangle
 		dy = 0;
 	}
 	
+	/**
+	 * draw the player 
+	 * @param drawer interace that draws the player
+	 * @param floor picture of gym floor
+	 */
 	public void display(PApplet drawer, PImage floor)
 	{
 		drawer.pushStyle();
@@ -25,7 +39,7 @@ public class Player extends Rectangle
 		act(drawer, floor);
 	}
 	
-	public void act(PApplet window, PImage floor)
+	private void act(PApplet window, PImage floor)
 	{
 		this.x += dx;
 		
@@ -36,12 +50,20 @@ public class Player extends Rectangle
 		else
 			this.y += dy;
 	}
-
+	
+	/**
+	 * horizontally shifts player's location
+	 * @param x pixels
+	 */
 	public void moveXBy(int x)
 	{
 		dx = x;
 	}
 	
+	/**
+	 * vertically shifts player's location
+	 * @param y pixels
+	 */
 	public void moveYBy(int y)
 	{
 		dy = y;

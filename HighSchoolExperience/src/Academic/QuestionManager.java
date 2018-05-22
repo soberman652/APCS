@@ -115,74 +115,11 @@ public class QuestionManager// extends JFrame
 	}
 	
 	/**
-	 * @return current question number user is on
+	 * 
+	 * @return current question number
 	 */
 	public int getQuestionNumber()
 	{
 		return questionNum;
 	}
-	
-	/*
-	public boolean askQuestion(Course questionType, int questionNum) {
-
-		
-		
-		if (questionType.isHistory())
-			q = his.getQuestions().get(questionNum);
-		else if (questionType.isMath())
-			q = mathematics.getQuestions().get(questionNum);
-		else if (questionType.isScience())
-			q = sci.getQuestions().get(questionNum);	
-		else 
-			q = lit.getQuestions().get(questionNum);
-		
-		
-		
-		
-		String question = q.getQuestion();
-		String correctAnswer = q.getCorrectAnswer();
-		ArrayList<String> incorrectAnswers = q.getIncorrectAnswers();
-		
-		int correctAnsPos = (int) (Math.random()*4);
-		String[] answers = new String[4];
-		answers[correctAnsPos] = correctAnswer;
-	
-		int j = 0;
-		for (int i = 0; i < 4; i++) {
-			if (i != correctAnsPos) {
-				answers[i] = incorrectAnswers.get(j);
-				j++;
-			}
-		}
-		// call method to display and ask question with
-		// String question, String[] answers[4], int correctAnsPos;
-		// it should check that user chose correctAnsPos;
-		// it should return boolean choseCorrect;
-
-			
-		boolean choseCorrect;
-		
-		System.out.println(question+"\n");
-		for (int i=0; i<4; i++) {
-			System.out.println((i+1)+". "+answers[i]);
-		}
-		System.out.println("\n");
-		
-
-		Scanner kboard = new Scanner (System.in);
-		System.out.println("Answer: " );
-		int x = kboard.nextInt();
-		
-		if (x == (correctAnsPos+1)) {
-			System.out.println("Correct!\n");
-			choseCorrect = true;
-		}
-		else {
-			System.out.println("Incorrect. The correct answer is: "+ answers[correctAnsPos]);
-			choseCorrect = false;
-		}
-	
-		return choseCorrect;
-	}
-	*/
 }

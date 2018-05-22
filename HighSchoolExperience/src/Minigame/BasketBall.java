@@ -22,6 +22,13 @@ public class BasketBall
 	private Player holder;
 	private Line2D netBound;
 	
+	/**
+	 * @param x x coordinate of basketball center location
+	 * @param y y coordinate of basketball center location
+	 * @param r radius of basketball in pixels
+	 * @param player player that basketball interacts with
+	 * @param net net that basketball in shot into
+	 */
 	public BasketBall(int x, int y, int r, Player player, Net net)
 	{
 		this.x = x;
@@ -36,18 +43,21 @@ public class BasketBall
 		wasShotAt = (int)(player.getY() + player.getHeight());
 	}
 	
+	/**
+	 * @param drawer interface that draws basketball
+	 */
 	public void display(PApplet drawer)
 	{
 		drawer.pushStyle();
 		drawer.fill(245,124,19);
-		drawer.noStroke();
+		drawer.stroke(0);
 		drawer.ellipseMode(drawer.RADIUS);
 		drawer.ellipse((float)x, (float)y, radius, radius);
 		drawer.popStyle();
 		act(drawer);
 	}
-	
-	public void act(PApplet window)
+
+	private void act(PApplet window)
 	{		
 		if(tossed)
 		{
@@ -119,6 +129,11 @@ public class BasketBall
 		}
 	}
 	
+	/**
+	 * shoots basketball that is being held at an angle
+	 * @param angle angle in radians from positive x-axis that basketball is shot at (0<=angle<=pi/2)
+	 * @param level power of toss
+	 */
 	public void toss(double angle, int level)
 	{
 		if(!tossed && isPickedUp)
@@ -132,22 +147,39 @@ public class BasketBall
 		}
 	}
 	
+	/**
+	 * move basketball's center to point
+	 * @param x x coordinate
+	 * @param y y coordinate
+	 */
 	public void moveTo(int x, int y)
 	{
 		this.x = x;
 		this.y = y;
 	}
 	
+	/**
+	 * 
+	 * @return radius of basketball in pixels
+	 */
 	public int getRadius()
 	{
 		return radius;
 	}
 	
+	/**
+	 * 
+	 * @return x,y coordinates of basketball center
+	 */
 	public Point2D getCenter()
 	{
 		return new Point2D.Double(x,y);
 	}
 	
+	/**
+	 * 
+	 * @return x,y location of basketball center in frame before
+	 */
 	public Point2D getLastPoint()
 	{
 		return new Point2D.Double(x-dx,y-dy);

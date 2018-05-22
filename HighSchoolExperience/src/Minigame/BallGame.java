@@ -8,6 +8,11 @@ import Hub.Main;
 import processing.core.PApplet;
 import processing.core.PImage;
 
+/**
+ * creates small simulation of shooting a ball into a basketball hoop
+ * @author Emily
+ *
+ */
 public class BallGame extends PApplet
 {
 	private BasketBall basketball;
@@ -18,6 +23,10 @@ public class BallGame extends PApplet
 	private PImage floor, seats;
 	private Main m;
 	
+	/**
+	 * initializes the components of the program
+	 * @param m contains main method that will display this
+	 */
 	public BallGame(Main m)
 	{
 		this.m = m;
@@ -27,6 +36,9 @@ public class BallGame extends PApplet
 		keyPressed = new boolean[4];
 	}
 	
+	/**
+	 * initiates the surface to begin displaying
+	 */
 	public void runMe()
 	{
 		super.setSize(500,545);
@@ -37,6 +49,10 @@ public class BallGame extends PApplet
 		pause(true);
 	}
 	
+	/**
+	 * 
+	 * @param paused true if want to pause program from running; false otherwise
+	 */
 	public void pause(boolean paused) 
 	{
 		keyPressed = new boolean[4];
@@ -46,6 +62,9 @@ public class BallGame extends PApplet
 			loop();
 	}
 	
+	/**
+	 * collects images
+	 */
 	public void setup()
 	{
 		net = new Net(this.width, 200, loadImage("img\\net.gif"));
@@ -57,11 +76,17 @@ public class BallGame extends PApplet
 		seats.resize(500, seats.height);
 	}
 	
+	/**
+	 * displays graphics of this game
+	 */
 	public void draw()
 	{
 		background(255);
 		image(floor, 0, this.height-floor.height);
-		image(seats, 0, this.height-floor.height-seats.height);
+		image(seats, 0,  this.height-floor.height-seats.height);
+		textAlign(LEFT, TOP);
+		fill(0);
+		text("Press BACKSPACE to stop playing ball", 5, 5);
 		indicator.display(this);
 		indicator.adjustAngle(mouseX, mouseY);
 		player.display(this, floor);
@@ -70,6 +95,9 @@ public class BallGame extends PApplet
 		net.check(basketball);
 	}
 	
+	/**
+	 * detects keys that will perform functions to play the game
+	 */
 	public void keyPressed()
 	{
 		if(keyCode == KeyEvent.VK_SPACE)
@@ -94,6 +122,8 @@ public class BallGame extends PApplet
 			keyPressed[3] = true;
 			player.moveYBy(5);
 		}
+		if(keyCode == KeyEvent.VK_BACK_SPACE)
+			m.changePanel("3");
 		
 	}
 	
@@ -122,7 +152,9 @@ public class BallGame extends PApplet
 		else if(!keyPressed[2] && !keyPressed[3])
 			player.moveYBy(0);
 	}
-
+	/**
+	 * resets all components to the beginning
+	 */
 	public void reset() 
 	{
 		int r = 5;

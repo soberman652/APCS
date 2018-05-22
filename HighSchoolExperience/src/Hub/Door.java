@@ -26,14 +26,14 @@ public class Door extends Rectangle
 		drawer.pushStyle();
 		drawer.noStroke();
 		drawer.fill(0);
-		drawer.rect(this.x, this.y, this.width, this.height);
+		drawer.rect(x, y, width, height);
 		
 		if(showTag)
 		{
 			drawer.fill(0);
 			drawer.textSize(10);
-			drawer.textAlign(drawer.CENTER);
-			drawer.text(tag, this.x+this.width/2, this.y-5);
+			drawer.textAlign(drawer.CENTER, drawer.TOP);
+			drawer.text(tag, x+width/2, y+height+5);
 		}
 		drawer.popStyle();
 	}

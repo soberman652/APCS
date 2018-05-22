@@ -7,12 +7,23 @@ import java.awt.geom.Point2D;
 import processing.core.PApplet;
 import processing.core.PImage;
 
+/**
+ * basketball net that basketball passed through to score
+ * @author Emily
+ *
+ */
 public class Net
 {
 	private int height;
 	private int score;
 	private Line2D boundary, threshold;
 	private PImage img;
+	/**
+	 * 
+	 * @param x x coordinate of net's top right corner
+	 * @param y y coordinate of net's top right corner
+	 * @param img image of net
+	 */
 	public Net(int x, int y, PImage img)
 	{
 		score = 0;
@@ -21,6 +32,10 @@ public class Net
 		this.img = img;
 	}
 	
+	/**
+	 * 
+	 * @param drawer interface that draws net and current score
+	 */
 	public void display(PApplet drawer)
 	{
 		drawer.pushStyle();
@@ -37,6 +52,10 @@ public class Net
 		drawer.image(img, (float)boundary.getX1(), (float)boundary.getY1());
 	}
 	
+	/**
+	 * detects if basketball passed through net from the top; if so, increments score
+	 * @param ball
+	 */
 	public void check(BasketBall ball)
 	{
 		int ballX = (int)ball.getCenter().getX();
@@ -49,11 +68,18 @@ public class Net
 		}
 	}
 	
+	/**
+	 * 
+	 * @return number of times ball passed net the correct way
+	 */
 	public int getScore()
 	{
 		return score;
 	}
-	
+	/**
+	 * 
+	 * @return line representing net's left side
+	 */
 	public Line2D getBoundary()
 	{
 		return boundary;

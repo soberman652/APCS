@@ -67,10 +67,15 @@ public class GameWindow extends PApplet
 		mapCursor.add(east);
 		mapCursor.add(south);
 		mapCursor.add(west);
-
-		studentImg.add(loadImage("img\\StudentFrontWalk.gif"));
-		studentImg.add(loadImage("img\\StudentLeftWalk.gif"));
-		studentImg.add(loadImage("img\\StudentRightWalk.gif"));
+		
+		PImage studentL = loadImage("img\\NewStudentLeft.png");
+		studentL.resize((int)(80.0/studentL.height * studentL.width), 80);
+		PImage studentR = loadImage("img\\NewStudentRight.png");
+		studentR.resize((int)(80.0/studentR.height * studentR.width), 80);
+		studentImg.add(studentL);
+		studentImg.add(studentR);
+		studentImg.add(loadImage("img\\NewStudentLeft.png"));
+		studentImg.add(loadImage("img\\NewStudentRight.png"));
 		student = new Sprite(width/2, height/2, studentImg);
 		initCampus();
 		
@@ -153,25 +158,23 @@ public class GameWindow extends PApplet
 		if(keyCode == KeyEvent.VK_LEFT)
 		{
 			student.moveXBy(-5);
-			student.switchImg(2);
+			student.switchImg(1);
 			arrowKeyPressed[0] = true;
 		}
 		if(keyCode == KeyEvent.VK_RIGHT)
 		{
 			student.moveXBy(5);
-			student.switchImg(3);
+			student.switchImg(2);
 			arrowKeyPressed[1] = true;
 		}
 		if(keyCode == KeyEvent.VK_DOWN)
 		{
 			student.moveYBy(5);
-			student.switchImg(1);
 			arrowKeyPressed[2] = true;
 		}
 		if(keyCode == KeyEvent.VK_UP)
 		{
 			student.moveYBy(-5);
-			student.switchImg(1);
 			arrowKeyPressed[3] = true;
 		}
 		
@@ -260,7 +263,7 @@ public class GameWindow extends PApplet
 		Home bedroom = new Home(loadImage("img\\BedroomFloor.png"), loadImage("img\\bed.png"));
 
 		Classroom center = new Classroom("Student Center",240,310, false);
-		ActivityRoom stage = new ActivityRoom("Stage",140,330, loadImage("img\\BasketballIcon.png"));
+		ActivityRoom stage = new ActivityRoom("Stage",140,330, loadImage("img\\musicIcon.png"));
 		ActivityRoom gym =  new ActivityRoom("Gym",340,330,loadImage("img\\BasketballIcon.png"));
 		Classroom wing = new Classroom("Hall",240,210, false);
 		Classroom roomA = new Classroom("Room A",150,250, true);

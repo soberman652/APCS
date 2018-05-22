@@ -4,8 +4,18 @@ import java.io.FileReader;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+/**
+ * scans a formatted file and translate into a rhythm that will be played in MusicGame
+ * @author Lin
+ *
+ */
 public class MusicReader 
 {
+	/** 
+	 * 
+	 * @param filename file to be read
+	 * @return list of beats of the tune
+	 */
 	public static ArrayList<Integer> readFile(String filename)
 	{
 		Scanner scan = null;

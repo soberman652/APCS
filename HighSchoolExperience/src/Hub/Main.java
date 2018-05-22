@@ -93,7 +93,7 @@ public class Main extends JFrame
 		setSize(800, 600);
 		add(cardPanel, BorderLayout.CENTER);
 		setVisible(true);
-		setResizable(true);
+		setResizable(false);
 	}
 	
 	public void fixProcessingPanelSizes(Component match) {
@@ -111,25 +111,25 @@ public class Main extends JFrame
 		if (name.equals("3")) {
 			gameProcessingCanvas.requestFocus();
 			gamePanel.pause(false);
-			this.setSize(515, 538);
+			this.setSize(500, 538);
 		}
 		else if (name.equals("4")) {
 			miniPanelProcessingCanvasA.requestFocus();
 			miniPanelA.pause(false);
 			miniPanelA.reset();
-			this.setSize(515, 538);
+			this.setSize(500, 580);
 		}
 		else if (name.equals("5")) {
 			miniPanelProcessingCanvasB.requestFocus();
 			miniPanelB.pause(false);
 			miniPanelB.reset();
-			this.setSize(515, 538);
+			this.setSize(500, 538);
 		}
 		else if (name.equals("6")) {
 			quizProcessingCanvas.requestFocus();
 			quizPanel.pause(false);
-			miniPanelB.reset();
-			this.setSize(515, 538);
+			quizPanel.reset();
+			this.setSize(500, 538);
 		}
 	}
 

@@ -1,10 +1,18 @@
 package Minigame;
 import processing.core.PApplet;
 
+/**
+ * indicator of a correct or incorrect note that fades away
+ * @author Emily
+ *
+ */
 public class Sign 
 {
 	private int type, opacity, x;
 	
+	/**
+	 * @param type -1 = incorrect, 1 = correct
+	 */
 	public Sign(int type)
 	{
 		this.type = type;
@@ -12,6 +20,10 @@ public class Sign
 		x = 0;
 	}
 	
+	/**
+	 * draws a check or a cross, depending on type
+	 * @param drawer interface that draws the sign
+	 */
 	public void display(PApplet drawer)
 	{
 		act();
@@ -32,7 +44,7 @@ public class Sign
 		drawer.popStyle();
 	}
 	
-	public void act()
+	private void act()
 	{
 		opacity = (int)(255*Math.pow(2,-0.8*x));
 		x++;

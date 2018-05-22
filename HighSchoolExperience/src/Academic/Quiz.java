@@ -25,8 +25,8 @@ import Hub.GameWindow;
 import Hub.Main;
 import processing.core.PApplet;
 /**
- * 
- * @author sashaoberman
+ * creates small multiple choice quiz 
+ * @author Emily
  *
  */
 public class Quiz extends PApplet
@@ -46,13 +46,11 @@ public class Quiz extends PApplet
 	private String[] currentSet;
 	
 	private boolean answered;
-	/*
-	public static void main(String[] args)
-	{
-		PApplet.main("Hub.Quiz");
-	}
-	*/
 	
+	/**
+	 * 
+	 * @param m contains main method that displays this
+	 */
 	public Quiz(Main m)
 	{
 		this.m = m;
@@ -81,7 +79,6 @@ public class Quiz extends PApplet
 		totalQ = 20;
 		totalCorrect = 0;
 		completed = false;
-		
 		ask();
 	}
 	
@@ -99,6 +96,9 @@ public class Quiz extends PApplet
 		ask();
 	}
 	
+	/**
+	 * displays contents of the surface
+	 */
 	public void runMe() {
 		super.setSize(500,500);
 		super.sketchPath();
@@ -108,6 +108,10 @@ public class Quiz extends PApplet
 		pause();
 	}
 	
+	/**
+	 * 
+	 * @param paused true if want to pause program from running; false otherwise
+	 */
 	public void pause(boolean paused) 
 	{
 		if (paused)
@@ -116,16 +120,17 @@ public class Quiz extends PApplet
 			loop();
 	}
 	
+	/**
+	 * set window size
+	 */
 	public void settings()
 	{
 		size(500,500);
 	}
 	
-	public void setup()
-	{
-		
-	}
-	
+	/**
+	 * displays components of the quiz
+	 */
 	public void draw()
 	{
 		if(completed)
@@ -222,10 +227,10 @@ public class Quiz extends PApplet
 				rect(dX, dY, rectWidth, rectHeight);
 				
 				textAlign(CENTER, CENTER);
-				textSize(16);
+				textSize(14);
 				fill(0);
 				if(manager.getQuestionNumber() < 20)
-					text("Press SPACE to go to the next question", WIDTH/2, HEIGHT-10);
+					text("Press SPACE to go to the next question", WIDTH/2, aY+rectHeight+10);
 				else
 					text("Press SPACE to end quiz", WIDTH/2, HEIGHT-10);
 			}
@@ -285,6 +290,9 @@ public class Quiz extends PApplet
 		
 	}
 	
+	/**
+	 * detect certain mouse activities to select an answer
+	 */
 	public void mousePressed()
 	{
 		if(!answered && manager.getQuestionNumber() <= totalQ)
@@ -315,6 +323,9 @@ public class Quiz extends PApplet
 		}
 	}
 	
+	/**
+	 * detects certain keys that have functions
+	 */
 	public void keyPressed()
 	{
 		if(keyCode == KeyEvent.VK_SPACE)
@@ -335,7 +346,7 @@ public class Quiz extends PApplet
 		}
 	}
 	
-	public boolean aOver()
+	private boolean aOver()
 	{
 		if (mouseX >= aX && mouseX <= aX+rectWidth && mouseY >= aY && mouseY <= aY+rectHeight)
 			return true;
@@ -343,7 +354,7 @@ public class Quiz extends PApplet
 			return false;
 	}
 	
-	public boolean bOver()
+	private boolean bOver()
 	{
 		if (mouseX >= bX && mouseX <= bX+rectWidth && mouseY >= bY && mouseY <= bY+rectHeight)
 			return true;
@@ -351,7 +362,7 @@ public class Quiz extends PApplet
 			return false;
 	}
 	
-	public boolean cOver()
+	private boolean cOver()
 	{
 		if (mouseX >= cX && mouseX <= cX+rectWidth && mouseY >= cY && mouseY <= cY+rectHeight)
 			return true;
@@ -359,7 +370,7 @@ public class Quiz extends PApplet
 			return false;
 	}
 	
-	public boolean dOver()
+	private boolean dOver()
 	{
 		if (mouseX >= dX && mouseX <= dX+rectWidth && mouseY >= dY && mouseY <= dY+rectHeight)
 			return true;
@@ -375,15 +386,6 @@ public class Quiz extends PApplet
 		bChoice = currentSet[2];
 		cChoice = currentSet[3];
 		dChoice = currentSet[4];
-		/*
-		textSize(30);
-		question = adjustText(question, WIDTH-40);
-		textSize(18);
-		aChoice = adjustText(aChoice, rectWidth-20);
-		bChoice = adjustText(bChoice, rectWidth-20);
-		cChoice = adjustText(cChoice, rectWidth-20);
-		dChoice = adjustText(dChoice, rectWidth-20);
-		*/
 	}
 	
 	private String adjustText(String str, int bound)

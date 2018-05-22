@@ -2,17 +2,30 @@ package Minigame;
 
 import processing.core.PApplet;
 
+/**
+ * represents angle basketball would be thrown based on mouse coordinates
+ * @author Emily
+ *
+ */
 public class Arrow 
 {
 	private Player endpoint;
 	private double angle;
 	private int length = 50;
+	/**
+	 * creates the arrow
+	 * @param player where ray will point from
+	 */
 	public Arrow(Player player)
 	{
 		endpoint = player;
 		angle = Math.PI/2;
 	}
 	
+	/**
+	 * draws arrow
+	 * @param drawer interface used to display
+	 */
 	public void display(PApplet drawer)
 	{
 		drawer.pushStyle();
@@ -24,6 +37,11 @@ public class Arrow
 		drawer.popStyle();
 	}
 	
+	/**
+	 * changes arrow's direction to point at coordinates
+	 * @param xCoor x coordinate
+	 * @param yCoor y coordinate
+	 */
 	public void adjustAngle(int xCoor, int yCoor)
 	{
 		int xOrigin = endpoint.x + endpoint.width/2;
@@ -37,6 +55,10 @@ public class Arrow
 			angle = 0;
 	}
 	
+	/**
+	 * 
+	 * @return angle of arrow from positive x-axis in radians
+	 */
 	public double getAngle()
 	{
 		return angle;
