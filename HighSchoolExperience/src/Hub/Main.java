@@ -47,10 +47,12 @@ public class Main extends JFrame
 	public Main()
 	{
 		player = new Student();
+		stress =  new StressBar(150,30);
+		book = new Gradebook();
 		start1 = new StartWindow(this);
 		start2 = new CustomizationWindow(this);
 		
-		gamePanel = new GameWindow(this);
+		gamePanel = new GameWindow(this, stress, book);
 		gamePanel.runMe();
 		gameSurf = (PSurfaceAWT)gamePanel.getSurface();
 		gameProcessingCanvas = (PSurfaceAWT.SmoothCanvas)gameSurf.getNative();
@@ -116,6 +118,9 @@ public class Main extends JFrame
 		if (name.equals("3")) {
 			gameProcessingCanvas.requestFocus();
 			gamePanel.pause(false);
+			miniPanelA.pause(true);
+			miniPanelB.pause(true);
+			quizPanel.pause(true);
 			this.setSize(500, 538);
 		}
 		else if (name.equals("4")) {
@@ -140,30 +145,35 @@ public class Main extends JFrame
 	
 	public void setPlayerState(String name, int classType)
 	{
-		player.setClassType(classType);
-		player.setName(name);
+			player.setClassType(classType);
+			player.setName(name);
 	}
 	
 	public void updatePlayerScore(int score)
 	{
-		player.updateScore(score);
+			if(score >= 90)
+				stress.stressIncrease(0);
+			else if(score >= 80)
+				stress.stressIncrease(5);
+			else if(score >= 70)
+				stress.stressIncrease(10);
+			else if(score >= 60)
+				stress.stressIncrease(15);
+			else
+				stress.stressIncrease(20);
+			book.addGrade(new Grade(score));
+			player.updateScore(score);
 	}
 	
 	public String getPlayerName()
 	{
-		return player.getName();
+			return player.getName();
 
-	}
-	
-	public double getPlayerRunAvg()
-	{
-		return player.getRunAvg();
-		
 	}
 	
 	public int getPlayerClassType()
 	{
-		return player.getClassType();
+			return player.getClassType();
 
 	}
 
