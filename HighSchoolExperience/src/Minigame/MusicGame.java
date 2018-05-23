@@ -89,6 +89,9 @@ public class MusicGame extends PApplet
 				grade = "D";
 			else
 				grade = "F";
+			
+			m.updatePlayerScore(result);
+
 		}
 		else
 		{

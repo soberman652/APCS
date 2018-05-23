@@ -142,6 +142,11 @@ public class Main extends JFrame
 			player.setName(name);
 	}
 	
+	public void updatePlayerScore(int score)
+	{
+			player.updateScore(score);
+	}
+	
 	public String getPlayerName()
 	{
 			return player.getName();

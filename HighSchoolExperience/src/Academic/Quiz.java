@@ -152,6 +152,7 @@ public class Quiz extends PApplet
 			else
 				grade = "F";
 			text(grade + "\n" + result + "%\nPress SPACE to end class", WIDTH/2, HEIGHT/2);
+			m.updatePlayerScore(result);
 		}
 		else
 		{
