@@ -41,7 +41,7 @@ public class Quiz extends PApplet
 	
 	private int classType; // 1=history, 2=science, 3=literature, 4=mathematics
 	private int selectedIndex, totalQ, totalCorrect;
-	private boolean completed;
+	private boolean completed, updated;
 	private QuestionManager manager;
 	private String[] currentSet;
 	
@@ -79,6 +79,7 @@ public class Quiz extends PApplet
 		totalQ = 20;
 		totalCorrect = 0;
 		completed = false;
+		updated = false;
 		ask();
 	}
 	
@@ -94,6 +95,7 @@ public class Quiz extends PApplet
 		totalQ = 20;
 		totalCorrect = 0;
 		completed = false;
+		updated = false;
 		ask();
 	}
 	
@@ -106,7 +108,7 @@ public class Quiz extends PApplet
 		super.initSurface();
 		super.surface.startThread();
 		
-		pause();
+		pause(true);
 	}
 	
 	/**
@@ -152,7 +154,12 @@ public class Quiz extends PApplet
 			else
 				grade = "F";
 			text(grade + "\n" + result + "%\nPress SPACE to end class", WIDTH/2, HEIGHT/2);
-			m.updatePlayerScore(result);
+			if(updated == false)
+			{
+				m.updatePlayerScore(result);
+				updated = true;
+			}
+			
 		}
 		else
 		{

@@ -10,24 +10,59 @@ You have been bored with your recent extracurriculars and you want a change. You
 and start fresh, and take on new classes. To get through high school, you need to do well in all of your newly chosen classes 
 and your extracurriculars while keeping your stress levels at bay. As a new student of Homestead High School, choose from a 
 variety of classes to fill your school day. Will you pass them with flying colors, or crack under pressure? Then after school, 
-participate in any extracurricular activity you choose. Everyday, there is a test and an assignment to test your skills in your 
+participate in any extracurricular activity of your choice. Everyday, there is a test and an assignment to test your skills in your 
 extracurricular. You need to keep your stress level down by doing well on these tasks. To pass high school, you need to keep 
 your stress levels low and your grades high. Everything you do will most likely increase your stress levels, and you have no 
-control over the random events that affect your life. The course of the game is over 20 days. Anyone eager to reminisce their 
-high school years or is a current high school student might enjoy playing this game that takes the user through high school life.
+control over the random events that affect your life. Anyone eager to reminisce their high school years or is a current high 
+school student might enjoy playing this game that takes the user through high school life (not really).
 
 
 Instructions:
-Begin the school year as a student. Select your gender and enter your name into the name box. Choose classes from a list of 
-subjects and one after school activity. On Day 1, step-by-step instructions will guide the user throughout the day. The user 
-will receive their course schedule and attend classes without being tardy. While attending class, student must complete assignments, 
-quizzes, or tasks by playing a mini-game and get the highest grade possible. During the middle of the day, a break period will 
-be given the student to recuperate and cut down on their stress. At the end of each day, the student will report to the appropriate 
-location on the school campus and begin doing tasks for their after school activity. Failure in to do well in any tasks will affect 
-the student stress bar. If the stress bar reaches a certain point, the user loses the game and the game stops. Regardless of 
-the result, the user gets an option to start another school year or quit the game. Use all of the arrow keys to move the character up and down,
-left and right. Travel between rooms on campus through doors.
-
+Start Screen - click on the start button
+Customization Screen 
+	- build your student by selecting its gender, name, a class to study, and one afterschool activity from the drop-downs
+	- click the done button after making your choices
+Game Window
+- Starting the day
+	Right now, you've already woken up from your bed and are prepared to go to school. Honestly, you have no motivation to drag 
+	your sleepy corpse out of your house and to school, but your young and growing body can still move around by using the arrow
+	keys. To go to school, you walk to the gaping hole in the wall of your room that is somehow perfectly your size, and enter 
+	through it by pressing SPACE. This is how you will walk through doors from now on - deal with it.
+- At school
+	Oh neat, that strange opening from your wall magically teleported you to school. You don't need to care about traffic anymore.
+	Welcome to the Student Center! Since you have no sense of direction, guide your way through this remarkably small campus with
+	your handy-dandy map once you hold down SHIFT. Hover your mouse over the rooms shown in the map to find the room you're looking 
+	for. The red arrow shows what room you are currently in and the direction (north, south, east, west) that you are facing. Sadly, 
+	your poor peripheral vision lets you see the entire floor and only one wall at a time (You should see a doctor - that's not how 
+	human vision works) But don't fret - to change which direction you're facing, press D to turn clockwise and A to turn counter-
+	clockwise. Also, don't be scared if you start having a seizure when crash into the walls - just stay away from them and you'll
+	be fine. It seems like this kind of school doesn't have any enforcement or fixed schedule, so feel free to explore around.
+- Stage
+	- Music Minigame
+		Music is an art form, in which one paints sound on a canvas of silence. So it makes sense to partake in the eloquent art of
+		music without any sound. Black circles will scroll up your screen and you are trying to punch their corresponding numbers on
+		the keyboard (not the numpad - the ones above the letters)once they hit the red line. Can you guess the tune that these lines
+		and circles are attempting to recreate?
+- Gym
+	See that humongous basketball? Don't be scared, it won't hurt you. Walk towards it to play a little bit of basketball.
+	- Basketball Game
+		You've stepped onto the basketball court. Seems like the creators of this were too lazy to give you any features resembling 
+		of a human, so please bear with being a box for now. Move around the court with the WASD keys and use your mouse to direct 
+		the giant red rod that is protruding out your rectangular body. Hold on, this is supposed to be basketball, so why is there 
+		a circle the size of a ping-pong ball? If you see a tiny ball attached to yourself right now, adjust the rod at the angle you 
+		want to shoot the ball at and press SPACE to release the ball. Your goal is to toss that ping-pong ball into the net that is 
+		as large as your body. Don't cheat by shooting the ball from underneath the net. If you come into contact with a moving ball,
+		the ball will magnetically be pulled into your hands. (Wait, is it even a basketball anymore?) There is no target goal or mission
+		in this game. You're just shooting hoops however you please.
+- Classroom
+	You may not even be enrolled in this school, because you don't have an assigned homeroom. There aren't any teachers here either. Did 
+	they go out on a strike? Whatever, just saunter into any one of the shady dark openings in the walls. Since the school is sort of 
+	short of some funding, the only thing that will count as your education is a simple quiz. Walk to the giant piece of paper to take a quiz.
+	- Quiz
+		You have an unlimited amount of time to answer 20 multiple choice questions that are related to your chosen subject, so you should 
+		easily get a perfect score, right? Just remember, anything less than an A will increase your stress. But who cares anyway, as long 
+		as you still have your health and happiness? It's not like some bubbles on an answer sheet can affect your self-confidence and possibly 
+		shorten your life span from excessive stress?
 
 Must-Have Features List:
 * 2D Graphics - graphics are of the schedule, backgrounds, tests and assignments
@@ -55,38 +90,42 @@ Stretch Features:
 * Do favors for other students or teachers - a student or a teacher can ask the user to do specific tasks for them 
 * Options to prepare or to study for the next day - when user gets home, he or she may relax or study for the next day
 * achievements
+* implement a daily schedule
 
 
 Class List:
 * GamePanel (has Clock, Phase, Day, StressLevel, and Location): holds all information about game progress (day, time, score, stress, location)
 * Student: represents the student the user controls 
+* CustomizationWindow: window that gives user options on which class and activity to take
+* StartWindow: starting screen
 * Course (abstract): represents the course the user takes
    * Math (extends Course, has a teacher): represents a mathematics class, includes a broad range of different levels (algebra to calculus maybe)
    * History (extends Course, has a teacher): represents a history class, covers world history (Russian Revolution, World War I and II, etc.)
    * Literature (extends Course, has a teacher): represents an English class
    * Science (extends Course, has a teacher): represents a science class, includes physics, chemistry, and biology
-   * PE (extends Course, has a teacher): represents a PE class, makes user exercise (not literally)
-* Classwork: an abstract class that represents all classwork in the game, including tests and quizzes
-   * Assignment (extends Classwork): represents classwork that the user must do for a specific class
-   * Test (extends Classwork): generates test questions depending on the subject (all subclasses of Course have the Test class, has-a-relationship)
-   * Quiz (extends Classwork): produces a quiz that contains a few questions, a quiz is not weighted as much as the tests (has-a-relationship, subclasses of Course have the Quiz class)
+* Quiz: produces a quiz that contains a few questions, a quiz is not weighted as much as the tests (has-a-relationship, subclasses of Course have the Quiz class)
 * BallGame
-   * BasketBall
-   * Player
-   * Arrow
-   * Net
+   * BasketBall: ball that bounces around the screen and follows some rules of physics
+   * Player: movable sprite that can pick up and shoot ball
+   * Arrow: indicates angle at which player would shoot ball
+   * Net: keeps track of number of times ball passes through hoop from the top
 * MusicGame
    * Note: scrolling circles that user must match once note meets target line
    * MusicReader
    * Sign: indicates if user correctly matches the note
-* Menu: for when the game needs to be paused
-* StressLevel: represents the bar that indicates the stress level of the user
-* Clock: keeps time throughout the day
-* Day: keeps track of the day, day is displayed in the upper-left corner of the screen
-* Teacher: represents teacher who will be instructing a class and giving grades
-* Gradebook (has Grade): saves grades for each class and keeps track of student progress
+* Main: puts all different windows together
+* StressBar: represents the bar that indicates the stress level of the user
+//* Day: keeps track of the day, day is displayed in the upper-left corner of the screen
+* GradeBook (has Grade): saves grades for each class and keeps track of student progress
 * Grade: represents a single letter grade
-* Result: gives either a diploma or another chance to experience high school life based on the grades of the user
+* Room: environment that players can transition between
+   * Home (extends Room): room that player starts in
+   * Classroom (extends Room): room that exist only on the school campus and are displayed on the map
+   * ActivityRoom (extends Classroom):  classrooms that give player access to a minigame
+* Door: allows player to move between rooms
+* Sprite: the player's moving character
+* GameWindow: shows screen of character moving around campus
+* Map: displays a layout of school campus and a token where player's current location is
 
 
 Responsibility List:

@@ -2,17 +2,27 @@ package Hub;
 import processing.core.PApplet;
 import processing.core.PImage;
 
+/**
+ * starting environment that player begins in
+ * @author Emily
+ *
+ */
 public class Home extends Room
 {
 	private PImage floor, bed;
 	
+	/**
+	 * 
+	 * @param floor background picture
+	 * @param bed picture for bed
+	 */
 	public Home(PImage floor, PImage bed) 
 	{
 		super("Home");
 		this.floor = floor;
 		this.bed = bed;
 	}
-
+	
 	@Override
 	public void display(int direction, PApplet drawer) 
 	{

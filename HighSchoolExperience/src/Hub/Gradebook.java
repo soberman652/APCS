@@ -29,7 +29,28 @@ public class Gradebook {
 		double average = sum/count;
 		
 		return average;
-		
+	}
+	
+	public String avgGrade()
+	{
+		double x = calcAverage();
+		String grade = "";
+		if(x >= 90)
+			grade = "A";
+		else if(x >= 80)
+			grade = "B";
+		else if(x >= 70)
+			grade = "C";
+		else if(x >= 60)
+			grade = "D";
+		else
+			grade = "F";
+		return grade;
+	}
+	
+	public void addGrade(Grade g)
+	{
+		grades.add(g);
 	}
 	
 	

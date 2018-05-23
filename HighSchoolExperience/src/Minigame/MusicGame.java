@@ -17,7 +17,7 @@ public class MusicGame extends PApplet
 	private int count, good, totalNotes;
 	private ArrayList<Integer> sheet;
 	private boolean[] numPressed;
-	private boolean playing;
+	private boolean playing, updated;
 	private Sign symbol;
 	private Main m;
 	public static final int SPACE = 30, FPB = 15;
@@ -42,6 +42,7 @@ public class MusicGame extends PApplet
 		playing = true;
 		numPressed = new boolean[5];
 		symbol = null;
+		updated = false;
 	}
 	/**
 	 * initiates the surface to begin displaying
@@ -89,8 +90,12 @@ public class MusicGame extends PApplet
 				grade = "D";
 			else
 				grade = "F";
+			if(updated == false)
+			{
+				m.updatePlayerScore(result);
+				updated = true;
+			}
 			
-			m.updatePlayerScore(result);
 
 		}
 		else
@@ -285,6 +290,7 @@ public class MusicGame extends PApplet
 		playing = true;
 		numPressed = new boolean[5];
 		symbol = null;
+		updated = false;
 	}
 
 }

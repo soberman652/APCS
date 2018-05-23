@@ -17,21 +17,27 @@ public class GameWindow extends PApplet
 	private Main m;
 	private Sprite student;
 	private boolean[] arrowKeyPressed;//[Left,Right,Down,Up]
-	
+	private StressBar stress;
+	private Gradebook grades;
 	private boolean showMap, takeQuiz;
 	private ArrayList<Classroom> campus;
 	private Room currentLocation;
-	private PImage mapLayout;
+	private PImage mapLayout, deadState;
 	private ArrayList<PImage> studentImg, mapCursor;
 	private Map map;
-	private int userDir, lastDir, playGame;
+	private int userDir, playGame;
 	public static final int NORTH = 1, EAST = 2, SOUTH = 3, WEST = 4; //direction user is facing 
 	public static final int WALL_HEIGHT= 90;
 	
 	public static final int DRAWING_WIDTH = 500;
 	public static final int DRAWING_HEIGHT = 500;
 	
-	public GameWindow(Main m)
+	/**
+	 * 
+	 * @param m contains main method that will display this panel
+	 * @param access to student's stress levels
+	 */
+	public GameWindow(Main m, StressBar stress, Gradebook grades)
 	{
 		super();
 		this.m = m;
@@ -41,8 +47,13 @@ public class GameWindow extends PApplet
 		showMap = false;
 		arrowKeyPressed = new boolean[4];
 		playGame = -1;
+		this.stress = stress;
+		this.grades = grades;
 	}
 	
+	/**
+	 * initiates the surface to begin displaying
+	 */
 	public void runMe() {
 		super.setSize(500,500);
 		super.sketchPath();
@@ -52,6 +63,9 @@ public class GameWindow extends PApplet
 		pause(true);
 	}
 	
+	/**
+	 * initialize images
+	 */
 	public void setup()
 	{
 		mapLayout = loadImage("img\\CampusMap.png");
@@ -77,82 +91,105 @@ public class GameWindow extends PApplet
 		studentImg.add(loadImage("img\\NewStudentLeft.png"));
 		studentImg.add(loadImage("img\\NewStudentRight.png"));
 		student = new Sprite(width/2, height/2, studentImg);
+		deadState = loadImage("img\\DeadStudent.png");
 		initCampus();
 		
 		map = new Map(mapLayout,mapCursor,campus);
 	}
 	
+	/**
+	 * puts all components of game window together and displays them
+	 */
 	public void draw()
 	{
-		background(255);
-		/*
-		float ratio = (float)height/m.HEIGHT;
-
-		this.scale(ratio,ratio);
-		*/
-		currentLocation.display(userDir, this);
-		for(Door d:currentLocation.getExits())
+		if(stress.isCompletelyStressed())
 		{
-			d.hasEntered(student);
+			background(50);
+			image(deadState, this.DRAWING_WIDTH/2 - deadState.width/2, this.DRAWING_HEIGHT/2 - deadState.height/2);
+			fill(255,0,0);
+			textAlign(CENTER, CENTER);
+			textSize(30);
+			text("YOU FAINTED FROM EXHAUSTION", this.DRAWING_WIDTH/2, this.DRAWING_HEIGHT/2+50);
+			text("Grade: " + grades.avgGrade(), this.DRAWING_WIDTH/2, this.DRAWING_HEIGHT/2+90);
 		}
-		student.display(this);
-		
-		if(showMap)
+		else
 		{
-			if(!(currentLocation.getMarker().equals("Home")))
+			background(255);
+			/*
+			float ratio = (float)height/m.HEIGHT;
+
+			this.scale(ratio,ratio);
+			*/
+			currentLocation.display(userDir, this);
+			for(Door d:currentLocation.getExits())
+			{
+				d.hasEntered(student);
+			}
+			student.display(this);
+			stress.display(this);
+			
+			textSize(15);
+			if(currentLocation.getMarker().equals("Stage"))
+			{
+				ActivityRoom r = (ActivityRoom)currentLocation;
+				if(student.intersects(r.getPortal()))
+				{
+					
+					playGame = 2;
+					textAlign(CENTER);
+					fill(0);
+					text("Press ENTER to play music", r.getPortal().x+r.getPortal().width/2, r.getPortal().y+10);
+				}
+				else
+					playGame = -1;
+			}
+			
+			if(currentLocation.getMarker().equals("Gym"))
+			{
+				ActivityRoom r = (ActivityRoom)currentLocation;
+				if(student.intersects(r.getPortal()))
+				{
+					
+					playGame = 1;
+					textAlign(CENTER);
+					fill(0);
+					text("Press ENTER to play basketball", r.getPortal().x+r.getPortal().width/2, r.getPortal().y+10);
+				}
+				else
+					playGame = -1;
+			}
+			
+			if(currentLocation.getMarker().equals("Room A") || currentLocation.getMarker().equals("Room B") || currentLocation.getMarker().equals("Room D") || currentLocation.getMarker().equals("Room E"))
 			{
 				Classroom c = (Classroom)currentLocation;
-				map.setCurrentRoom(c);
-				map.setDir(userDir);
-				map.display(this);
+				if(c.canTakeQuiz(student))
+				{
+					takeQuiz = true;
+					textAlign(CENTER);
+					fill(0);
+					text("Press ENTER to take quiz", this.DRAWING_WIDTH/2, this.DRAWING_HEIGHT/2);
+				}
+				else
+					takeQuiz = false;
 			}
-		}
-		textSize(15);
-		if(currentLocation.getMarker().equals("Stage"))
-		{
-			ActivityRoom r = (ActivityRoom)currentLocation;
-			if(student.intersects(r.getPortal()))
+			
+			if(showMap)
 			{
-				
-				playGame = 2;
-				textAlign(CENTER);
-				fill(0);
-				text("Press ENTER to play music", r.getPortal().x+r.getPortal().width/2, r.getPortal().y+10);
+				if(!(currentLocation.getMarker().equals("Home")))
+				{
+					Classroom c = (Classroom)currentLocation;
+					map.setCurrentRoom(c);
+					map.setDir(userDir);
+					map.display(this);
+				}
 			}
-			else
-				playGame = -1;
 		}
 		
-		if(currentLocation.getMarker().equals("Gym"))
-		{
-			ActivityRoom r = (ActivityRoom)currentLocation;
-			if(student.intersects(r.getPortal()))
-			{
-				
-				playGame = 1;
-				textAlign(CENTER);
-				fill(0);
-				text("Press ENTER to play basketball", r.getPortal().x+r.getPortal().width/2, r.getPortal().y+10);
-			}
-			else
-				playGame = -1;
-		}
-		
-		if(currentLocation.getMarker().equals("Room A") || currentLocation.getMarker().equals("Room B") || currentLocation.getMarker().equals("Room D") || currentLocation.getMarker().equals("Room E"))
-		{
-			Classroom c = (Classroom)currentLocation;
-			if(c.canTakeQuiz(student))
-			{
-				takeQuiz = true;
-				textAlign(CENTER);
-				fill(0);
-				text("Press ENTER to take quiz", this.DRAWING_WIDTH/2, this.DRAWING_HEIGHT/2);
-			}
-			else
-				takeQuiz = false;
-		}
 	}
 	
+	/**
+	 * detects certain keys that have a function
+	 */
 	public void keyPressed()
 	{
 		if(keyCode == KeyEvent.VK_LEFT)
@@ -228,6 +265,9 @@ public class GameWindow extends PApplet
 		}
 	}
 	
+	/**
+	 * deactivates functions that were activated by keys
+	 */
 	public void keyReleased()
 	{
 		if(keyCode == KeyEvent.VK_LEFT)
@@ -327,6 +367,10 @@ public class GameWindow extends PApplet
 		this.currentLocation = bedroom;
 	}
 	
+	/**
+	 * 
+	 * @param paused true if want to pause program from running; false otherwise
+	 */
 	public void pause(boolean paused) {
 		arrowKeyPressed = new boolean[4];
 		if (paused)
