@@ -9,22 +9,24 @@ public class Grade {
 	private char letterGrade;
 	private double percentage;
 	
+	/**
+	 * Creates a default Grade object
+	 */
 	public Grade() {
 		letterGrade = 'E';
 		percentage = 0;
 	}
-	
 	/**
-	 * 
-	 * @param grade letter grade (A, B, C, D, F)
+	 * creates a Grade object with a given letter grade
+	 * @param grade
 	 */
 	public Grade(char grade) {
 		letterGrade = grade;
 	}
 	
 	/**
-	 * 
-	 * @param grade percentage grade
+	 * Creates a Grade object with a given percentage
+	 * @param grade
 	 */
 	public Grade(double grade) {
 		letterGrade = calcGrade(grade);
@@ -32,9 +34,9 @@ public class Grade {
 	}
 	
 	/**
-	 * 
-	 * @param grade percentage grade
-	 * @return letter equivalent of percentage
+	 * calculates the average letter grade depending on the percentage
+	 * @param grade
+	 * @return calculated letter grade
 	 */
 	public char calcGrade(double grade) {
 		if (grade < 60) 
@@ -48,18 +50,17 @@ public class Grade {
 		else 
 			return 'A';
 	}
-	
 	/**
-	 * 
-	 * @return percentage grade
+	 * returns the percentage
+	 * @return percentage
 	 */
 	public double getPercentage() {
 		return percentage;
 	}
-	 /**
-	  * 
-	  * @return
-	  */
+	/**
+	 * returns the letter grade
+	 * @return letter grade
+	 */
 	public char getLetterGrade() {
 		return letterGrade;
 	}

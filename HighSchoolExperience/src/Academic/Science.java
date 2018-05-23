@@ -3,7 +3,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * science class
+ * 
  * @author sashaoberman
  *
  */
@@ -12,7 +12,7 @@ public class Science extends Course{
 	private ArrayList<QuestionAnswers> ScienceQuestions;
 
 	/**
-	 * intialize questions
+	 * creates a science object with questions
 	 */
 	public Science() 
 	{
@@ -54,6 +54,9 @@ public class Science extends Course{
 
 	}
 
+	/**
+	 * returns the science questions in the science object
+	 */
 	public ArrayList<QuestionAnswers> getQuestions()
 	{
 		return ScienceQuestions;
