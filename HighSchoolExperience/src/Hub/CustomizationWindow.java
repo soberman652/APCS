@@ -21,7 +21,8 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 /**
  * 
- * @author Amy
+ * The class represents a window that allows the user to customize his or her character.
+ * @author Amy Ha
  *
  */
 public class CustomizationWindow extends JPanel implements ActionListener {
@@ -44,6 +45,12 @@ public class CustomizationWindow extends JPanel implements ActionListener {
 	//name
 	//class
 	//activity
+	/**
+	 * 
+	 * Creates swing graphical components of the customization window: the boxes or dropdown lists, and the labels that indicate
+	 * what the boxes or dropdown lists contain. Locates each graphical component at a specific place on the window.
+	 * @param m An instance of the main class, which runs the entire program
+	 */
 	public CustomizationWindow(Main m) { 
 		background = (new ImageIcon("background.png")).getImage();
 		customization = (new ImageIcon("customization.png")).getImage();
@@ -127,12 +134,19 @@ public class CustomizationWindow extends JPanel implements ActionListener {
 		this.m = m;
 	}
 
+	/**
+	 * Inserts the background image of school and customization title into the window.
+	 */
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
 		g.drawImage(background,0,0,null);
 		g.drawImage(customization, CUSTOMIZATION_X, CUSTOMIZATION_Y,null);
 	}
 	
+	
+	/**
+	 * Allows switching panels when the DONE button is pressed, so the game will start.
+	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub

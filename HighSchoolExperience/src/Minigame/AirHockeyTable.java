@@ -1,6 +1,12 @@
 package Minigame;
 import processing.core.PApplet;
 
+/**
+ * This class represents the air hockey table. It keeps track of the movement of each controller and the puck, and
+ * saves the current state of the game.
+ * @author Amy
+ *
+ */
 public class AirHockeyTable extends PApplet{
 
 	private int backgroundColor, redSide, blueSide;
@@ -9,6 +15,10 @@ public class AirHockeyTable extends PApplet{
 	private boolean mouseIsInside, isHitForFirst;
 	private int opponentScore, playerScore;
 
+	/**
+	 * Initializes the computer pusher and the player pusher so that they will be at their correct locations. A puck object is
+	 * also created and placed on the center of the table. The table color is set to white and the border line is drawn. Both scores are saved the 
+	 */
 	public AirHockeyTable() {
 		computerController = new Controller(0, 0, 1, 1, AirHockeyMain.WIDTH/2, AirHockeyMain.HEIGHT/20, 25);
 		playerController = new Controller(0, 0, 1, 1, AirHockeyMain.WIDTH/2, 10*AirHockeyMain.HEIGHT /11, 25);
@@ -21,6 +31,9 @@ public class AirHockeyTable extends PApplet{
 		playerScore = 0;
 	}
 
+	/**
+	 * Draws the table with the scores displayed and the puck and the two controllers
+	 */
 	public void draw() {
 		background(backgroundColor);
 		textSize(20);
@@ -183,6 +196,7 @@ public class AirHockeyTable extends PApplet{
 		}
 		return false;
 	}
+	
 	
 	public boolean hitsBlueGoal(float x1, float x2, float y1) {
 		if(puck.getCenterX() - puck.getRadius() >= x1 && 

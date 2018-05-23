@@ -12,7 +12,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 /**
- * 
+ * This class represents the title screen that appears after the entire game is loaded.
  * @author Amy Ha
  *
  */
@@ -28,6 +28,13 @@ public class StartWindow extends JPanel implements MouseListener{
 	private double titleWidth, titleHeight;
 	private Main m;
 	
+	/**
+	 * 
+	 * Loads all of the images, including title and background, into variables and implements 
+	 * mouseListener to allow clicking the START button.
+	 * @param m An instance of the main class, which contains the main method to run the
+	 * entire program.
+	 */
 	public StartWindow(Main m) {
 		title = (new ImageIcon("gametitle.png")).getImage();
 		background = (new ImageIcon("building.jpg")).getImage();
@@ -40,6 +47,10 @@ public class StartWindow extends JPanel implements MouseListener{
 		this.addMouseListener(this);
 	}
 
+	/**
+	 * Draws the background image of a school onto the window and inserts the title on the 
+	 * top while adding the START button on the bottom, which can be pressed to begin the game.
+	 */
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
 		g.drawImage(background, 0, 0, null);
@@ -47,6 +58,10 @@ public class StartWindow extends JPanel implements MouseListener{
 		g.drawImage(button, START_BUTTON_X, START_BUTTON_Y, null);
 	}
 
+	/**
+	 * Overrides the mouseClicked method from the superclass to change panel when the START button is pressed.
+	 * Here, changing panel means the customization window appearing after the START button is pressed.
+	 */
 	@Override
 	public void mouseClicked(MouseEvent e) {
 		// TODO Auto-generated method stub
@@ -67,24 +82,36 @@ public class StartWindow extends JPanel implements MouseListener{
 		}	
 	}
 
+	/**
+	 * Had to add necessary methods to implement MouseListener.
+	 */
 	@Override
 	public void mousePressed(MouseEvent e) {
 		// TODO Auto-generated method stub
 
 	}
 
+	/**
+	 * Had to add necessary methods to implement MouseListener.
+	 */
 	@Override
 	public void mouseReleased(MouseEvent e) {
 		// TODO Auto-generated method stub
 
 	}
 
+	/**
+	 * Had to add necessary methods to implement MouseListener.
+	 */
 	@Override
 	public void mouseEntered(MouseEvent e) {
 		// TODO Auto-generated method stub
 
 	}
 
+	/**
+	 * Had to add necessary methods to implement MouseListener.
+	 */
 	@Override
 	public void mouseExited(MouseEvent e) {
 		// TODO Auto-generated method stub

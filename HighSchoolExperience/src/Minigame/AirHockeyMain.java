@@ -4,11 +4,25 @@ import javax.swing.JFrame;
 import processing.awt.PSurfaceAWT;
 import processing.core.PApplet;
 
+/**
+ * 
+ * This game was going to be added to the project, but we ran out of time unfortunately.
+ * @author Amy Ha
+ *
+ */
 public class AirHockeyMain {
 
+	/**
+	 * WIDTH - width of the JFrame window
+	 * HEIGHT - height of the JFrame window
+	 */
 	public static int WIDTH = 500;
 	public static int HEIGHT = 700;
 
+	/**
+	 * Main method that runs the air hockey game.
+	 * @param args
+	 */
 	public static void main(String args[]) {
 	
 		AirHockeyTable drawing = new AirHockeyTable();
