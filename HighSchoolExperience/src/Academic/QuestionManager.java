@@ -35,7 +35,7 @@ public class QuestionManager// extends JFrame
 	private Course classType;
 	
 	/**
-	 * initilizes 20 quiz questions prepared for user's subject
+	 * initializes 20 quiz questions prepared for user's subject
 	 * @param integer code for user's subject (1=history, 2=science, 3=literature, 4=mathematics)
 	 */
 	public QuestionManager(int type) 
