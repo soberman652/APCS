@@ -4,7 +4,7 @@ import java.util.List;
 
 
 /**
- * history class
+ * 
  * @author sashaoberman
  *
  */
@@ -13,7 +13,7 @@ public class History extends Course{
 	private ArrayList<QuestionAnswers> historyQuestions;
 
 	/**
-	 * initialize questions
+	 * creates a history object
 	 */
 	public History() 
 	{
@@ -52,7 +52,10 @@ public class History extends Course{
 			historyQuestions.add(new QuestionAnswers(question, correctAnswer, incorrectAnswers));
 		}
 	}	
-
+	
+	/**
+	 * returns the history questions in the object
+	 */
 	public ArrayList<QuestionAnswers> getQuestions()
 	{
 		return historyQuestions;

@@ -8,15 +8,25 @@ import java.util.ArrayList;
 public class Gradebook {
 
 	private ArrayList<Grade> grades;
-	
+	/**
+	 * Creates a Gradebook object
+	 */
 	public Gradebook() {
 		grades = new ArrayList<Grade>();
 	}
 	
+	/**
+	 * Creates a Gradebook object
+	 * @param grades
+	 */
 	public Gradebook(ArrayList<Grade> grades) {
 		this.grades = grades;
 	}
 	
+	/**
+	 * Calculates the average of the grades in Gradebook
+	 * @return average of grades
+	 */
 	public double calcAverage() {
 		
 		double sum = 0;
@@ -31,6 +41,10 @@ public class Gradebook {
 		return average;
 	}
 	
+	/**
+	 * calculates average letter grade
+	 * @return average letter grade
+	 */
 	public String avgGrade()
 	{
 		double x = calcAverage();
@@ -48,6 +62,10 @@ public class Gradebook {
 		return grade;
 	}
 	
+	/**
+	 * adds grade to a Gradebook object
+	 * @param g
+	 */
 	public void addGrade(Grade g)
 	{
 		grades.add(g);
