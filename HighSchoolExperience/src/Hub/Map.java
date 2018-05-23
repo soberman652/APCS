@@ -5,6 +5,11 @@ import java.util.ArrayList;
 import processing.core.PApplet;
 import processing.core.PImage;
 
+/**
+ * represents layout of entire campus that shows player's current location
+ * @author Emily
+ *
+ */
 public class Map 
 {
 	private ArrayList<Rectangle> rooms;
@@ -14,6 +19,12 @@ public class Map
 	private ArrayList<PImage> cursor;
 	private int dir;
 	
+	/**
+	 * 
+	 * @param map picture of entire map
+	 * @param cursor picture symbol for player's location
+	 * @param campus list of existing rooms
+	 */
 	public Map(PImage map, ArrayList<PImage> cursor, ArrayList<Classroom> campus)
 	{
 		rooms = new ArrayList<Rectangle>();
@@ -32,6 +43,10 @@ public class Map
 		dir=0;
 	}
 	
+	/**
+	 * draws a map that overlays game window and locates the player
+	 * @param drawer interface that draws the map
+	 */
 	public void display(GameWindow drawer)
 	{
 		drawer.pushStyle();
@@ -79,11 +94,19 @@ public class Map
 		drawer.popStyle();
 	}
 	
+	/**
+	 * update player location
+	 * @param c classroom that player is in
+	 */
 	public void setCurrentRoom(Classroom c)
 	{
 		current = c;
 	}
 	
+	/**
+	 * indentify which direction player is currently facing
+	 * @param userDir NORTH, SOUTH, EAST, WEST
+	 */
 	public void setDir(int userDir)
 	{
 		dir = userDir;

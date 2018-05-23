@@ -32,10 +32,10 @@ public class CustomizationWindow extends JPanel implements ActionListener {
 	private JComboBox<Integer> ageOptionList;
 	private Image customization, background;
 	private final int CUSTOMIZATION_X = 2*Main.WIDTH/7;
-	private final int CUSTOMIZATION_Y = Main.HEIGHT/12; 
+	private final int CUSTOMIZATION_Y = Main.HEIGHT - Main.HEIGHT/4; 
 	private final String[] genderList = {"Boy", "Girl"};
 	private final String[] classList = {"Mathematics", "History", "Literature", "Science"};
-	private final String[] activityList = {"Basketball", "Flute"};
+	private final String[] activityList = {"Basketball", "Music"};
 	private final Integer[] ageList = {13, 14, 15, 16, 17, 18, 19, 20};
 	private Main m;
 
@@ -150,13 +150,13 @@ public class CustomizationWindow extends JPanel implements ActionListener {
 			 // 1=history, 2=science, 3=literature, 4=mathematics
 			String className = (String) classOptionList.getSelectedItem();
 			int classType = 1;
-			if (className == "History")
+			if (className.equals("History"))
 				classType = 1;
-			if (className == "Science")
+			else if (className.equals("Science"))
 				classType = 2;
-			if (className == "Literature")
+			else if (className.equals("Literature"))
 				classType = 3;
-			if (className == "Mathematics")
+			else if (className.equals("Mathematics"))
 				classType = 4;
 			m.setPlayerState(name.getText(), classType);
 		}

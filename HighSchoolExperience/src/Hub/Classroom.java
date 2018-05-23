@@ -5,12 +5,24 @@ import java.awt.Rectangle;
 import processing.core.PApplet;
 import processing.core.PImage;
 
+/**
+ * special room that are on school campus and are displayed on the map
+ * @author Emily
+ *
+ */
 public class Classroom extends Room
 {	
 	private Point mapCoor;
 	private boolean hasQuiz;
 	private PImage quiz;
 	
+	/**
+	 * 
+	 * @param name title of classroom
+	 * @param x x coordinate of room's location on map
+	 * @param y y coordinate of room's location on map
+	 * @param hasQuiz true if room provides a quiz; false otherwise
+	 */
 	public Classroom(String name, int x, int y, boolean hasQuiz)
 	{
 		super(name);
@@ -81,6 +93,11 @@ public class Classroom extends Room
 		drawer.popStyle();
 	}
 	
+	/**
+	 * checks if student is allowed to access a quiz based on some conditions
+	 * @param student character whose location determines if conditions are met to take a quiz
+	 * @return true if meets conditions to take quiz; false otherwise
+	 */
 	public boolean canTakeQuiz(Sprite student)
 	{
 		if(hasQuiz && student.intersects(new Rectangle(GameWindow.DRAWING_WIDTH/2-quiz.width/2, GameWindow.DRAWING_HEIGHT/2-quiz.height/2,quiz.width,quiz.height)))
@@ -89,6 +106,10 @@ public class Classroom extends Room
 			return false;
 	}
 	
+	/**
+	 * 
+	 * @return x,y coordinate of classroom location on map overlay
+	 */
 	public Point getMapCoor()
 	{
 		return mapCoor;
