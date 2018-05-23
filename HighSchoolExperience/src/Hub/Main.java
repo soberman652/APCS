@@ -138,24 +138,30 @@ public class Main extends JFrame
 	
 	public void setPlayerState(String name, int classType)
 	{
-			player.setClassType(classType);
-			player.setName(name);
+		player.setClassType(classType);
+		player.setName(name);
 	}
 	
 	public void updatePlayerScore(int score)
 	{
-			player.updateScore(score);
+		player.updateScore(score);
 	}
 	
 	public String getPlayerName()
 	{
-			return player.getName();
+		return player.getName();
 
+	}
+	
+	public double getPlayerRunAvg()
+	{
+		return player.getRunAvg();
+		
 	}
 	
 	public int getPlayerClassType()
 	{
-			return player.getClassType();
+		return player.getClassType();
 
 	}
 
