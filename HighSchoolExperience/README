@@ -134,7 +134,7 @@ Responsibility List:
 Amy: Created the customization window and the start screen that pops up at the beginning of the game. Implemented air hockey mini-game, but it was not
 added to the final project due to time constraints.
 Sasha: Will work on Menu, StressLevel, Clock, Day, Teacher, come up with questions for tests and quizzes, create classwork
-Emily: mini-game, graphics
+Emily: graphics, drew pictures, edited images, created music and basketball minigame
 Main class based on ProcessingWithMultipleSketches Demo by Mr. Shelby
 graphics of Quiz class based on https://processing.org/examples/button.html
 customization window graphical components based on https://docs.oracle.com/javase/7/docs/api/javax/swing/JComboBox.html, https://docs.oracle.com/javase/7/docs/api/javax/swing/JLabel.html 
