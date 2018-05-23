@@ -4,7 +4,7 @@ import java.util.List;
 
 
 /**
- * 
+ * history class
  * @author sashaoberman
  *
  */
@@ -12,7 +12,9 @@ public class History extends Course{
 
 	private ArrayList<QuestionAnswers> historyQuestions;
 
-	
+	/**
+	 * initialize questions
+	 */
 	public History() 
 	{
 		historyQuestions = new ArrayList<QuestionAnswers>();
@@ -50,7 +52,7 @@ public class History extends Course{
 			historyQuestions.add(new QuestionAnswers(question, correctAnswer, incorrectAnswers));
 		}
 	}	
-	
+
 	public ArrayList<QuestionAnswers> getQuestions()
 	{
 		return historyQuestions;
