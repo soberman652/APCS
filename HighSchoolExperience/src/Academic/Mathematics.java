@@ -3,7 +3,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * 
+ * math class
  * @author sashaoberman
  *
  */
@@ -11,7 +11,9 @@ public class Mathematics extends Course{
 
 	private ArrayList<QuestionAnswers> mathQuestions;
 
-	
+	/**
+	 * intialize questions
+	 */
 	public Mathematics() {
 
 		mathQuestions = new ArrayList<QuestionAnswers>();

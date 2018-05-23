@@ -3,7 +3,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * 
+ * science class
  * @author sashaoberman
  *
  */
@@ -11,7 +11,9 @@ public class Science extends Course{
 
 	private ArrayList<QuestionAnswers> ScienceQuestions;
 
-	
+	/**
+	 * intialize questions
+	 */
 	public Science() 
 	{
 		ScienceQuestions = new ArrayList<QuestionAnswers>();

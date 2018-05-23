@@ -32,7 +32,7 @@ public class MusicGame extends PApplet
 		notes = new ArrayList<Note>();
 		count = 0;
 		good = 0;
-		sheet = MusicReader.readFile("odeToJoy");
+		sheet = MusicReader.readFile("secretTune");
 		totalNotes = 0;
 		for(Integer i : sheet)
 		{

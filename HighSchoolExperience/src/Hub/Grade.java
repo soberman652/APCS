@@ -14,15 +14,28 @@ public class Grade {
 		percentage = 0;
 	}
 	
+	/**
+	 * 
+	 * @param grade letter grade (A, B, C, D, F)
+	 */
 	public Grade(char grade) {
 		letterGrade = grade;
 	}
 	
+	/**
+	 * 
+	 * @param grade percentage grade
+	 */
 	public Grade(double grade) {
 		letterGrade = calcGrade(grade);
 		percentage = grade;
 	}
 	
+	/**
+	 * 
+	 * @param grade percentage grade
+	 * @return letter equivalent of percentage
+	 */
 	public char calcGrade(double grade) {
 		if (grade < 60) 
 			return 'F';
@@ -36,10 +49,17 @@ public class Grade {
 			return 'A';
 	}
 	
+	/**
+	 * 
+	 * @return percentage grade
+	 */
 	public double getPercentage() {
 		return percentage;
 	}
-	
+	 /**
+	  * 
+	  * @return
+	  */
 	public char getLetterGrade() {
 		return letterGrade;
 	}
