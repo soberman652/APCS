@@ -3,6 +3,11 @@ import java.awt.Point;
 
 import processing.core.PApplet;
 
+/**
+ * 
+ * @author Amy
+ *
+ */
 public class Circle {
 	private float velocityX, velocityY;
 	private int xDirection;

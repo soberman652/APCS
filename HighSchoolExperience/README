@@ -10,7 +10,7 @@ You have been bored with your recent extracurriculars and you want a change. You
 and start fresh, and take on new classes. Or, maybe you are sitting through Mr. Shelby's class and this program has been 
 shoved in front of your face. To get through high school, you need to do well in all of your newly chosen class 
 and your extracurricular while keeping your stress levels at bay. As a new student of Homestead High School, choose from a 
-variety of classes to fill your school day. Will you pass them with flying colors, or crack under pressure? Then after school, 
+variety of classes to fill your school day. Will you pass it with flying colors, or crack under pressure? Then after school, 
 participate in any extracurricular activity of your choice, which is manifested as a small minigame. In one day, build your grade 
 average by taking quizzes and minigames. You need to keep your stress level down by doing well on these tasks. To pass high school, 
 you need to keep your stress levels low and your grades high. The worse you do on these tasks, the more stressed you get. If you 
@@ -101,10 +101,10 @@ Class List:
 * CustomizationWindow: window that gives user options on which class and activity to take
 * StartWindow: starting screen
 * Course (abstract): represents the course the user takes
-   * Math (extends Course, has a teacher): represents a mathematics class, includes a broad range of different levels (algebra to calculus maybe)
-   * History (extends Course, has a teacher): represents a history class, covers world history (Russian Revolution, World War I and II, etc.)
-   * Literature (extends Course, has a teacher): represents an English class
-   * Science (extends Course, has a teacher): represents a science class, includes physics, chemistry, and biology
+   * Math (extends Course): represents a mathematics class, includes a broad range of different levels (algebra to calculus maybe)
+   * History (extends Course): represents a history class, covers world history (Russian Revolution, World War I and II, etc.)
+   * Literature (extends Course): represents an English class
+   * Science (extends Course): represents a science class, includes physics, chemistry, and biology
 * Quiz: produces a quiz that contains a few questions, a quiz is not weighted as much as the tests (has-a-relationship, subclasses of Course have the Quiz class)
 * BallGame
    * BasketBall: ball that bounces around the screen and follows some rules of physics
@@ -131,8 +131,10 @@ Class List:
 
 
 Responsibility List:
-Amy: Will create questions for tests and quizzes, create different classwork, write code for the Grade and Gradebook classes, and implement the Phase class.
+Amy: Created the customization window and the start screen that pops up at the beginning of the game. Implemented air hockey mini-game, but it was not
+added to the final project due to time constraints.
 Sasha: Will work on Menu, StressLevel, Clock, Day, Teacher, come up with questions for tests and quizzes, create classwork
 Emily: mini-game, graphics
 Main class based on ProcessingWithMultipleSketches Demo by Mr. Shelby
 graphics of Quiz class based on https://processing.org/examples/button.html
+customization window graphical components based on https://docs.oracle.com/javase/7/docs/api/javax/swing/JComboBox.html, https://docs.oracle.com/javase/7/docs/api/javax/swing/JLabel.html 

@@ -1,5 +1,10 @@
 package Minigame;
 
+/**
+ * 
+ * @author Amy
+ *
+ */
 public class Puck extends Circle{
 	private float friction;
 	

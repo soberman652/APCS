@@ -1,5 +1,10 @@
 package Minigame;
 
+/**
+ * 
+ * @author Amy
+ *
+ */
 public class Controller extends Circle{
 	private float accelerationX, accelerationY;
 	private final float MAX_ACCELERATION = 20;
