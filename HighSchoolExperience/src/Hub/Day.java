@@ -20,4 +20,10 @@ public class Day {
 		return day;
 	}
 	
+	public boolean isFirstDay() {
+		if(day == 1) {
+			return true;
+		}
+		return false;
+	}
 }

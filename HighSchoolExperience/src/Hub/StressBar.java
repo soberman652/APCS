@@ -37,4 +37,7 @@ public class StressBar
 	}
 	
 	
+	public int getPercentStressed() {
+		return percentStressed;
+	}
 }
